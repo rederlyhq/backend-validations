@@ -1,0 +1,11 @@
+{
+  "name": "@rederly/backend-validation",
+  "version": "0.0.0",
+  "description": "A validation module for backend routes. Used as a glue between frontend and backend.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rederly",
+  "license": "GPL-3.0-or-later"
+}
