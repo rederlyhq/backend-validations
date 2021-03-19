@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "role": {
+            "type": ["string", "null"],
+            "description": "The role that you intend to impersonate.",
+            "example": null
+        }
+    },
+    "required": ["role"],
+    "additionalProperties": false
+}

@@ -1,0 +1,12 @@
+{
+  "/users/forgot-password": {
+    "methods": [
+      "post"
+    ]
+  },
+  "/users/impersonate": {
+    "methods": [
+      "post"
+    ]
+  }
+}

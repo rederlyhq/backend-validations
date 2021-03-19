@@ -1,0 +1,46 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Rederly",
+      "description": "TODO",
+      "termsOfService": "TODO",
+      "contact": {
+        "email": "support@rederly.com"
+      },
+      "license": {
+        "name": "GNU General Public License v3.0",
+        "url": "https://github.com/rederlyhq/backend/blob/dev/LICENSE.md"
+      },
+      "version": "1.10.2"
+    },
+    "externalDocs": {
+      "description": "TODO",
+      "url": "https://rederly.com"
+    },
+    "servers": [
+      {
+        "url": "https://app.rederly.com/backend-api"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "petstore_auth": {
+          "type": "oauth2",
+          "flows": {
+            "implicit": {
+              "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+              "scopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            }
+          }
+        },
+        "api_key": {
+          "type": "apiKey",
+          "name": "api_key",
+          "in": "header"
+        }
+      }
+    }
+  }
