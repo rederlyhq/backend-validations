@@ -5,6 +5,7 @@ import { OpenAPIV3 } from "openapi-types";
 import _ from 'lodash';
 import { generateDirectoryObject, listFilters, recursiveListFilesInDirectory } from './file-helper';
 import baseOpenAPIObject from '../src/validations/api';
+import { JSONSchema4 } from 'json-schema';
 
 const pascalCase = (s: string): string => _.upperFirst(_.camelCase(s));
 
@@ -21,12 +22,20 @@ const parsePath = (filePath: string) => {
     const part = path.basename(tokens[tokens.length - 1], schemaExtension); // i.e. body, params, query
     const reqres = tokens[tokens.length - 2]; // request, response
     const httpMethod = tokens[tokens.length - 3]; // get, post
-    const route = tokens.slice(0, tokens.length - 3).join('/');
-    
+    let route = tokens.slice(0, tokens.length - 3).join('/');
+    const indexFilename = '/&index';
+    if (route.endsWith(indexFilename)) {
+        route = route.substring(0, route.length - indexFilename.length);
+    } 
+
+    const validReqRes = ['request', 'responses'];
+    if (!validReqRes.includes(reqres)) {
+        throw new Error(`${filePath} does not follow the pardigm... Expected ${reqres} to be ${validReqRes}`);
+    }
     return {
         route: route,
         httpMethod: httpMethod,
-        reqres: reqres,
+        reqres: reqres as 'request' | 'responses',
         part: part
     } 
 };
@@ -37,39 +46,95 @@ const parsePath = (filePath: string) => {
     const promises = filePaths.map(async absoluteFilepath => {
         const filepath = absoluteFilepath.substring(routeDirectory.length);
         const schemaResult = result.traverse(filepath);
-        const tagResult = schemaResult.findClosest('tag.json');
-        let tagObject = null;
-        if (tagResult) {
-            tagObject = require(tagResult.filePath);
-            if (!tags.includes(tagObject)) {
-                tagObject.name = tagObject.name ?? pascalCase(path.basename(tagResult.parent?.filePath ?? 'NULL-PARENT'));
-                tags.push(tagObject);
-            }
-        }
 
         const parsedPath = parsePath(filepath);
         if (!pathObject[parsedPath.route]) {
             pathObject[parsedPath.route] = {};
         }
-        if (pathObject[parsedPath.route]![parsedPath.httpMethod as 'get' | 'post']) {
-            console.warn('Already exists and overwriting')
-        }
 
-        // For some reason relative path is going up one to many directories so substringing
-        const relativePathToSchemaFromApiDoc = path.relative(apiDocsPath, schemaResult.filePath).substring(1);
-        pathObject[parsedPath.route]![parsedPath.httpMethod as 'get' | 'post'] = {
-            tags: tagObject?.name ? [tagObject.name] : undefined,
-            requestBody: {
-                // description: "NOT IMPLEMENTED",
-                content: {
-                    "application/json": {
-                        schema: {
-                            "$ref": relativePathToSchemaFromApiDoc
-                        }
-                    }
+        let currentObject = pathObject[parsedPath.route]![parsedPath.httpMethod as 'get' | 'post'];
+        
+        if (!currentObject) {
+            const tagResult = schemaResult.findClosest('tag.json');
+            let tagObject = null;
+            if (tagResult) {
+                tagObject = require(tagResult.filePath);
+                if (!tags.includes(tagObject)) {
+                    tagObject.name = tagObject.name ?? pascalCase(path.basename(tagResult.parent?.filePath ?? 'NULL-PARENT'));
+                    tags.push(tagObject);
                 }
             }
+
+            currentObject = {
+                tags: tagObject?.name ? [tagObject.name] : undefined,
+            };
+            pathObject[parsedPath.route]![parsedPath.httpMethod as 'get' | 'post'] = currentObject;
         }
+
+        const filename = path.basename(schemaResult.filePath, schemaExtension);
+        if (parsedPath.reqres === 'request') {
+            switch (filename) {
+                case 'body':
+                    currentObject.requestBody = {
+                        // description: "NOT IMPLEMENTED",
+                        content: {
+                            "application/json": {
+                                // schema: {
+                                //     // For some reason relative path is going up one to many directories so substringing
+                                //     "$ref": path.relative(apiDocsPath, schemaResult.filePath).substring(1)
+                                // }
+                                schema: require(schemaResult.filePath)
+                            }
+                        }
+                    }
+                    break;
+                case 'params':
+                case 'query':
+                    /**
+                     * params and query don't support json schemas
+                     * openapi puts query params and path params in the same spot (having an array of objects with a property that dictates which is which)
+                     * in order to keep the validation consistently this translates the object to an openapi param
+                     */
+    
+                    // There might be mroe to do here
+                    // https://swagger.io/docs/specification/serialization/
+                    const isPath = filename === 'params';
+                    const schema = require(schemaResult.filePath) as JSONSchema4;
+                    currentObject.parameters = currentObject.parameters ?? [];
+                    Object.entries(schema.properties ?? {}).forEach((entry) => {
+                        const required = Array.isArray(schema.required) && schema.required.includes(entry[0]);
+                        if (isPath && !required) {
+                            console.warn(`OpenAPI does not like optional path parameters but "${entry[0]}" is optional for "${parsedPath.route}"`)
+                        }
+                        currentObject!.parameters!.push({
+                            in: isPath ? 'path' : 'query',
+                            name: entry[0],
+                            schema: entry[1] as any,
+                            required: required
+                        });
+                    });
+                    break;
+                default:
+                    console.warn(`Invalid filename ${filename}`);
+            }
+        } else if (parsedPath.reqres === 'responses') {
+            currentObject.responses = currentObject.responses ?? {};
+            currentObject.responses[filename] = {
+                content: {
+                    "application/json": {
+                        // schema: {
+                        //     // For some reason relative path is going up one to many directories so substringing
+                        //     $ref: path.relative(apiDocsPath, schemaResult.filePath).substring(1)
+                        // }
+                        schema: require(schemaResult.filePath)
+                    }
+                },
+                description: (require(schemaResult.filePath) as JSONSchema4).description ?? 'No description set'
+            }
+        } else {
+            throw new Error(`${parsedPath.reqres} is not request or responses, this was already checked and still failed`);
+        }
+
     });
     await Promise.all(promises);
     baseOpenAPIObject.tags = tags as any;
