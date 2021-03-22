@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "tomtom": {
+            "type": "string",
+            "description": "A text field for any textbook information you want to include.",
+            "example": "Mat101 textbook"
+        }
+    },
+    "additionalProperties": false
+}
