@@ -1,5 +1,5 @@
 import Ajv, { AnySchemaObject } from "ajv"
-import { DataValidateFunction, DataValidationCxt, Schema } from "ajv/dist/types";
+import { DataValidateFunction, DataValidationCxt, Schema, ValidateFunction } from "ajv/dist/types";
 import addFormats from "ajv-formats"
 import _ from 'lodash';
 
@@ -93,9 +93,13 @@ function tsTypeKeywordCompileFunc (this: Ajv, schema: string, parentSchema: AnyS
 
 const ajv = new Ajv({
     coerceTypes: true,
+    useDefaults: true
 });
 
 addFormats(ajv)
+
+// This is a keyword for openapi
+ajv.addKeyword('example');
 
 ajv.addKeyword({
     compile: tsTypeKeywordCompileFunc,
@@ -115,6 +119,22 @@ interface ValidateOptions {
     data: unknown;
     clone?: boolean;
 }
+
+export class RederlyValidationError<T = unknown> extends Error {
+    static readonly ERROR_NAME = 'RederlyValidationError';
+    public readonly validate: ValidateFunction<T>;
+    public readonly name: string;
+
+    constructor(validate: ValidateFunction<T>) {
+        super(JSON.stringify(validate.errors));
+        this.validate = validate;
+        this.name = RederlyValidationError.ERROR_NAME;
+    }
+
+    static isRederlyValidationError(err: Error): err is RederlyValidationError {
+        return err.name === RederlyValidationError.ERROR_NAME;
+    }
+}
 export const validate = <T>({
     schema,
     data,
@@ -125,6 +145,6 @@ export const validate = <T>({
     if (validate(result)) {
         return result;
     } else {
-        throw new Error(JSON.stringify(validate.errors));
+        throw new RederlyValidationError(validate);
     }
 }
