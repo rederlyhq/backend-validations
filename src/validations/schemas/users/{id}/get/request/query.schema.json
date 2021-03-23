@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "properties": {
+        "courseId": {
+            "type": "number",
+            "description": "The course to filter the user fetch from",
+            "example": [1,2,3]
+        },
+        "includeGrades": {
+            "type": "string",
+            "description": "Include grades and optionally associated attempts.",
+            "enum": ["JUST_GRADE", "WITH_ATTEMPTS", ""]
+        }
+    },
+    "additionalProperties": false
+}

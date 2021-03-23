@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "confirmEmail": {
+            "type": "string",
+            "format": "email",
+            "description": "The email to verify.",
+            "example": "test@rederly.com"
+        },
+        "verifyToken": {
+            "type": "string",
+            "description": "The token generated from forgot password.",
+            "example": "a940df58-4471-4a92-9b1e-2657899b97d7"
+        }
+    },
+    "required": ["confirmEmail", "verifyToken"],
+    "additionalProperties": false
+}

@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number",
+            "description": "The user id gto fetch.",
+            "example": 1
+        }
+    },
+    "required": ["id"],
+    "additionalProperties": false
+}

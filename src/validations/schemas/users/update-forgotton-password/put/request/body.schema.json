@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email to change the password for.",
+            "example": "test@rederly.com"
+        },
+        "forgotPasswordToken": {
+            "type": "string",
+            "description": "The token generated from forgot password.",
+            "example": "a940df58-4471-4a92-9b1e-2657899b97d7"
+        },
+        "newPassword": {
+            "type": "string",
+            "description": "The user's new password.",
+            "example": "new_password"
+        }
+    },
+    "required": ["email", "forgotPasswordToken", "newPassword"],
+    "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "userIds": {
+            "type": "array",
+            "contains": {
+                "type": "number"
+            },
+            "description": "User ids to filter by.",
+            "example": "[1,2,3]"
+        },
+        "courseId": {
+            "type": "number",
+            "description": "The course to filter the user fetch from",
+            "example": [1,2,3]
+        },
+        "includeGrades": {
+            "type": "string",
+            "description": "Include grades and optionally associated attempts.",
+            "enum": ["JUST_GRADE", "WITH_ATTEMPTS", ""]
+        }
+    },
+    "additionalProperties": false
+}
