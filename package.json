@@ -14,7 +14,8 @@
     "generate:api-docs": "ts-node ./utility-scripts/generate-documentation.ts",
     "generate:route-array": "ts-node ./utility-scripts/generate-route-array.ts",
     "generate:indexes": "ts-node ./utility-scripts/generate-route-indexes.ts",
-    "generators": "npm run generate:route-array && npm run generate:json-types && npm run generate:validated-types && npm run generate:api-docs && npm run generate:indexes",
+    "try-validations": "ts-node ./utility-scripts/try-validations.ts",
+    "generators": "npm run generate:route-array && npm run generate:json-types && npm run generate:validated-types && npm run generate:api-docs && npm run generate:indexes && npm run try-validations",
     "postinstall": "echo 'backend-validation running postinstall' && npm run generators"
   },
   "author": "Rederly",
