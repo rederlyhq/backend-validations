@@ -7,6 +7,7 @@ import { generateDirectoryObject, listFilters, recursiveListFilesInDirectory } f
 import importedOpenAPIObject from '../src/validations/api';
 import { JSONSchema4 } from 'json-schema';
 import { parsePath } from './path-helper';
+import '../src/global-error-handlers';
 
 const baseOpenAPIObject = importedOpenAPIObject as OpenAPIV3.Document;
 

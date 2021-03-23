@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from "path";
 import { recursiveListFilesInDirectory, listFilters } from "./file-helper";
 import { parsePath } from './path-helper';
+import '../src/global-error-handlers';
 
 const schemaExtension = '.schema.json';
 const validationsDir = path.resolve(__dirname, '../src/validations');
@@ -24,6 +25,7 @@ export interface RouteObjectInterface {
     method: HTTPMethod
     responseCodes: number[],
     requestSchemas: string[],
+    isIndex: boolean;
 }
 
 interface RouteDictionary {
@@ -41,7 +43,8 @@ interface RouteDictionary {
             route,
             httpMethod,
             reqres,
-            part
+            part,
+            isIndex
         } = parsePath(filePath);
         if (!isHTTPMethod(httpMethod)) {
             console.warn(`Route: ${route} has an unknown httpMethod: ${httpMethod}`)
@@ -52,7 +55,8 @@ interface RouteDictionary {
         result[route][httpMethod] = result[route][httpMethod] ?? {
             method: httpMethod,
             responseCodes: [],
-            requestSchemas: [],    
+            requestSchemas: [],
+            isIndex: isIndex
         };
         if (reqres === 'request') {
             result[route][httpMethod].requestSchemas.push(part);

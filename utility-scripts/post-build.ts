@@ -1,6 +1,7 @@
 #!/usr/bin/env -S npx ts-node
 import fs from 'fs-extra';
 import path from 'path';
+import '../src/global-error-handlers';
 const builtDirectory = 'lib';
 
 const filesToCopy = [

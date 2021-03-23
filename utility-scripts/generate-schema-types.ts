@@ -3,6 +3,7 @@ import JsonToTS from 'json-to-ts';
 import { listFilters, recursiveListFilesInDirectory } from './file-helper';
 import path from 'path';
 import fs from 'fs';
+import '../src/global-error-handlers';
 
 const extension = '.json';
 

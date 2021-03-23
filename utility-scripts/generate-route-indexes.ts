@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { RouteObjectInterface } from './generate-route-array';
 import path from 'path';
 import fs from 'fs';
+import '../src/global-error-handlers';
 
 const basePath = './src/validations/schemas';
 
@@ -13,7 +14,8 @@ const basePath = './src/validations/schemas';
         const routeFilepath = path.join(basePath, route);
         for(let httpmethod in routeObject) {
             const methodObject = routeObject[httpmethod as keyof typeof routeObject] as RouteObjectInterface;
-            const indexFilepath = path.join(routeFilepath, httpmethod, 'index.ts');
+
+            const indexFilepath = path.join(routeFilepath, methodObject.isIndex ? '__index' : '', httpmethod, 'index.ts');
             console.log(`Writing index file: ${indexFilepath}`);
             await fs.promises.writeFile(indexFilepath, '/* This file was auto generated */\n');
             const promises = methodObject.requestSchemas.map(async requestPart => {

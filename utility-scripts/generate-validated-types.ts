@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { JSONSchema4 } from 'json-schema';
 import { recursiveListFilesInDirectory, listFilters } from './file-helper';
 import path from 'path';
+import '../src/global-error-handlers';
 
 const schemaExtension = '.schema.json';
 (async () => {

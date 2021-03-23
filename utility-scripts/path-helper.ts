@@ -9,8 +9,10 @@ export const parsePath = (filePath: string) => {
     const httpMethod = tokens[tokens.length - 3]; // get, post
     let route = tokens.slice(0, tokens.length - 3).join('/');
     const indexFilename = '/__index';
+    let isIndex = false;
     if (route.endsWith(indexFilename)) {
         route = route.substring(0, route.length - indexFilename.length);
+        isIndex = true;
     } 
 
     const validReqRes = ['request', 'responses'];
@@ -21,6 +23,7 @@ export const parsePath = (filePath: string) => {
         route: route,
         httpMethod: httpMethod,
         reqres: reqres as 'request' | 'responses',
-        part: part
+        part: part,
+        isIndex: isIndex
     } 
 };
