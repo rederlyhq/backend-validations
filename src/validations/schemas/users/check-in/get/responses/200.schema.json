@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "statusCode": {
+            "type": "number"
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": ["statusCode", "status"],
+    "additionalProperties": false
+}

@@ -2,9 +2,13 @@
     "type": "object",
     "properties": {
         "role": {
-            "type": ["string", "null"],
+            "anyOf": [{
+                "type": "string"
+            }, {
+                "type": "null"
+            }],
             "description": "The role that you intend to impersonate.",
-            "example": null
+            "example": "PROFESSOR"
         }
     },
     "required": ["role"],

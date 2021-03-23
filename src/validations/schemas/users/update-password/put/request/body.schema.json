@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email to change the password for.",
+            "example": "test@rederly.com"
+        },
+        "oldPassword": {
+            "type": "string",
+            "description": "The user's existing password.",
+            "example": "old_password"
+        },
+        "newPassword": {
+            "type": "string",
+            "description": "The user's new password.",
+            "example": "new_password"
+        }
+    },
+    "required": ["email", "oldPassword", "newPassword"],
+    "additionalProperties": false
+}

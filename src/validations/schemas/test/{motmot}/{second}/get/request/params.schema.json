@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "motmot": {
+            "type": "string",
+            "description": "Path parameters!!!",
+            "example": "This is a path parameter"
+        },
+        "second": {
+            "type": "string",
+            "description": "second parameters!!!",
+            "example": "22222"
+        }
+    },
+    "additionalProperties": false,
+    "required": ["motmot", "second"]
+}
