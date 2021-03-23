@@ -4,8 +4,10 @@ import path from "path";
 import { OpenAPIV3 } from "openapi-types";
 import _ from 'lodash';
 import { generateDirectoryObject, listFilters, recursiveListFilesInDirectory } from './file-helper';
-import baseOpenAPIObject from '../src/validations/api';
+import importedOpenAPIObject from '../src/validations/api';
 import { JSONSchema4 } from 'json-schema';
+
+const baseOpenAPIObject = importedOpenAPIObject as OpenAPIV3.Document;
 
 const pascalCase = (s: string): string => _.upperFirst(_.camelCase(s));
 

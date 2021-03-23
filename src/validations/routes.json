@@ -11,14 +11,14 @@
       "get"
     ]
   },
-  "/users/impersonate": {
-    "methods": [
-      "post"
-    ]
-  },
   "/users/forgot-password": {
     "methods": [
       "post",
+      "post"
+    ]
+  },
+  "/users/impersonate": {
+    "methods": [
       "post"
     ]
   },

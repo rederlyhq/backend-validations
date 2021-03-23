@@ -6,37 +6,13 @@
 * and run generate-schema-types.ts to regenerate this file.
 */
 interface RootObject {
-  openapi: string;
-  info: Info;
+  description: string;
   externalDocs: ExternalDocs;
-  servers: Server[];
-}
-
-interface Server {
-  url: string;
 }
 
 interface ExternalDocs {
   description: string;
   url: string;
-}
-
-interface Info {
-  title: string;
-  description: string;
-  termsOfService: string;
-  contact: Contact;
-  license: License;
-  version: string;
-}
-
-interface License {
-  name: string;
-  url: string;
-}
-
-interface Contact {
-  email: string;
 }
 
 declare const _default: RootObject;

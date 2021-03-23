@@ -5,6 +5,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import { validationMiddleware } from "./validation-middleware";
 import * as tom from './validations/schemas/test/{motmot}/{second}/post';
+
 import * as core from 'express-serve-static-core';
 import Boom from "boom";
 import bodyParser from 'body-parser';

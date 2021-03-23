@@ -4,7 +4,7 @@ import { listFilters, recursiveListFilesInDirectory } from './file-helper';
 import path from 'path';
 import fs from 'fs';
 
-const schemaExtension = '.schema.json';
+const extension = '.json';
 
 const generateJSONDTS = (extension: string) => async (filePath: string) => {
     const dirname = path.dirname(filePath);
@@ -29,10 +29,10 @@ const generateJSONDTS = (extension: string) => async (filePath: string) => {
     await fs.promises.appendFile(newPath, 'declare const _default: RootObject;\nexport default _default;');
 }
 (async () => {
-    const filePaths = await recursiveListFilesInDirectory('./src/jsonschema', [], listFilters.endsWith('.json', true));
+    const filePaths = await recursiveListFilesInDirectory('./src/validations', [], listFilters.endsWith(extension, true));
     // const promises = filePaths.map(generateJSONDTS(schemaExtension));
     // const promise = generateJSONDTS('.json')(path.resolve('./src/jsonschema/validations/routes.json'));
-    const promises = filePaths.map(generateJSONDTS('.json'));
+    const promises = filePaths.map(generateJSONDTS(extension));
 
     await Promise.all(promises);
 })();
