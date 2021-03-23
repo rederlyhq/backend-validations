@@ -8,7 +8,7 @@ export const parsePath = (filePath: string) => {
     const reqres = tokens[tokens.length - 2]; // request, response
     const httpMethod = tokens[tokens.length - 3]; // get, post
     let route = tokens.slice(0, tokens.length - 3).join('/');
-    const indexFilename = '/&index';
+    const indexFilename = '/__index';
     if (route.endsWith(indexFilename)) {
         route = route.substring(0, route.length - indexFilename.length);
     } 
