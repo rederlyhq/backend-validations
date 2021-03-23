@@ -1,17 +1,14 @@
 {
-  "/courses/:id": {
-    "methods": [
-      "get"
-    ]
-  },
   "/courses/index": {
     "methods": [
+      "post",
       "post"
     ]
   },
-  "/users/forgot-password": {
+  "/courses/{id}": {
     "methods": [
-      "post"
+      "get",
+      "get"
     ]
   },
   "/users/impersonate": {
@@ -19,11 +16,18 @@
       "post"
     ]
   },
-  "/test/asdfasdfasdf": {
+  "/users/forgot-password": {
     "methods": [
-      "get",
-      "get",
-      "get"
+      "post",
+      "post"
+    ]
+  },
+  "/test/{motmot}/{second}": {
+    "methods": [
+      "post",
+      "post",
+      "post",
+      "post"
     ]
   }
 }
