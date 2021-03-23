@@ -15,10 +15,10 @@ interface RootObject {
 }
 
 interface Paths {
-  '/users/forgot-password': Usersforgotpassword;
-  '/users/impersonate': Usersimpersonate;
   '/courses/index': Coursesindex;
   '/courses/{id}': Coursesid;
+  '/users/forgot-password': Usersforgotpassword;
+  '/users/impersonate': Usersimpersonate;
   '/test/{motmot}/{second}': Testmotmotsecond;
 }
 
@@ -52,8 +52,8 @@ interface Schema5 {
 }
 
 interface Properties4 {
-  tomtom: _8787;
-  tomnum: _8787;
+  tomtom: Name;
+  tomnum: Name;
   tomdate: Tomdate;
   tomdefaultdate: Tomdefaultdate;
   tomcomplex: Tomcomplex;
@@ -81,31 +81,13 @@ interface Tomdate {
   tsType: string;
 }
 
-interface Coursesid {
-  get: Get;
-}
-
-interface Get {
-  tags: string[];
-  parameters: Parameter[];
-  responses: Responses;
-}
-
-interface Parameter {
-  in: string;
-  name: string;
-  schema: _8787;
-  required: boolean;
-}
-
-interface Coursesindex {
+interface Usersimpersonate {
   post: Post3;
 }
 
 interface Post3 {
   tags: string[];
   requestBody: RequestBody3;
-  responses: Responses;
 }
 
 interface RequestBody3 {
@@ -128,37 +110,23 @@ interface Schema4 {
 }
 
 interface Properties3 {
-  curriculumId: CurriculumId;
-  name: _8787;
-  code: _8787;
-  start: Start;
-  end: Start;
-  sectionCode: _8787;
-  semesterCode: _8787;
-  textbooks: _8787;
+  role: Role;
 }
 
-interface Start {
-  type: string;
-  format: string;
-  'ts-type': string;
+interface Role {
+  type: string[];
   description: string;
-  example: string;
+  example?: any;
 }
 
-interface CurriculumId {
-  type: string;
-  description: string;
-  example: number;
-}
-
-interface Usersimpersonate {
+interface Usersforgotpassword {
   post: Post2;
 }
 
 interface Post2 {
   tags: string[];
   requestBody: RequestBody2;
+  responses: Responses;
 }
 
 interface RequestBody2 {
@@ -174,23 +142,26 @@ interface Applicationjson3 {
 }
 
 interface Schema3 {
-  type: string;
-  properties: Properties2;
-  required: string[];
-  additionalProperties: boolean;
 }
 
-interface Properties2 {
-  role: Role;
+interface Coursesid {
+  get: Get;
 }
 
-interface Role {
-  type: string[];
-  description: string;
-  example?: any;
+interface Get {
+  tags: string[];
+  parameters: Parameter[];
+  responses: Responses;
 }
 
-interface Usersforgotpassword {
+interface Parameter {
+  in: string;
+  name: string;
+  schema: Name;
+  required: boolean;
+}
+
+interface Coursesindex {
   post: Post;
 }
 
@@ -219,18 +190,12 @@ interface Applicationjson2 {
 
 interface Schema2 {
   type: string;
-  properties: Properties;
+  properties: Properties2;
   additionalProperties: boolean;
 }
 
-interface Properties {
-  '8787': _8787;
-}
-
-interface _8787 {
-  type: string;
-  description: string;
-  example: string;
+interface Properties2 {
+  '8787': Name;
 }
 
 interface RequestBody {
@@ -246,12 +211,47 @@ interface Applicationjson {
 }
 
 interface Schema {
+  type: string;
+  properties: Properties;
+  required: string[];
+  additionalProperties: boolean;
+}
+
+interface Properties {
+  curriculumId: CurriculumId;
+  name: Name;
+  code: Name;
+  start: Start;
+  end: Start;
+  sectionCode: Name;
+  semesterCode: Name;
+  textbooks: Name;
+}
+
+interface Start {
+  type: string;
+  format: string;
+  'ts-type': string;
+  description: string;
+  example: string;
+}
+
+interface Name {
+  type: string;
+  description: string;
+  example: string;
+}
+
+interface CurriculumId {
+  type: string;
+  description: string;
+  example: number;
 }
 
 interface Tag {
   description: string;
-  externalDocs?: ExternalDocs;
   name: string;
+  externalDocs?: ExternalDocs;
 }
 
 interface Server {

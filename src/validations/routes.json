@@ -1,33 +1,57 @@
 {
   "/courses/index": {
     "methods": [
-      "post",
       "post"
+    ],
+    "responseCodes": [
+      200
+    ],
+    "requestSchemas": [
+      "body"
     ]
   },
   "/courses/{id}": {
     "methods": [
-      "get",
       "get"
+    ],
+    "responseCodes": [
+      200
+    ],
+    "requestSchemas": [
+      "params"
     ]
   },
   "/users/forgot-password": {
     "methods": [
-      "post",
       "post"
+    ],
+    "responseCodes": [
+      200
+    ],
+    "requestSchemas": [
+      "body"
     ]
   },
   "/users/impersonate": {
     "methods": [
       "post"
+    ],
+    "responseCodes": [],
+    "requestSchemas": [
+      "body"
     ]
   },
   "/test/{motmot}/{second}": {
     "methods": [
-      "post",
-      "post",
-      "post",
       "post"
+    ],
+    "responseCodes": [
+      200
+    ],
+    "requestSchemas": [
+      "body",
+      "params",
+      "query"
     ]
   }
 }

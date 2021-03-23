@@ -9,12 +9,20 @@ interface RootObject {
   '/courses/index': Coursesindex;
   '/courses/{id}': Coursesindex;
   '/users/forgot-password': Coursesindex;
-  '/users/impersonate': Coursesindex;
+  '/users/impersonate': Usersimpersonate;
   '/test/{motmot}/{second}': Coursesindex;
+}
+
+interface Usersimpersonate {
+  methods: string[];
+  responseCodes: any[];
+  requestSchemas: string[];
 }
 
 interface Coursesindex {
   methods: string[];
+  responseCodes: number[];
+  requestSchemas: string[];
 }
 
 declare const _default: RootObject;

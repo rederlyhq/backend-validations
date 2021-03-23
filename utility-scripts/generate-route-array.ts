@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from "path";
 import { recursiveListFilesInDirectory, listFilters } from "./file-helper";
+import { parsePath } from './path-helper';
 
 const schemaExtension = '.schema.json';
 const validationsDir = path.resolve(__dirname, '../src/validations');
@@ -19,26 +20,16 @@ const isHTTPMethod = (s : string): s is HTTPMethod => {
     return Object.values(HTTPMethod).includes(s as any);
 }
 
-interface RouteDictionary {
-    [key: string]: {
-        methods: HTTPMethod[]
-    }
+export interface RouteObjectInterface {
+    methods: HTTPMethod[],
+    responseCodes: number[],
+    requestSchemas: string[],
 }
 
-const parsePath = (filePath: string) => {
-    const tokens = filePath.split('/');
-    const part = path.basename(tokens[tokens.length - 1], schemaExtension); // i.e. body, params, query
-    const reqres = tokens[tokens.length - 2]; // request, response
-    const httpMethod = tokens[tokens.length - 3]; // get, post
-    const route = tokens.slice(0, tokens.length - 3).join('/');
-    
-    return {
-        route: route,
-        httpMethod: httpMethod,
-        reqres: reqres,
-        part: part
-    } 
-};
+interface RouteDictionary {
+    [key: string]: RouteObjectInterface;
+}
+
 (async () => {
     const result: RouteDictionary = {};
     const filePaths = await recursiveListFilesInDirectory(basePath, [], listFilters.endsWith(schemaExtension, true));
@@ -46,7 +37,9 @@ const parsePath = (filePath: string) => {
         const filePath = absoluteFilePath.substring(path.resolve(basePath).length);
         const {
             route,
-            httpMethod
+            httpMethod,
+            reqres,
+            part
         } = parsePath(filePath);
         if (!isHTTPMethod(httpMethod)) {
             console.warn(`Route: ${route} has an unknown httpMethod: ${httpMethod}`)
@@ -54,10 +47,29 @@ const parsePath = (filePath: string) => {
         }
 
         result[route] = result[route] ?? {
-            methods: []
+            methods: [],
+            responseCodes: [],
+            requestSchemas: [],
         };
-        result[route].methods.push(httpMethod);
+
+        if (reqres === 'request') {
+            // this would be duplicated for each request schema which is why we have to block against it
+            if(!result[route].methods.includes(httpMethod)) {
+                result[route].methods.push(httpMethod);
+            }
+            
+            result[route].requestSchemas.push(part);
+        } else if (reqres === 'responses') {
+            if(!result[route].methods.includes(httpMethod)) {
+                result[route].methods.push(httpMethod);
+            }
+
+            const statusCode = parseInt(part, 10);
+            result[route].responseCodes.push(statusCode);
+        } else {
+            console.error(`invalid reqres "${reqres}" for "${filePath}"`)
+        }
     });
 
-    fs.promises.writeFile(destinationFile, JSON.stringify(result, null, 2));
+    await fs.promises.writeFile(destinationFile, JSON.stringify(result, null, 2));
 })();

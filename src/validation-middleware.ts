@@ -3,6 +3,7 @@ import Boom from 'boom';
 import { Request, Response, NextFunction } from 'express';
 import { RederlyValidationError, validate } from './rederly-ajv-wrapper';
 import _ from 'lodash';
+import { RederlyExpressRequest } from './server';
 
 interface ValidationMiddlewareOptions {
     bodySchema?: Schema | null,
@@ -10,7 +11,7 @@ interface ValidationMiddlewareOptions {
     paramsSchema?: Schema | null,
 }
 
-export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: ValidationMiddlewareOptions) => (req: Request, res: Response, next: NextFunction) => {
+export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: ValidationMiddlewareOptions) => (req: RederlyExpressRequest, res: Response, next: NextFunction) => {
     const validationObject = {
         body: bodySchema,
         query: querySchema,
@@ -20,7 +21,8 @@ export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: 
     let success = true;
     Object.entries(validationObject).some((entry) => {
         const [key, schema] = entry;
-        const toValidate = req[key as 'query' | 'body' | 'params'];
+        const typedKey = key as 'query' | 'body' | 'params';
+        const toValidate = req[typedKey];
         if (schema) {
             try {
                 validate({
@@ -28,17 +30,20 @@ export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: 
                     data: toValidate,
                     clone: false
                 });
+
                 // don't return so it will continue to test (could return false)
             } catch (e) {
                 if (RederlyValidationError.isRederlyValidationError(e)) {
-                    next(Boom.badRequest('Backend validation failed for ', {
+                    console.log(e.validate.errors);
+                    const firstError = e.validate.errors?.[0];
+                    next(Boom.badRequest(`Backend validation failed for "${firstError?.dataPath}" ${firstError?.message ?? 'unknown'}`, {
                         key: key,
                         errors: e.validate.errors
                     }));
                 } else {
                     const message = `Error validating "${key}"`;
                     console.error(message, e.message)
-                    next(Boom.badRequest('Error validating', message));
+                    next(Boom.internal('Error validating', message));
                 }
                 // in either case it failed and no reason to go on
                 success = false;

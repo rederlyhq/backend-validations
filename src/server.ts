@@ -39,39 +39,35 @@ app.use('/json', express.static(path.resolve(__dirname, validationDirectory)));
 // }
 
 
-// export interface RederlyExpressRequest<Params = unknown, Body = unknown, Query = unknown> extends Request<core.ParamsDictionary, any, any, core.Query> {
-//     rederlyReq?: {
-//         params: Params;
-//         body: Body;
-//         query: Query;
-//     }
-// }
+export interface RederlyExpressRequest<Params = unknown, Query = unknown, Body = unknown> extends Request<core.ParamsDictionary, any, any, core.Query> {
+    rederlyReq?: {
+        params: Params;
+        body: Body;
+        query: Query;
+    }
+}
 
 app.use(bodyParser.json());
 
-app.post('/test/:motmot/:second',
-    validationMiddleware({
-        bodySchema: tom.bodySchema,
-        paramsSchema: tom.paramsSchema,
-        querySchema: tom.querySchema,
-    }),
-    // (req: Request<tom.Params, unknown, tom.Body, any>, res: Response, next: NextFunction) => {
-    (req: Request, res: Response, next: NextFunction) => {
-        const params = req.params as unknown as tom.IParams;
-        const query = req.query as unknown as tom.IQuery;
-        const body = req.body as tom.IBody;
-        // // const query = req.query as tom.Query;
-        // const params = req.params as tom.Params;
-        // const motmot = req.params.motmot;
-        // const second = req.params.second;
-        // req.params.tom
-        // const tomtom = req.body.tomtom;
-        // const a1231253 = query[1231253];
+const declareType = <T>(v: any): v is T => {
+    return true;
+}
 
-        // const abcdbc = query.abcdbc;
-        console.log(params);
-        console.log(query);
-        console.log(body);
+interface RederlyExpressRequestOverride <ParamsType,QueryType,BodyType> {
+    params: ParamsType,
+    query: QueryType,
+    body: BodyType
+}
+
+app.post('/test/:motmot/:second',
+    validationMiddleware(tom),
+    // (req: Request<tom.Params, unknown, tom.Body, any>, res: Response, next: NextFunction) => {
+    (req: RederlyExpressRequest, res: Response, next: NextFunction) => {
+        if(!declareType<RederlyExpressRequestOverride<tom.IParams, tom.IQuery, tom.IBody>>(req)) return;
+        const a = req as RederlyExpressRequestOverride<tom.IParams, tom.IQuery, tom.IBody>;
+        console.log(a.params);
+        console.log(a.query);
+        console.log(req.body);
         res.send('success');
     }
 )

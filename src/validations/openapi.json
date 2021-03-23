@@ -37,6 +37,45 @@
     }
   ],
   "paths": {
+    "/courses/{id}": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "number",
+              "description": "The id.",
+              "example": "1"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "8787": {
+                      "type": "string",
+                      "description": "Let's respond!",
+                      "example": "Responding"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "No description set"
+          }
+        }
+      }
+    },
     "/courses/index": {
       "post": {
         "tags": [
@@ -107,45 +146,6 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "8787": {
-                      "type": "string",
-                      "description": "Let's respond!",
-                      "example": "Responding"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "description": "No description set"
-          }
-        }
-      }
-    },
-    "/courses/{id}": {
-      "get": {
-        "tags": [
-          "Courses"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "number",
-              "description": "The id.",
-              "example": "1"
-            },
-            "required": true
-          }
-        ],
         "responses": {
           "200": {
             "content": {
