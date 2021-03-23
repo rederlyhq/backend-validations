@@ -64,5 +64,6 @@ interface RouteDictionary {
         }
     });
 
+    console.log(`Writing route dictionary: ${destinationFile}`);
     await fs.promises.writeFile(destinationFile, JSON.stringify(result, null, 2));
 })();

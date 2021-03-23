@@ -119,5 +119,6 @@ const pathObject: OpenAPIV3.PathsObject = {};
     await Promise.all(promises);
     baseOpenAPIObject.tags = tags as any;
     baseOpenAPIObject.paths = pathObject;
+    console.log(`Writing api docs: ${apiDocsPath}`);
     await fs.promises.writeFile(apiDocsPath, JSON.stringify(baseOpenAPIObject, null, 2));
 })();

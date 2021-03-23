@@ -15,6 +15,7 @@ const schemaExtension = '.schema.json';
       const filename = path.basename(filePath, schemaExtension);
       const newPath = path.join(dirname, `${filename}.d.ts`);
 
+      console.log(`Writing validated type file: ${newPath}`);
       // TODO reference this script in the message
       await fs.promises.writeFile(newPath, `
   /* tslint:disable */

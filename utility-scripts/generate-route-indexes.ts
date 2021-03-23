@@ -14,7 +14,7 @@ const basePath = './src/validations/schemas';
         for(let httpmethod in routeObject) {
             const methodObject = routeObject[httpmethod as keyof typeof routeObject] as RouteObjectInterface;
             const indexFilepath = path.join(routeFilepath, httpmethod, 'index.ts');
-            console.log(`Writing ${indexFilepath}`);
+            console.log(`Writing index file: ${indexFilepath}`);
             await fs.promises.writeFile(indexFilepath, '/* This file was auto generated */\n');
             const promises = methodObject.requestSchemas.map(async requestPart => {
                 await fs.promises.appendFile(indexFilepath, `export {default as ${requestPart}Schema} from './request/${requestPart}.schema';\n`);

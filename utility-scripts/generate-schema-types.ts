@@ -12,6 +12,7 @@ const generateJSONDTS = (extension: string) => async (filePath: string) => {
     const newPath = path.join(dirname, `${filename}${path.basename(extension, '.json')}.d.ts`);
     const tsInterfaces = JsonToTS(require(filePath));
 
+    console.log(`Writing type file for json: ${newPath}`);
     await fs.promises.writeFile(newPath, `
 /* tslint:disable */
 /**
