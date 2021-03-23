@@ -23,6 +23,7 @@ interface Paths {
 }
 
 interface Testmotmotsecond {
+  get: Get2;
   post: Post4;
 }
 
@@ -79,6 +80,15 @@ interface Tomdate {
   type: string;
   format: string;
   tsType: string;
+}
+
+interface Get2 {
+  parameters: Parameter[];
+  responses: Responses2;
+}
+
+interface Responses2 {
+  '201': _200;
 }
 
 interface Usersimpersonate {

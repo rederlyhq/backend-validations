@@ -13,7 +13,8 @@
     "generate:validated-types": "ts-node ./utility-scripts/generate-validated-types.ts",
     "generate:api-docs": "ts-node ./utility-scripts/generate-documentation.ts",
     "generate:route-array": "ts-node ./utility-scripts/generate-route-array.ts",
-    "generators": "npm run generate:json-types && npm run generate:validated-types && npm run generate:api-docs && npm run generate:route-array"
+    "generate:indexes": "ts-node ./utility-scripts/generate-route-indexes.ts",
+    "generators": "npm run generate:route-array && npm run generate:json-types && npm run generate:validated-types && npm run generate:api-docs && npm run generate:indexes"
   },
   "author": "Rederly",
   "license": "GPL-3.0-or-later",

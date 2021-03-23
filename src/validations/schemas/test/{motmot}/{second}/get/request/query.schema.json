@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "abcdbc": {
+            "type": "string",
+            "description": "This is my query param",
+            "example": "query param!"
+        },
+        "1231253": {
+            "type": "string",
+            "description": "321321",
+            "example": "987987"
+        }
+    },
+    "additionalProperties": false,
+    "required": ["1231253"]
+}

@@ -7,20 +7,37 @@
 */
 interface RootObject {
   '/courses/index': Coursesindex;
-  '/courses/{id}': Coursesindex;
+  '/courses/{id}': Coursesid;
   '/users/forgot-password': Coursesindex;
   '/users/impersonate': Usersimpersonate;
-  '/test/{motmot}/{second}': Coursesindex;
+  '/test/{motmot}/{second}': Testmotmotsecond;
+}
+
+interface Testmotmotsecond {
+  get: Post;
+  post: Post;
 }
 
 interface Usersimpersonate {
-  methods: string[];
+  post: Post2;
+}
+
+interface Post2 {
+  method: string;
   responseCodes: any[];
   requestSchemas: string[];
 }
 
+interface Coursesid {
+  get: Post;
+}
+
 interface Coursesindex {
-  methods: string[];
+  post: Post;
+}
+
+interface Post {
+  method: string;
   responseCodes: number[];
   requestSchemas: string[];
 }

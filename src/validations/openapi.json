@@ -37,45 +37,6 @@
     }
   ],
   "paths": {
-    "/courses/{id}": {
-      "get": {
-        "tags": [
-          "Courses"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "number",
-              "description": "The id.",
-              "example": "1"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "8787": {
-                      "type": "string",
-                      "description": "Let's respond!",
-                      "example": "Responding"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            },
-            "description": "No description set"
-          }
-        }
-      }
-    },
     "/courses/index": {
       "post": {
         "tags": [
@@ -168,6 +129,45 @@
         }
       }
     },
+    "/courses/{id}": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "number",
+              "description": "The id.",
+              "example": "1"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "8787": {
+                      "type": "string",
+                      "description": "Let's respond!",
+                      "example": "Responding"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "No description set"
+          }
+        }
+      }
+    },
     "/users/forgot-password": {
       "post": {
         "tags": [
@@ -233,6 +233,50 @@
       }
     },
     "/test/{motmot}/{second}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "1231253",
+            "schema": {
+              "type": "string",
+              "description": "321321",
+              "example": "987987"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "abcdbc",
+            "schema": {
+              "type": "string",
+              "description": "This is my query param",
+              "example": "query param!"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "8787": {
+                      "type": "string",
+                      "description": "Let's respond!",
+                      "example": "Responding"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "description": "No description set"
+          }
+        }
+      },
       "post": {
         "requestBody": {
           "content": {

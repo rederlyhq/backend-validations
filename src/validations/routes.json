@@ -1,57 +1,66 @@
 {
   "/courses/index": {
-    "methods": [
-      "post"
-    ],
-    "responseCodes": [
-      200
-    ],
-    "requestSchemas": [
-      "body"
-    ]
+    "post": {
+      "method": "post",
+      "responseCodes": [
+        200
+      ],
+      "requestSchemas": [
+        "body"
+      ]
+    }
   },
   "/courses/{id}": {
-    "methods": [
-      "get"
-    ],
-    "responseCodes": [
-      200
-    ],
-    "requestSchemas": [
-      "params"
-    ]
+    "get": {
+      "method": "get",
+      "responseCodes": [
+        200
+      ],
+      "requestSchemas": [
+        "params"
+      ]
+    }
   },
   "/users/forgot-password": {
-    "methods": [
-      "post"
-    ],
-    "responseCodes": [
-      200
-    ],
-    "requestSchemas": [
-      "body"
-    ]
+    "post": {
+      "method": "post",
+      "responseCodes": [
+        200
+      ],
+      "requestSchemas": [
+        "body"
+      ]
+    }
   },
   "/users/impersonate": {
-    "methods": [
-      "post"
-    ],
-    "responseCodes": [],
-    "requestSchemas": [
-      "body"
-    ]
+    "post": {
+      "method": "post",
+      "responseCodes": [],
+      "requestSchemas": [
+        "body"
+      ]
+    }
   },
   "/test/{motmot}/{second}": {
-    "methods": [
-      "post"
-    ],
-    "responseCodes": [
-      200
-    ],
-    "requestSchemas": [
-      "body",
-      "params",
-      "query"
-    ]
+    "get": {
+      "method": "get",
+      "responseCodes": [
+        201
+      ],
+      "requestSchemas": [
+        "query"
+      ]
+    },
+    "post": {
+      "method": "post",
+      "responseCodes": [
+        200
+      ],
+      "requestSchemas": [
+        "body",
+        "params",
+        "query"
+      ]
+    }
   }
 }

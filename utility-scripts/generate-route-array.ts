@@ -21,13 +21,15 @@ const isHTTPMethod = (s : string): s is HTTPMethod => {
 }
 
 export interface RouteObjectInterface {
-    methods: HTTPMethod[],
+    method: HTTPMethod
     responseCodes: number[],
     requestSchemas: string[],
 }
 
 interface RouteDictionary {
-    [key: string]: RouteObjectInterface;
+    [route: string]: {
+        [method: string]: RouteObjectInterface
+    };
 }
 
 (async () => {
@@ -46,26 +48,17 @@ interface RouteDictionary {
             return;
         }
 
-        result[route] = result[route] ?? {
-            methods: [],
+        result[route] = result[route] ?? {};
+        result[route][httpMethod] = result[route][httpMethod] ?? {
+            method: httpMethod,
             responseCodes: [],
-            requestSchemas: [],
+            requestSchemas: [],    
         };
-
         if (reqres === 'request') {
-            // this would be duplicated for each request schema which is why we have to block against it
-            if(!result[route].methods.includes(httpMethod)) {
-                result[route].methods.push(httpMethod);
-            }
-            
-            result[route].requestSchemas.push(part);
+            result[route][httpMethod].requestSchemas.push(part);
         } else if (reqres === 'responses') {
-            if(!result[route].methods.includes(httpMethod)) {
-                result[route].methods.push(httpMethod);
-            }
-
             const statusCode = parseInt(part, 10);
-            result[route].responseCodes.push(statusCode);
+            result[route][httpMethod].responseCodes.push(statusCode);
         } else {
             console.error(`invalid reqres "${reqres}" for "${filePath}"`)
         }

@@ -9,22 +9,18 @@ const basePath = './src/validations/schemas';
 
 (async () => {
     for(let route in routesObject) {
-        const routeObject = routesObject[route as keyof typeof routesObject] as RouteObjectInterface;
+        const routeObject = routesObject[route as keyof typeof routesObject];
         const routeFilepath = path.join(basePath, route);
-
-        const promises = routeObject.methods.map(async method => {
-            const indexFilepath = path.join(routeFilepath, method, 'index.ts');
+        for(let httpmethod in routeObject) {
+            const methodObject = routeObject[httpmethod as keyof typeof routeObject] as RouteObjectInterface;
+            const indexFilepath = path.join(routeFilepath, httpmethod, 'index.ts');
             console.log(`Writing ${indexFilepath}`);
-                await fs.promises.writeFile(indexFilepath, '/* This file was auto generated */\n');
-            const promises = routeObject.requestSchemas.map(async requestPart => {
+            await fs.promises.writeFile(indexFilepath, '/* This file was auto generated */\n');
+            const promises = methodObject.requestSchemas.map(async requestPart => {
                 await fs.promises.appendFile(indexFilepath, `export {default as ${requestPart}Schema} from './request/${requestPart}.schema';\n`);
                 await fs.promises.appendFile(indexFilepath, `export { I${_.upperFirst(requestPart)} } from './request/${requestPart}';\n`);
             });
             await Promise.all(promises);
-        });
-        await Promise.all(promises);
-        
-    
-        console.log(routeFilepath);
+        }
     }
 })();
