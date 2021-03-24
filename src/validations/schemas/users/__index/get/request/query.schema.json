@@ -3,7 +3,7 @@
     "properties": {
         "userIds": {
             "type": "array",
-            "contains": {
+            "items": {
                 "type": "number"
             },
             "description": "User ids to filter by.",
