@@ -1,5 +1,8 @@
 node_modules
 /lib
+# This folder is where the build goes to immediately
+# Using intermediate directory so that nodemon can track /lib when developing locally
+/lib.tmp
 
 # Ignore auto generated files from generators
 /src/validations/**/**.ts

@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run generators && tsc && npm run post:build",
     "post:build": "ts-node ./utility-scripts/post-build.ts",
     "build:watch": "nodemon -x npm run build",
-    "clean": "node ./utility-scripts/clean.js",
+    "clean": "REDERLY_JUST_TEMP=true node ./utility-scripts/clean.js",
     "generate:json-types": "ts-node ./utility-scripts/generate-schema-types.ts",
     "generate:validated-types": "ts-node ./utility-scripts/generate-validated-types.ts",
     "generate:api-docs": "ts-node ./utility-scripts/generate-documentation.ts",
@@ -44,19 +44,5 @@
     "boom": "^7.3.0",
     "express": "^4.17.1",
     "swagger-ui-dist": "^3.45.0"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "**/*.test.ts",
-      "**/*.spec.ts"
-    ],
-    "watch": [
-      "src"
-    ],
-    "ext": "json",
-    "execMap": {
-      "ts": "node --require ts-node/register"
-    },
-    "signal": "SIGINT"
   }
 }

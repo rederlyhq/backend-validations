@@ -2,7 +2,7 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "ES6",
-        "outDir": "lib",
+        "outDir": "lib.tmp",
         "rootDir": "src",
         "strict": true,
         "esModuleInterop": true,

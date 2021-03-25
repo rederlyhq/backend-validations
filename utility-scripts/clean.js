@@ -3,9 +3,13 @@
 
 const fse = require('fs-extra');
 
+const { REDERLY_JUST_TEMP } = process.env;
+
 const dirs = [
-    'lib',
+    'lib.tmp',
 ];
+
+if (REDERLY_JUST_TEMP !== 'true') dirs.push('lib');
 
 const promises = dirs.map(async (dir) => {
     const exists = await fse.pathExists(dir);

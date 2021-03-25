@@ -1,0 +1,19 @@
+{
+    "ignore": [
+        "/validations/**/**.ts",
+        "/validations/openapi.json",
+        "/validations/routes.json",
+        "/index.ts",
+
+        "**/*.test.ts",
+        "**/*.spec.ts"
+    ],
+    "watch": [
+        "src"
+    ],
+    "ext": "json,js,ts",
+    "execMap": {
+        "ts": "node --require ts-node/register"
+    },
+    "signal": "SIGINT"
+}

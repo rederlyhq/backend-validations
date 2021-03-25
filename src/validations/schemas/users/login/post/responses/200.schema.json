@@ -32,10 +32,10 @@
                     "description": "The string unique identifier, used to avoid collisions when multiple database might be in use"
                 }
             },
-            "required": ["statusCode", "status"],
+            "required": ["roleId", "firstName", "lastName", "userId", "uuid"],
             "additionalProperties": false
         }
     },
-    "required": ["statusCode", "status"],
+    "required": ["statusCode", "status", "data"],
     "additionalProperties": false
 }

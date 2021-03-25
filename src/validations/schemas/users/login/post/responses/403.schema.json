@@ -3,9 +3,12 @@
     "properties": {
         "statusCode": {
             "type": "number",
-            "enum": [400]
+            "enum": [403]
         },
-        "data": {},
+        "data": {
+            "type": "null",
+            "enum": [null]
+        },
         "message": {
             "type": "string"
         }

@@ -14,5 +14,5 @@
         }
     },
     "required": ["statusCode", "status"],
-    "additionalProperties": false
+    "additionalProperties": true
 }
