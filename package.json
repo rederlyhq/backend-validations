@@ -6,8 +6,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "npm run clean && npm run generators && tsc && npm run post:build",
-    "build:watch": "nodemon -x npm run build",
     "post:build": "ts-node ./utility-scripts/post-build.ts",
+    "build:watch": "nodemon -x npm run build",
     "clean": "node ./utility-scripts/clean.js",
     "generate:json-types": "ts-node ./utility-scripts/generate-schema-types.ts",
     "generate:validated-types": "ts-node ./utility-scripts/generate-validated-types.ts",
@@ -15,8 +15,7 @@
     "generate:route-array": "ts-node ./utility-scripts/generate-route-array.ts",
     "generate:indexes": "ts-node ./utility-scripts/generate-route-indexes.ts",
     "try-validations": "ts-node ./utility-scripts/try-validations.ts",
-    "generators": "npm run generate:route-array && npm run generate:json-types && npm run generate:validated-types && npm run generate:api-docs && npm run generate:indexes && npm run try-validations",
-    "postinstall": "echo 'backend-validation running postinstall' && npm run generators"
+    "generators": "npm run generate:route-array && npm run generate:json-types && npm run generate:validated-types && npm run generate:api-docs && npm run generate:indexes && npm run try-validations"
   },
   "author": "Rederly",
   "license": "GPL-3.0-or-later",

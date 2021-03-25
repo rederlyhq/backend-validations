@@ -26,6 +26,7 @@ export interface RouteObjectInterface {
     responseCodes: number[],
     requestSchemas: string[],
     isIndex: boolean;
+    operationId: string;
 }
 
 interface RouteDictionary {
@@ -44,7 +45,8 @@ interface RouteDictionary {
             httpMethod,
             reqres,
             part,
-            isIndex
+            isIndex,
+            operationId
         } = parsePath(filePath);
         if (!isHTTPMethod(httpMethod)) {
             console.warn(`Route: ${route} has an unknown httpMethod: ${httpMethod}`)
@@ -56,7 +58,8 @@ interface RouteDictionary {
             method: httpMethod,
             responseCodes: [],
             requestSchemas: [],
-            isIndex: isIndex
+            isIndex: isIndex,
+            operationId
         };
         if (reqres === 'request') {
             result[route][httpMethod].requestSchemas.push(part);

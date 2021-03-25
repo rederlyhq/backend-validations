@@ -2,6 +2,7 @@ node_modules
 /lib
 
 # Ignore auto generated files from generators
-src/validations/**/**.ts
-src/validations/openapi.json
-src/validations/routes.json
+/src/validations/**/**.ts
+/src/validations/openapi.json
+/src/validations/routes.json
+/src/index.ts

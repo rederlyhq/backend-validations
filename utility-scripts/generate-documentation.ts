@@ -48,6 +48,7 @@ const pathObject: OpenAPIV3.PathsObject = {};
 
             currentObject = {
                 tags: tagObject?.name ? [tagObject.name] : undefined,
+                operationId: parsedPath.operationId
             };
             pathObject[parsedPath.route]![parsedPath.httpMethod as 'get' | 'post'] = currentObject;
         }

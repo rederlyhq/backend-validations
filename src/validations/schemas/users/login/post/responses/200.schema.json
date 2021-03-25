@@ -2,10 +2,38 @@
     "type": "object",
     "properties": {
         "statusCode": {
-            "type": "number"
+            "type": "number",
+            "enum": [200]
         },
-        "status": {
-            "type": "string"
+        "data": {
+            "type": "object",
+            "properties": {
+                "roleId": {
+                    "type": "number",
+                    "enum": [0,1,2],
+                    "example": 0
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "Little"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Link"
+                },
+                "userId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The unique numeric identifier, used to link together in the database."
+                },
+                "uuid": {
+                    "type": "string",
+                    "example": "70691ef1-6d55-4902-a61c-5d27b6860e01",
+                    "description": "The string unique identifier, used to avoid collisions when multiple database might be in use"
+                }
+            },
+            "required": ["statusCode", "status"],
+            "additionalProperties": false
         }
     },
     "required": ["statusCode", "status"],
