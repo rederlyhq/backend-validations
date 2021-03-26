@@ -32,8 +32,15 @@ const indexFiles: {
 
             const responsePromises = methodObject.responseCodes.map(async statusCode => {
                 await fs.promises.appendFile(indexFilepath, `export {default as status${statusCode}Schema} from './responses/${statusCode}.schema';\n`);
-                await fs.promises.appendFile(indexFilepath, `export { I${statusCode} } from './responses/${statusCode}';\n`);
-            })
+                await fs.promises.appendFile(indexFilepath, `import { I${statusCode} } from './responses/${statusCode}';\n`);
+            });
+            let exportTypesString = methodObject.responseCodes.map(code => `I${code}`).join(', ');
+            exportTypesString = exportTypesString.length > 0 ? `export {${exportTypesString}};` : '';
+            await fs.promises.appendFile(indexFilepath, `${exportTypesString}\n`);
+            
+            let responseTypeString = methodObject.responseCodes.map(code => `I${code}`).join(' | ');
+            responseTypeString = responseTypeString.length > 0 ? `export type IResponse = ${responseTypeString};` : '';
+            await fs.promises.appendFile(indexFilepath, `${responseTypeString}\n`);
             await Promise.all([...requestPromises, ...responsePromises]);
         }
     }
