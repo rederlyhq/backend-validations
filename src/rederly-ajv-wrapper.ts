@@ -10,7 +10,8 @@ const TSTypeConversion = {
             throw new Error(`Could not parse date [${value}]`);
         }
         return date;
-    } 
+    },
+    unknown: (value: unknown): unknown => value
 }
 
 interface AddErrorToValidateFuncOptions {
@@ -70,7 +71,12 @@ function tsTypeKeywordCompileFunc (this: Ajv, schema: string, parentSchema: AnyS
         if (schema in TSTypeConversion) {
             try {
                 const date = TSTypeConversion[schema as keyof typeof TSTypeConversion](data);
-                parentData[parentDataProperty] = date;
+                if (parentData) {
+                    parentData[parentDataProperty] = date;
+                } else {
+                    // TODO
+                    console.log('has no parent');
+                }
                 return true;
             } catch(e) {
                 addErrorToValidateFunc({
@@ -92,8 +98,10 @@ function tsTypeKeywordCompileFunc (this: Ajv, schema: string, parentSchema: AnyS
 };
 
 const ajv = new Ajv({
+    strict: true,
     coerceTypes: true,
-    useDefaults: true
+    useDefaults: true,
+    removeAdditional: 'all',
 });
 
 addFormats(ajv)
@@ -107,18 +115,20 @@ ajv.addKeyword({
     // modifying: true,
     // errors: true,
     keyword: 'tsType',
-    type: 'string',
     modifying: true,
     errors: true
 });
 
 export default ajv;
 
-interface ValidateOptions {
+type ValidateOptions<T = unknown, U = unknown> = {
     schema: Schema;
-    data: unknown;
+    data: U;
+} & ({
     clone?: boolean;
-}
+} | {
+    onDuplicateKeys?: (props: {duplicateKeys: string[]; input: U; result: T;}) => void
+});
 
 export class RederlyValidationError<T = unknown> extends Error {
     static readonly ERROR_NAME = 'RederlyValidationError';
@@ -140,7 +150,7 @@ export const validate = <T>({
     data,
     clone = true
 }: ValidateOptions): T => {
-    const result = clone ? _.cloneDeep(data) : data;
+    const result =  clone ? _.cloneDeep(data) : data;
     const validate = ajv.compile<T>(schema);
     if (validate(result)) {
         return result;
@@ -148,3 +158,4 @@ export const validate = <T>({
         throw new RederlyValidationError(validate);
     }
 }
+
