@@ -21,9 +21,11 @@ const schemaExtension = '.schema.json';
 const tags: unknown[] = [];
 const pathObject: OpenAPIV3.PathsObject = {};
 
+const useRefs = true;
+
 (async () => {
     const result = await generateDirectoryObject(routeDirectory);
-    const filePaths = await recursiveListFilesInDirectory(parentDirectory, [], listFilters.endsWith(schemaExtension, true));
+    const filePaths = await recursiveListFilesInDirectory(routeDirectory, [], listFilters.endsWith(schemaExtension, true));
     const promises = filePaths.map(async absoluteFilepath => {
         const filepath = absoluteFilepath.substring(routeDirectory.length);
         const schemaResult = result.traverse(filepath);
@@ -57,15 +59,12 @@ const pathObject: OpenAPIV3.PathsObject = {};
         if (parsedPath.reqres === 'request') {
             switch (filename) {
                 case 'body':
+                    const schemaValue = useRefs ? {"$ref": path.relative(apiDocsPath, schemaResult.filePath).substring(1)} : require(schemaResult.filePath)
                     currentObject.requestBody = {
                         // description: "NOT IMPLEMENTED",
                         content: {
                             "application/json": {
-                                // schema: {
-                                //     // For some reason relative path is going up one to many directories so substringing
-                                //     "$ref": path.relative(apiDocsPath, schemaResult.filePath).substring(1)
-                                // }
-                                schema: require(schemaResult.filePath)
+                                schema: schemaValue
                             }
                         }
                     }
@@ -100,15 +99,15 @@ const pathObject: OpenAPIV3.PathsObject = {};
                     console.warn(`Invalid filename ${filename}`);
             }
         } else if (parsedPath.reqres === 'responses') {
+            const schemaValue = useRefs ? {
+                // For some reason relative path is going up one to many directories so substringing
+                $ref: path.relative(apiDocsPath, schemaResult.filePath).substring(1)
+            } : require(schemaResult.filePath)
             currentObject.responses = currentObject.responses ?? {};
             currentObject.responses[filename] = {
                 content: {
                     "application/json": {
-                        // schema: {
-                        //     // For some reason relative path is going up one to many directories so substringing
-                        //     $ref: path.relative(apiDocsPath, schemaResult.filePath).substring(1)
-                        // }
-                        schema: require(schemaResult.filePath)
+                        schema: schemaValue
                     }
                 },
                 description: (require(schemaResult.filePath) as JSONSchema4).description ?? 'No description set'

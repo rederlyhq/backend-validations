@@ -15,5 +15,6 @@
     "execMap": {
         "ts": "node --require ts-node/register"
     },
-    "signal": "SIGINT"
+    "signal": "SIGINT",
+    "delay": 1000
 }
