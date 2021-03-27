@@ -42,6 +42,8 @@ const indexFiles: {
             responseTypeString = responseTypeString.length > 0 ? `export type IResponse = ${responseTypeString};` : '';
             await fs.promises.appendFile(indexFilepath, `${responseTypeString}\n`);
             await Promise.all([...requestPromises, ...responsePromises]);
+            await fs.promises.appendFile(indexFilepath, `export const route = '${route}';\n`);
+            await fs.promises.appendFile(indexFilepath, `export const httpMethod = '${httpmethod}';\n`);
         }
     }
 

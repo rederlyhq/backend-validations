@@ -2,6 +2,7 @@ import Ajv, { AnySchemaObject } from "ajv"
 import { DataValidateFunction, DataValidationCxt, Schema, ValidateFunction } from "ajv/dist/types";
 import addFormats from "ajv-formats"
 import _ from 'lodash';
+import functions from '@rederly/rederly-utils/lib/generics/lodash-mixins';
 
 const TSTypeConversion = {
     Date: (value: any): Date => {
@@ -97,7 +98,7 @@ function tsTypeKeywordCompileFunc (this: Ajv, schema: string, parentSchema: AnyS
     return validateFunction;
 };
 
-const ajv = new Ajv({
+export const ajv = new Ajv({
     strict: true,
     coerceTypes: true,
     useDefaults: true,
@@ -120,15 +121,12 @@ ajv.addKeyword({
 });
 
 export default ajv;
-
-type ValidateOptions<T = unknown, U = unknown> = {
+export { Schema as AJVSchema };
+interface ValidateOptions<InputType = unknown> {
     schema: Schema;
-    data: U;
-} & ({
-    clone?: boolean;
-} | {
-    onDuplicateKeys?: (props: {duplicateKeys: string[]; input: U; result: T;}) => void
-});
+    data: InputType;
+    clone: boolean;
+};
 
 export class RederlyValidationError<T = unknown> extends Error {
     static readonly ERROR_NAME = 'RederlyValidationError';
@@ -145,17 +143,55 @@ export class RederlyValidationError<T = unknown> extends Error {
         return err.name === RederlyValidationError.ERROR_NAME;
     }
 }
-export const validate = <T>({
+export const validate = <ValidatedType, InputType = unknown>({
     schema,
     data,
-    clone = true
-}: ValidateOptions): T => {
+    clone = false
+}: ValidateOptions<InputType>): ValidatedType => {
     const result =  clone ? _.cloneDeep(data) : data;
-    const validate = ajv.compile<T>(schema);
+    const validate = ajv.compile<ValidatedType>(schema);
     if (validate(result)) {
+        // Instead of just returning the result maybe we could return an object
+        // Input object ref
+        // Modified object ref
+        // Unmodified object ref
+        // The idea there is that you could modify in place but keep the original for some sort of comparison
+        // i.e. I want to check additional keys but validating a request I want to use the initial object references
         return result;
     } else {
         throw new RederlyValidationError(validate);
     }
 }
 
+interface ValidateAndCheckForAdditionalKeysOptions<InputType = unknown> {
+    schema: Schema;
+    data: InputType;
+}
+
+interface ValidateAndCheckForAdditionalKeysResult<ValidatedType = unknown> {
+    additionalKeys: string[];
+    result: ValidatedType;
+}
+
+/**
+ * This function mutates data to be the validated type
+ * @param schema 
+ * @param data 
+ * @returns 
+ */
+export const validateAndCheckForAdditionalKeys = <ValidatedType = unknown, InputType = ValidatedType>({schema, data}: ValidateAndCheckForAdditionalKeysOptions<InputType>): ValidateAndCheckForAdditionalKeysResult<ValidatedType> => {
+    const original = _.cloneDeep(data);
+    const result = validate<ValidatedType>({
+        schema: schema,
+        data: data,
+        clone: false
+    });
+
+    const inputKeys = functions.removeArrayIndexesFromDeepKeys(functions.deepKeys(data));
+    const resultKeys = functions.removeArrayIndexesFromDeepKeys(functions.deepKeys(original));
+    const additionalKeys = _.difference(resultKeys, inputKeys);
+    return {
+        result,
+        additionalKeys
+    };
+}

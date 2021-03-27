@@ -3,13 +3,45 @@
     "properties": {
         "statusCode": {
             "type": "number",
-            "enum": [400]
+            "enum": [
+                400
+            ]
         },
-        "data": {},
+        "data": {
+            "$id": "unknown",
+            "anyOf": [
+                {
+                    "type": "array"
+                },
+                {
+                    "type": "boolean"
+                },
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "tsType": "unknown"
+        },
         "message": {
             "type": "string"
         }
     },
-    "required": ["statusCode", "status"],
+    "required": [
+        "statusCode",
+        "status"
+    ],
     "additionalProperties": true
 }

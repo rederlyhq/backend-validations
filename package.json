@@ -38,6 +38,7 @@
     "typescript": "^4.2.2"
   },
   "dependencies": {
+    "@rederly/rederly-utils": "0.0.2",
     "ajv": "^7.2.1",
     "ajv-formats": "^1.5.1",
     "body-parser": "^1.19.0",

@@ -33,9 +33,9 @@
                 }
             },
             "required": ["roleId", "firstName", "lastName", "userId", "uuid"],
-            "additionalProperties": false
+            "additionalProperties": true
         }
     },
     "required": ["statusCode", "status", "data"],
-    "additionalProperties": false
+    "additionalProperties": true
 }
