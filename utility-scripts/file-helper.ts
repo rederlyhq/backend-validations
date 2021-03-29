@@ -1,6 +1,6 @@
 import fse = require('fs-extra');
 import path = require('path');
-import logger from '../src/sharedLogger';
+import logger from '@rederly/rederly-utils/lib/generics/shared-logger';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
 

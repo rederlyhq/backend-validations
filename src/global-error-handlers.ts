@@ -1,4 +1,4 @@
-import logger from './sharedLogger';
+import logger from '@rederly/rederly-utils/lib/generics/shared-logger';
 
 /**
  * ANY ON ERROR HANDLING

@@ -1,9 +1,21 @@
 import { Schema } from 'ajv';
-import Boom from 'boom';
-import { Request, Response, NextFunction } from 'express';
 import { RederlyValidationError, validate } from './rederly-ajv-wrapper';
 import _ from 'lodash';
-import { RederlyExpressRequest } from './server';
+
+interface Request {
+    query: unknown;
+    body: unknown;
+    params: unknown;
+}
+
+interface Response {
+
+}
+
+interface NextFunction {
+    (arg?: unknown): void
+}
+
 
 interface ValidationMiddlewareOptions {
     bodySchema?: Schema | null,
@@ -11,7 +23,7 @@ interface ValidationMiddlewareOptions {
     paramsSchema?: Schema | null,
 }
 
-export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: ValidationMiddlewareOptions) => (req: RederlyExpressRequest, res: Response, next: NextFunction) => {
+export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: ValidationMiddlewareOptions) => (req: Request, res: Response, next: NextFunction) => {
     const validationObject = {
         body: bodySchema,
         query: querySchema,
@@ -36,21 +48,32 @@ export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: 
                 if (RederlyValidationError.isRederlyValidationError(e)) {
                     console.log(e.validate.errors);
                     const firstError = e.validate.errors?.[0];
-                    next(Boom.badRequest(`Backend validation failed for "${firstError?.dataPath}" ${firstError?.message ?? 'unknown'}`, {
-                        key: key,
-                        errors: e.validate.errors
-                    }));
+                    next({
+                        message: `Backend validation failed for "${firstError?.dataPath}" ${firstError?.message ?? 'unknown'}`,
+                        date: {
+                            key: key,
+                            errors: e.validate.errors
+                        }
+                    });
                 } else {
                     const message = `Error validating "${key}"`;
-                    console.error(message, e.message)
-                    next(Boom.internal('Error validating', message));
+                    console.error(message, e.message);
+                    next({
+                        message: 'Error validating',
+                        date: {
+                            error: message
+                        }
+                    });
                 }
                 // in either case it failed and no reason to go on
                 success = false;
                 return true;
             }
         } else if (!_.isEmpty(toValidate)) {
-            next(Boom.badRequest(`Request "${key}" is not allowed for this request`));
+            next({
+                message: `Request "${key}" is not allowed for this request`,
+            });
+
             success = false;
             return true;
         }
