@@ -1,7 +1,7 @@
 #!/usr/bin/env -S npx ts-node
 import routesObject from '../src/validations/routes';
 import _ from 'lodash';
-import { RouteObjectInterface } from './generate-route-array';
+import { RouteObjectInterface } from './generate-route-map';
 import path from 'path';
 import fs from 'fs';
 import '../src/global-error-handlers';
