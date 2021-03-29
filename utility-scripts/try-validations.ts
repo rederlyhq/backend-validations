@@ -20,5 +20,5 @@ const schemaExtension = '.schema.json';
                 throw validatingError;
             }
         }
-    };
+    }
 })();

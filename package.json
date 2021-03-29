@@ -4,7 +4,7 @@
   "description": "A validation module for backend routes. Used as a glue between frontend and backend.",
   "main": "lib/index.js",
   "scripts": {
-    "lint": "eslint src/ --ext .ts",
+    "lint": "eslint utility-scripts src --ext .ts",
     "clean": "REDERLY_JUST_TEMP=true node ./utility-scripts/clean.js",
     "build": "npm run clean && npm run generators && tsc && npm run post:build",
     "post:build": "ts-node ./utility-scripts/post-build.ts",

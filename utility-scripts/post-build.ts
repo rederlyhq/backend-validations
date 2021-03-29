@@ -2,7 +2,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import '../src/global-error-handlers';
-import {listFilters, recursiveListFilesInDirectory} from './file-helper'
+import {listFilters, recursiveListFilesInDirectory} from './file-helper';
 import crypto from 'crypto';
 
 const destDir = path.resolve('lib');
@@ -11,7 +11,7 @@ const destValidationsDir = path.join(destDir, 'validations');
 
 const hashFile = async(filePath: string): Promise<string> => {
     if(!await fs.pathExists(filePath)) {
-        console.log('DNE ' + filePath)
+        console.log('DNE ' + filePath);
         return '';
     }
     const hash = crypto.createHash('sha256');
@@ -23,7 +23,7 @@ const hashFile = async(filePath: string): Promise<string> => {
     });
     const result = hash.digest('hex');
     return result;
-}
+};
 
 (async () => {
     const fileCandidatesToCopy = await recursiveListFilesInDirectory(baseValidationsDir, [], listFilters.matches(/\.(?:json|d\.ts)$/));
@@ -38,7 +38,7 @@ const hashFile = async(filePath: string): Promise<string> => {
 
     promises = filesToCopy.map(async filePath => {
         const destPath = path.join(destValidationsDir, filePath.substring(baseValidationsDir.length));
-        console.log(`Copying "${filePath}" ==> ${destPath}`)
+        console.log(`Copying "${filePath}" ==> ${destPath}`);
         await fs.copy(filePath, destPath, {
             overwrite: true
         });

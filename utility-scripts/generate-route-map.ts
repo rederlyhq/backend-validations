@@ -1,7 +1,7 @@
 #!/usr/bin/env -S npx ts-node
 import fs from 'fs';
-import path from "path";
-import { recursiveListFilesInDirectory, listFilters } from "./file-helper";
+import path from 'path';
+import { recursiveListFilesInDirectory, listFilters } from './file-helper';
 import { parsePath } from './path-helper';
 import '../src/global-error-handlers';
 
@@ -18,8 +18,8 @@ enum HTTPMethod {
 }
 
 const isHTTPMethod = (s : string): s is HTTPMethod => {
-    return Object.values(HTTPMethod).includes(s as any);
-}
+    return Object.values(HTTPMethod).includes(s as HTTPMethod);
+};
 
 export interface RouteObjectInterface {
     method: HTTPMethod
@@ -49,7 +49,7 @@ interface RouteDictionary {
             operationId
         } = parsePath(filePath);
         if (!isHTTPMethod(httpMethod)) {
-            console.warn(`Route: ${route} has an unknown httpMethod: ${httpMethod}`)
+            console.warn(`Route: ${route} has an unknown httpMethod: ${httpMethod}`);
             return;
         }
 
@@ -67,7 +67,7 @@ interface RouteDictionary {
             const statusCode = parseInt(part, 10);
             result[route][httpMethod].responseCodes.push(statusCode);
         } else {
-            console.error(`invalid reqres "${reqres}" for "${filePath}"`)
+            console.error(`invalid reqres "${reqres}" for "${filePath}"`);
         }
     });
 

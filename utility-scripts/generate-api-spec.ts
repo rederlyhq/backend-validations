@@ -1,7 +1,7 @@
 #!/usr/bin/env -S npx ts-node
 import fs from 'fs';
-import path from "path";
-import { OpenAPIV3 } from "openapi-types";
+import path from 'path';
+import { OpenAPIV3 } from 'openapi-types';
 import _ from 'lodash';
 import { generateDirectoryObject, listFilters, recursiveListFilesInDirectory } from './file-helper';
 import importedOpenAPIObject from '../src/validations/api';
@@ -31,11 +31,11 @@ const useRefs = false;
         const schemaResult = result.traverse(filepath);
 
         const parsedPath = parsePath(filepath);
-        if (!pathObject[parsedPath.route]) {
-            pathObject[parsedPath.route] = {};
-        }
 
-        let currentObject = pathObject[parsedPath.route]![parsedPath.httpMethod as 'get' | 'post'];
+        const routeObject = pathObject[parsedPath.route] ?? {};
+        pathObject[parsedPath.route] = routeObject;
+
+        let currentObject = routeObject[parsedPath.httpMethod as 'get' | 'post'];
         
         if (!currentObject) {
             const tagResult = schemaResult.findClosest('tag.json');
@@ -52,22 +52,22 @@ const useRefs = false;
                 tags: tagObject?.name ? [tagObject.name] : undefined,
                 operationId: parsedPath.operationId
             };
-            pathObject[parsedPath.route]![parsedPath.httpMethod as 'get' | 'post'] = currentObject;
+            routeObject[parsedPath.httpMethod as 'get' | 'post'] = currentObject;
         }
 
         const filename = path.basename(schemaResult.filePath, schemaExtension);
         if (parsedPath.reqres === 'request') {
             switch (filename) {
                 case 'body':
-                    const schemaValue = useRefs ? {"$ref": path.relative(apiDocsPath, schemaResult.filePath).substring(1)} : require(schemaResult.filePath)
+                    const schemaValue = useRefs ? {'$ref': path.relative(apiDocsPath, schemaResult.filePath).substring(1)} : require(schemaResult.filePath);
                     currentObject.requestBody = {
                         // description: "NOT IMPLEMENTED",
                         content: {
-                            "application/json": {
+                            'application/json': {
                                 schema: schemaValue
                             }
                         }
-                    }
+                    };
                     break;
                 case 'params':
                 case 'query':
@@ -80,17 +80,20 @@ const useRefs = false;
                     // There might be mroe to do here
                     // https://swagger.io/docs/specification/serialization/
                     const isPath = filename === 'params';
+                    // This is a dynamic import for reading the file
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const schema = require(schemaResult.filePath) as JSONSchema4;
-                    currentObject.parameters = currentObject.parameters ?? [];
+                    const currentParameters = currentObject.parameters ?? [];
+                    currentObject.parameters = currentParameters;
                     Object.entries(schema.properties ?? {}).forEach((entry) => {
                         const required = Array.isArray(schema.required) && schema.required.includes(entry[0]);
                         if (isPath && !required) {
-                            console.warn(`OpenAPI does not like optional path parameters but "${entry[0]}" is optional for "${parsedPath.route}"`)
+                            console.warn(`OpenAPI does not like optional path parameters but "${entry[0]}" is optional for "${parsedPath.route}"`);
                         }
-                        currentObject!.parameters!.push({
+                        currentParameters.push({
                             in: isPath ? 'path' : 'query',
                             name: entry[0],
-                            schema: entry[1] as any,
+                            schema: entry[1] as OpenAPIV3.SchemaObject,
                             required: required
                         });
                     });
@@ -102,23 +105,25 @@ const useRefs = false;
             const schemaValue = useRefs ? {
                 // For some reason relative path is going up one to many directories so substringing
                 $ref: path.relative(apiDocsPath, schemaResult.filePath).substring(1)
-            } : require(schemaResult.filePath)
+            } : require(schemaResult.filePath);
             currentObject.responses = currentObject.responses ?? {};
             currentObject.responses[filename] = {
                 content: {
-                    "application/json": {
+                    'application/json': {
                         schema: schemaValue
                     }
                 },
+                // This is a dynmaic import for reading the file
+                // eslint-disable-next-line @typescript-eslint/no-var-requires
                 description: (require(schemaResult.filePath) as JSONSchema4).description ?? 'No description set'
-            }
+            };
         } else {
             throw new Error(`${parsedPath.reqres} is not request or responses, this was already checked and still failed`);
         }
 
     });
     await Promise.all(promises);
-    baseOpenAPIObject.tags = tags as any;
+    baseOpenAPIObject.tags = tags as OpenAPIV3.TagObject[];
     baseOpenAPIObject.paths = pathObject;
     console.log(`Writing api docs: ${apiDocsPath}`);
     await fs.promises.writeFile(apiDocsPath, JSON.stringify(baseOpenAPIObject, null, 2));

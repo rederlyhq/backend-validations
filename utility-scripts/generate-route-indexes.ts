@@ -12,10 +12,10 @@ const indexFiles: {
     operationId: string;
 }[] = [];
 (async () => {
-    for(let route in routesObject) {
+    for(const route in routesObject) {
         const routeObject = routesObject[route as keyof typeof routesObject];
         const routeFilepath = path.join(basePath, route);
-        for(let httpmethod in routeObject) {
+        for(const httpmethod in routeObject) {
             const methodObject = routeObject[httpmethod as keyof typeof routeObject] as RouteObjectInterface;
 
             const indexFilepath = path.join(routeFilepath, methodObject.isIndex ? '__index' : '', httpmethod, 'index.ts');
@@ -47,10 +47,10 @@ const indexFiles: {
         }
     }
 
-    const indexFilepath = './src/index.ts'
+    const indexFilepath = './src/index.ts';
     console.log(`Writing index file: ${indexFilepath}`);
     await fs.promises.writeFile(indexFilepath, '/* This file was auto generated */\n');
-    for (let indexFileObject of indexFiles) {
+    for (const indexFileObject of indexFiles) {
         let relativePath = path.relative(indexFilepath, indexFileObject.path);
         // for some reason relative thinks it is up a directory
         // also need to remove .ts extension

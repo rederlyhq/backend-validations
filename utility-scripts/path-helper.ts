@@ -3,7 +3,16 @@ import _ from 'lodash';
 
 const schemaExtension = '.schema.json';
 
-export const parsePath = (filePath: string) => {
+interface ParsePathResponse {
+    route: string;
+    httpMethod: string;
+    reqres: string;
+    part: string;
+    isIndex: boolean;
+    operationId: string;
+}
+
+export const parsePath = (filePath: string): ParsePathResponse => {
     const tokens = filePath.split('/');
     const part = path.basename(tokens[tokens.length - 1], schemaExtension); // i.e. body, params, query, 200, 404
     const reqres = tokens[tokens.length - 2]; // request, response
@@ -21,7 +30,7 @@ export const parsePath = (filePath: string) => {
     const lastRouteTokenIndex = tokens.length - (isIndex ? 5: 4);
     let lastRouteToken = tokens[lastRouteTokenIndex];
     if ((/^\{.+\}$/.test(lastRouteToken))) {
-        lastRouteToken = `${tokens[lastRouteTokenIndex-1]}-by-${lastRouteToken}`
+        lastRouteToken = `${tokens[lastRouteTokenIndex-1]}-by-${lastRouteToken}`;
     }
     console.log(`${firstRouteToken}-${httpMethod}-${lastRouteToken}`);
     const operationId = _.camelCase(`${firstRouteToken}-${httpMethod}-${lastRouteToken}`);
@@ -38,5 +47,5 @@ export const parsePath = (filePath: string) => {
         part: part,
         isIndex: isIndex,
         operationId: operationId
-    } 
+    };
 };

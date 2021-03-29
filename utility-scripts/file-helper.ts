@@ -101,6 +101,8 @@ export class DirectoryObject {
      */
     traverse(path: string): DirectoryObject {
         const tokens = path.split('/');
+        // This is used as a starting pointer to traverse
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         let result: DirectoryObject = this;
         tokens.forEach(token => {
             if (!token) {
@@ -120,6 +122,8 @@ export class DirectoryObject {
      * @returns the "DirectoryObject" that represent the file or null if not found
      */
     findClosest(filename: string): DirectoryObject | null {
+        // This is used as a starting pointer to traverse
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         let result: DirectoryObject | undefined = this;
         while (result !== undefined) {
             const found = Object.values(result.children).some(child => {
@@ -172,4 +176,4 @@ export const generateDirectoryObject = async (filePath: string, parent?: Directo
         logger.error(`recursiveListFilesInDirectory: not a file, symbolic link, or directory: ${filePath}`);
     }
     return current;
-}
+};
