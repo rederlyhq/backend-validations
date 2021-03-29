@@ -7,6 +7,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const outputPath = path.resolve(__dirname, 'dist');
 
 module.exports = {
+  devServer: {
+    port: 3000
+  },
   mode: 'development',
   entry: {
     app: './src/index.js',
