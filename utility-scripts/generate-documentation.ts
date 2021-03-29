@@ -21,7 +21,7 @@ const schemaExtension = '.schema.json';
 const tags: unknown[] = [];
 const pathObject: OpenAPIV3.PathsObject = {};
 
-const useRefs = true;
+const useRefs = false;
 
 (async () => {
     const result = await generateDirectoryObject(routeDirectory);
