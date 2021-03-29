@@ -1,10 +1,12 @@
-import Ajv, { AnySchemaObject } from "ajv"
-import { DataValidateFunction, DataValidationCxt, Schema, ValidateFunction } from "ajv/dist/types";
-import addFormats from "ajv-formats"
+import Ajv from 'ajv';
+import { DataValidateFunction, DataValidationCxt, Schema, ValidateFunction } from 'ajv/dist/types';
+import addFormats from 'ajv-formats';
 import _ from 'lodash';
 import functions from '@rederly/rederly-utils/lib/generics/lodash-mixins';
 
 const TSTypeConversion = {
+    // Allow date to throw the error, it will be caught in the validation
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Date: (value: any): Date => {
         const date: Date = new Date(value);
         if (isNaN(date.getTime())) {
@@ -13,7 +15,7 @@ const TSTypeConversion = {
         return date;
     },
     unknown: (value: unknown): unknown => value
-}
+};
 
 interface AddErrorToValidateFuncOptions {
     validateFunc: DataValidateFunction;
@@ -33,7 +35,7 @@ const addErrorToValidateFunc = ({validateFunc, errMessage}: AddErrorToValidateFu
         // schemaPath: 'TODO',
 }];
 
-}
+};
 const boolValidateFunc = (val: boolean, error?: string): DataValidateFunction => function validateFunction() {
     if (error !== undefined) {
         addErrorToValidateFunc({
@@ -46,7 +48,7 @@ const boolValidateFunc = (val: boolean, error?: string): DataValidateFunction =>
 
 // in index.d.ts ValidateFunction is defined to have this of Ajv | any
 // schema is string since this is attached to strings
-function tsTypeKeywordCompileFunc (this: Ajv, schema: string, parentSchema: AnySchemaObject): DataValidateFunction {
+function tsTypeKeywordCompileFunc (this: Ajv, schema: string): DataValidateFunction {
     const coerceTypes = Boolean(this?.opts?.coerceTypes);
     if (!coerceTypes) {
         return boolValidateFunc(true);
@@ -66,8 +68,8 @@ function tsTypeKeywordCompileFunc (this: Ajv, schema: string, parentSchema: AnyS
                 validateFunc: validateFunction,
                 errMessage: 'Rederly AJV: info was not provided to validate function'
             });
-            return false
-        };
+            return false;
+        }
         const { parentData, parentDataProperty } = info;
         if (schema in TSTypeConversion) {
             try {
@@ -96,7 +98,7 @@ function tsTypeKeywordCompileFunc (this: Ajv, schema: string, parentSchema: AnyS
         }
     };
     return validateFunction;
-};
+}
 
 export const ajv = new Ajv({
     strict: true,
@@ -105,7 +107,7 @@ export const ajv = new Ajv({
     removeAdditional: 'all',
 });
 
-addFormats(ajv)
+addFormats(ajv);
 
 // This is a keyword for openapi
 ajv.addKeyword('example');
@@ -126,7 +128,7 @@ interface ValidateOptions<InputType = unknown> {
     schema: Schema;
     data: InputType;
     clone: boolean;
-};
+}
 
 export class RederlyValidationError<T = unknown> extends Error {
     static readonly ERROR_NAME = 'RederlyValidationError';
@@ -161,7 +163,7 @@ export const validate = <ValidatedType, InputType = unknown>({
     } else {
         throw new RederlyValidationError(validate);
     }
-}
+};
 
 interface ValidateAndCheckForAdditionalKeysOptions<InputType = unknown> {
     schema: Schema;
@@ -194,4 +196,4 @@ export const validateAndCheckForAdditionalKeys = <ValidatedType = unknown, Input
         result,
         additionalKeys
     };
-}
+};

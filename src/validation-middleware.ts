@@ -8,10 +8,6 @@ interface Request {
     params: unknown;
 }
 
-interface Response {
-
-}
-
 interface NextFunction {
     (arg?: unknown): void
 }
@@ -23,12 +19,12 @@ interface ValidationMiddlewareOptions {
     paramsSchema?: Schema | null,
 }
 
-export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: ValidationMiddlewareOptions) => (req: Request, res: Response, next: NextFunction) => {
+export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: ValidationMiddlewareOptions) => (req: Request, res: unknown, next: NextFunction): void => {
     const validationObject = {
         body: bodySchema,
         query: querySchema,
         params: paramsSchema
-    }
+    };
 
     let success = true;
     Object.entries(validationObject).some((entry) => {
@@ -84,4 +80,4 @@ export const validationMiddleware = ({ bodySchema, querySchema, paramsSchema }: 
     if (success) {
         next();
     }
-}
+};
