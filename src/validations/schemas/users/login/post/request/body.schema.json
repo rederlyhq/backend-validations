@@ -10,9 +10,7 @@
         "password": {
             "type": "string",
             "description": "The password for the given email.",
-            "example": "password",
-            "minLength": 4,
-            "maxLength": 26
+            "example": "password"
         }
     },
     "required": ["email", "password"],

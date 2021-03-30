@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "webworkQuestionPath": {
+            "type": "string",
+            "description": "The filepath for the renderer to render."
+        },
+        "problemSeed": {
+            "type": "number",
+            "description": "Randomizer value.",
+            "minimum": 0
+        },
+        "showAnswersUpfront": {
+            "type": "boolean",
+            "description": "Whether or not to show the answer grid",
+            "default": false
+        }
+    },
+    "additionalProperties": true,
+    "required": []
+}

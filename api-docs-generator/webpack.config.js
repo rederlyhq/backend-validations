@@ -1,3 +1,6 @@
+// This is not a module
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 // Got this from https://github.com/swagger-api/swagger-ui/blob/master/docs/samples/webpack-getting-started/webpack.config.js
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,7 +11,7 @@ const outputPath = path.resolve(__dirname, 'dist');
 
 module.exports = {
   devServer: {
-    port: 3000
+    port: 3007
   },
   mode: 'development',
   entry: {

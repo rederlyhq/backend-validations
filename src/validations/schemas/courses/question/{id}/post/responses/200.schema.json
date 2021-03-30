@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+        "data": {
+            "properties": {
+                "rendererData": {
+                    "properties": {
+                        "renderedHTML": {
+                            "type": "string",
+                            "description": "HTML from the renderer to render."
+                        }    
+                    },
+                    "required": ["renderedHTML"]
+                }
+            },
+            "required": ["rendererData"]            
+        },
+        "message": {
+            "type": "string",
+            "example": "Answer submitted for question",
+            "description": "The message from the request"
+        },
+        "status": {
+            "type": "string",
+            "enum": ["Ok"],
+            "example": "Ok"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": true
+}

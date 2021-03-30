@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "type": "number"
+        },
+        "readonly": {
+            "type": "boolean"
+        },
+        "workbookId": {
+            "type": "number",
+            "description": "The state of the question to fetch",
+            "example": 1
+        },
+        "studentTopicAssessmentInfoId": {
+            "type": "number"
+        },
+        "showCorrectAnswers": {
+            "type": "boolean"
+        }
+    }
+}
