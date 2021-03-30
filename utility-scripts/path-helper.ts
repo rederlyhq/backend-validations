@@ -33,7 +33,9 @@ export const parsePath = (filePath: string): ParsePathResponse => {
         lastRouteToken = `${tokens[lastRouteTokenIndex-1]}-by-${lastRouteToken}`;
     }
     console.log(`${firstRouteToken}-${httpMethod}-${lastRouteToken}`);
-    const operationId = _.camelCase(`${firstRouteToken}-${httpMethod}-${lastRouteToken}`);
+    // const operationId = _.camelCase(`${firstRouteToken}-${httpMethod}-${lastRouteToken}`);
+    // TODO get conflicts, need to fix
+    const operationId = _.camelCase(`${httpMethod}-${tokens.join('-')}`);
 
     const validReqRes = ['request', 'responses'];
     if (!validReqRes.includes(reqres)) {
