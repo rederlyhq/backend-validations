@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "example": "Math 101",
+            "description": "The name for the curriculum"
+        },
+        "subject": {
+            "type": "string",
+            "example": "Math",
+            "description": "The subject the curriculum corresponds to"
+        },
+        "comment": {
+            "type": "string",
+            "example": "Some information about the curriculum",
+            "description": "Entry level math course"
+        },
+        "public": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to share the curriculum",
+            "default": true
+        },
+        "textbooks": {
+            "type": "string",
+            "example": "Probability And Statistics by Prof. Xavier",
+            "description": "A text blurb describing the textbooks for the course"
+        }
+    },
+    "required": ["name", "subject", "comment", "active", "textbooks"]
+}

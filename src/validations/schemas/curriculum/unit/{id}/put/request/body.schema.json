@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "example": "Lesson 2",
+            "description": "The new name of the curriculum's unit"
+        },
+        "active": {
+            "type": "boolean",
+            "example": true,
+            "description": "Delete or undelete a curriculum's unit"
+        },
+        "contentOrder": {
+            "type": "number",
+            "example": 2,
+            "description": "The sort order for curriculum's units"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of this curriculum's topic.",
+            "example": "WeBWorK orientation"
+        },
+        "curriculumUnitContentId": {
+            "type": "string",
+            "description": "The curriculum unit this topic is associated with",
+            "example": ""
+        },
+        "contentOrder": {
+            "type": "number",
+            "description": "A field used to sort against when fetching data",
+            "example": 1
+        }
+    },
+    "required": ["name", "active", "curriculumUnitContentId", "contentOrder"]
+}

@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "problemNumber": {
+            "type": "number",
+            "example": 1,
+            "description": "The order number for the problem"
+        },
+        "webworkQuestionPath": {
+            "type": "string",
+            "example": "private/templates/barebones.pg",
+            "description": "The path to the webwork problem"
+        },
+        "curriculumTopicContentId": {
+            "type": "number",
+            "example": 1,
+            "description": "The curriculum topic this question is associated with"
+        }        
+    },
+    "required": ["problemNumber", "webworkQuestionPath", "curriculumTopicContentId"]
+}

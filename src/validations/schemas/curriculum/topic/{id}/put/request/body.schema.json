@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The identifier for curriculum's topic",
+            "example": "Lesson 3"
+        },
+        "active": {
+            "type": "boolean",
+            "description": "Whether or not to delete or undelete the curriculum topic",
+            "example": true
+        },
+        "contentOrder": {
+            "type": "number",
+            "description": "The new order for this curriculum's topic",
+            "example": 1
+        }
+    },
+    "required": ["name", "active", "contentOrder"]
+}

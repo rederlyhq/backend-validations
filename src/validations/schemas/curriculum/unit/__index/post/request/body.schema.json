@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name for the curriculum's unit",
+            "example": "Lesson 1"
+        },
+        "curriculumId": {
+            "type": "number",
+            "description": "The curriculum this unit is associated with",
+            "example": "1"
+        },
+        "contentOrder": {
+            "type": "string",
+            "description": "A number representing the order, returned results are sorted by this number",
+            "example": "1"
+        }
+    },
+    "required": ["name", "curriculumId", "contentOrder"]
+}
