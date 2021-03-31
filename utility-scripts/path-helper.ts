@@ -9,7 +9,7 @@ interface ParsePathResponse {
     reqres: string;
     part: string;
     isIndex: boolean;
-    operationId: string;
+    lastRouteToken: string;
 }
 
 export const parsePath = (filePath: string): ParsePathResponse => {
@@ -17,8 +17,6 @@ export const parsePath = (filePath: string): ParsePathResponse => {
     const part = path.basename(tokens[tokens.length - 1], schemaExtension); // i.e. body, params, query, 200, 404
     const reqres = tokens[tokens.length - 2]; // request, response
     const httpMethod = tokens[tokens.length - 3]; // get, post
-    // maybe this should be tag name
-    const firstRouteToken = tokens[0] || tokens[1];
     let route = tokens.slice(0, tokens.length - 3).join('/');
     const indexFilename = '/__index';
     let isIndex = false;
@@ -32,10 +30,6 @@ export const parsePath = (filePath: string): ParsePathResponse => {
     if ((/^\{.+\}$/.test(lastRouteToken))) {
         lastRouteToken = `${tokens[lastRouteTokenIndex-1]}-by-${lastRouteToken}`;
     }
-    console.log(`${firstRouteToken}-${httpMethod}-${lastRouteToken}`);
-    // const operationId = _.camelCase(`${firstRouteToken}-${httpMethod}-${lastRouteToken}`);
-    // TODO get conflicts, need to fix
-    const operationId = _.camelCase(`${httpMethod}-${tokens.join('-')}`);
 
     const validReqRes = ['request', 'responses'];
     if (!validReqRes.includes(reqres)) {
@@ -48,6 +42,6 @@ export const parsePath = (filePath: string): ParsePathResponse => {
         reqres: reqres as 'request' | 'responses',
         part: part,
         isIndex: isIndex,
-        operationId: operationId
+        lastRouteToken: lastRouteToken
     };
 };

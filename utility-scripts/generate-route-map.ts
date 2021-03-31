@@ -1,9 +1,12 @@
 #!/usr/bin/env -S npx ts-node
 import fs from 'fs';
 import path from 'path';
-import { recursiveListFilesInDirectory, listFilters } from './file-helper';
+import { recursiveListFilesInDirectory, listFilters, generateDirectoryObject } from './file-helper';
 import { parsePath } from './path-helper';
 import '../src/global-error-handlers';
+
+import _ from 'lodash';
+const pascalCase = (s: string): string => _.upperFirst(_.camelCase(s));
 
 const schemaExtension = '.schema.json';
 const validationsDir = path.resolve(__dirname, '../src/validations');
@@ -37,21 +40,34 @@ interface RouteDictionary {
 
 (async () => {
     const result: RouteDictionary = {};
+    const routeDirectoryObject = await generateDirectoryObject(basePath);
     const filePaths = await recursiveListFilesInDirectory(basePath, [], listFilters.endsWith(schemaExtension, true));
     filePaths.map(async absoluteFilePath => {
         const filePath = absoluteFilePath.substring(path.resolve(basePath).length);
+        const fileDirectory = routeDirectoryObject.traverse(filePath);
+        const tagDirectory = fileDirectory.findClosest('tag.json');
+        let tagName: string | undefined;
+        if (tagDirectory) {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const tagObject = require(tagDirectory.filePath);
+            tagName = tagObject.name ?? pascalCase(path.basename(tagDirectory.parent?.filePath ?? 'NULL-PARENT'));
+        }
+
         const {
             route,
             httpMethod,
             reqres,
             part,
             isIndex,
-            operationId
+            lastRouteToken,
         } = parsePath(filePath);
         if (!isHTTPMethod(httpMethod)) {
             console.warn(`Route: ${route} has an unknown httpMethod: ${httpMethod}`);
             return;
         }
+
+        const operationId =  _.camelCase(`${tagName ?? 'untagged'}-${httpMethod}-${lastRouteToken}`);
+
 
         result[route] = result[route] ?? {};
         result[route][httpMethod] = result[route][httpMethod] ?? {

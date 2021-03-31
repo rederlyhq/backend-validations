@@ -48,9 +48,11 @@ const useRefs = false;
                 }
             }
 
+            const operationId =  _.camelCase(`${tagObject.name}-${parsedPath.httpMethod}-${parsedPath.lastRouteToken}`);
+
             currentObject = {
                 tags: tagObject?.name ? [tagObject.name] : undefined,
-                operationId: parsedPath.operationId
+                operationId: operationId
             };
             routeObject[parsedPath.httpMethod as 'get' | 'post'] = currentObject;
         }
