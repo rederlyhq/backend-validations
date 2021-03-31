@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "summary": {
+            "type": "string",
+            "description": "Quck overview of the ticket",
+            "example": "TEST: my test ticket"
+        },
+        "description": {
+            "type": "string",
+            "description": "In depth information for the ticket",
+            "example": "TEST: information about my ticket"
+        },
+        "version": {
+            "type": "string",
+            "description": "The version of the client being bused",
+            "example": "v1.0.0"
+        },
+        "url": {
+            "type": "string",
+            "description": "The originating url",
+            "example": "https://app.rederly.com"
+        },
+        "userAgent": {
+            "type": "string",
+            "description": "The browser's browser information",
+            "example": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+        }
+    },
+    "required": ["summary","description","version","url","userAgent"]
+}

@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "logs": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": true
+            },
+            "description": "A set of logs to log to the server"
+        }
+    },
+    "required": ["logs"]
+}
