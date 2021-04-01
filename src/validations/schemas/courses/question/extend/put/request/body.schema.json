@@ -1,11 +1,10 @@
 {
     "type": "object",
     "properties": {
-        "id": {
+        "maxAttempts": {
             "type": "number",
-            "description": "The id of the exam you are ending",
+            "description": "The max attempts for this extension",
             "example": 1
         }
-    },
-    "required": ["id"]
+    }
 }

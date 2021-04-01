@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "locked": {
+            "type": "boolean",
+            "description": "Whether or not you want to stop the student from making automatic progress on their grade. TODO this might be removable in the future",
+            "example": false
+        },
+        "effectiveScore": {
+            "type": "number",
+            "description": "The overwritten grade for the student",
+            "example": 1
+        },
+        "currentProblemState": {
+            "description": "The saved state of the problem",
+            "example": "TODO"
+        }
+    }
+}

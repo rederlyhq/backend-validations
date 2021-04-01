@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "required": ["userId"],
+    "properties": {
+        "userId": {
+            "type": "number",
+            "example": 1,
+            "description": "The user to fetch the grade for"
+        },
+        "topicAssessmentInfoId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic assessment the grade belongs to"
+        },
+        "includeWorkbooks": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not to get the associated workbooks"
+        }
+    }
+}

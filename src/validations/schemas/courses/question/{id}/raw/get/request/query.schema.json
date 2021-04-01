@@ -1,9 +1,9 @@
 {
     "type": "object",
     "properties": {
-        "id": {
+        "userId": {
             "type": "number",
-            "description": "The id of the exam you are ending",
+            "description": "TODO",
             "example": 1
         }
     },

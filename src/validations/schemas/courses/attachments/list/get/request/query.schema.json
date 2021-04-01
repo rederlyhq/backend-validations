@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "studentGradeId": {
+            "type": "number",
+            "example": 1,
+            "description": "The grade to filter by"
+        },
+        "studentGradeInstanceId": {
+            "type": "number",
+            "example": 1,
+            "description": "The grade of a specific version to filter by"
+        },
+        "studentWorkbookId": {
+            "type": "number",
+            "example": 1,
+            "description": "The attempt to filter by"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "locked": {
+            "type": "boolean",
+            "description": "Whether or not you want to stop the student from making automatic progress on their grade",
+            "example": false
+        },
+        "currentProblemState": {
+            "description": "The saved state of the problem",
+            "example": "TODO"
+        }
+    }
+}

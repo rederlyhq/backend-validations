@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "code": {
+            "type": "string",
+            "description": "The code to enroll with",
+            "example": "TODO"
+        }
+    },
+    "required": ["code"]
+}

@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "required": ["attachment"],
+    "properties": {
+        "attachment": {
+            "type": "object",
+            "required": ["cloudFilename", "userLocalFilename"
+            ],
+            "properties": {
+                "cloudFilename": {
+                    "type": "string",
+                    "example": "abc-def-ghi",
+                    "description": "The location where the file was posted to in the cloud"
+                },
+                "userLocalFilename": {
+                    "type": "string",
+                    "example": "tom.jpg",
+                    "description": "The filename the user has on their local machine (this is for friendly display)"
+                }
+            }
+        },
+        "studentGradeId": {
+            "type": "number",
+            "example": 1,
+            "description": "The student grade to attach this to"
+        },
+        "studentGradeInstanceId": {
+            "type": "number",
+            "example": 1,
+            "description": "The grade for the version the user is attaching to"
+        },
+        "studentWorkbookId": {
+            "type": "number",
+            "example": 1,
+            "description": "The workbook the user is attaching to"
+        }
+    }
+}

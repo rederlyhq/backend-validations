@@ -1,29 +1,61 @@
 {
-    "anyOf": [
-        {
-            "type": "array"
+    "type": "object",
+    "properties": {
+        "problemNumber": {
+            "type": "number",
+            "example": 1,
+            "description": "The order within the topic of the problem"
         },
-        {
-            "type": "boolean"
+        "webworkQuestionPath": {
+            "type": "string",
+            "example": "private/templates/barebones.pg",
+            "description": "The path to the problem"
         },
-        {
-            "type": "integer"
+        "weight": {
+            "type": "number",
+            "example": 1,
+            "description": "How much each question is worth (relative to the other questions)"
         },
-        {
-            "type": "null"
+        "maxAttempts": {
+            "type": "number",
+            "example": 1,
+            "description": "The max number of legal submissions on the problem"
         },
-        {
-            "type": "number"
+        "hidden": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not the problem is visible to students"
         },
-        {
+        "optional": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not the question weight is account for in the denominator. Optional true with a non zero weight is extra credit"
+        },
+        "smaEnabled": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not a student can see SMA when criteria is met (as of right now that is mastered and/or solutions available)"
+        },
+        "courseQuestionAssessmentInfo": {
             "type": "object",
-            "additionalProperties": true
-        },
-        {
-            "type": "string"
+            "properties": {
+                "randomSeedSet": {
+                    "type": "array",
+                    "items": {
+                        "type": "number",
+                        "example": 1,
+                        "minimum": 0
+                    }
+                },
+                "additionalProblemPaths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "private/templates/barebones.pg",
+                        "description": "A list of random paths to accept from"
+                    }
+                }
+            }
         }
-    ],
-    "tsType": "unknown",
-    "description": "This post body comes from the renderer iframe and is proxied to the renderer, we don't really inspect this.",
-    "additionalProperties": true
+    }
 }

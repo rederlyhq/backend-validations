@@ -1,11 +1,10 @@
 {
     "type": "object",
     "properties": {
-        "id": {
+        "unitId": {
             "type": "number",
             "example": 1,
-            "description": "The id of the question to delete"
+            "description": "The unit to filter the courses by"
         }
-    },
-    "required": ["id"]
+    }
 }

@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "courseId": {
+            "type": "number",
+            "example": 1,
+            "description": "The course you want to filter topics by"
+        },
+        "isOpen": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not you just want open topics"
+        }
+    }
+}

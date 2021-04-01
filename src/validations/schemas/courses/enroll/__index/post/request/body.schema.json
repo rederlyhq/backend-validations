@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "required": ["courseId"],
+    "properties": {
+        "courseId": {
+            "type": "number",
+            "description": "The course to enroll the student in",
+            "example": 1
+        },
+        "userId": {
+            "type": "number",
+            "description": "The user to enroll (instead of studentEmail)",
+            "example": 1
+        },
+        "studentEmail": {
+            "type": "string",
+            "format": "email",
+            "description": "The email to enroll (instead of userId)",
+            "example": "demo@rederly.com"
+        }
+    }
+}

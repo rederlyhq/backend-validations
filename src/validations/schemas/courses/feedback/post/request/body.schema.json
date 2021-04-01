@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "content": {
+            "type": "string",
+            "description": "The feedback for the student",
+            "example": "Well done, but you can do better!"
+        }
+    },
+    "required": ["content"]
+}

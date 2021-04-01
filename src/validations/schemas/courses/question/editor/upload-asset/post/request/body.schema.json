@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "relativePath": {
+            "type": "string",
+            "description": "Where you want to save the file to",
+            "example": "path/to/my/file.png"
+        }
+    },
+    "required": ["relativePath"]
+}

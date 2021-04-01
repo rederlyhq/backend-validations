@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number",
+            "description": "The id of the topic being submitted",
+            "example": 1
+        },
+        "version": {
+            "type": "number",
+            "description": "The id of the version being submitted",
+            "example": 1
+        }
+    },
+    "required": ["id", "version"]
+}

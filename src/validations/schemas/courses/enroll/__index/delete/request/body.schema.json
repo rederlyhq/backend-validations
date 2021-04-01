@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "required": ["courseId", "userId"],
+    "properties": {
+        "courseId": {
+            "type": "number",
+            "example": 1,
+            "description": "The course to unenroll from"
+        },
+        "userId": {
+            "type": "number",
+            "example": 1,
+            "description": "The user to unenroll"
+        }
+    }
+}

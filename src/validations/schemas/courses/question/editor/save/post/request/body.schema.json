@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "required": ["problemSource", "relativePath"],
+    "properties": {
+        "problemSource": {
+            "type": "string",
+            "example": "NOT REAL: pritn(TOMTOM)",
+            "description": "The PG source for a problem to save with the renderer"
+        },
+        "relativePath": {
+            "type": "string",
+            "example": "my/test/file.pg",
+            "description": "The file path to save within the users sandboxed directory"
+        }
+    }
+}

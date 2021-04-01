@@ -1,20 +1,15 @@
 {
     "type": "object",
     "properties": {
-        "curriculumId": {
-            "type": "number",
-            "description": "The curriculum this course is associated with.",
-            "example": 1
-        },
         "name": {
             "type": "string",
-            "description": "The name of the new course.",
-            "example": "Schema Builder 101"
+            "example": "Discrete math",
+            "description": "The new name of the course"
         },
         "code": {
             "type": "string",
-            "description": "The code for the course.",
-            "example": "ABC_123"
+            "example": "TODO",
+            "description": "TODO"
         },
         "start": {
             "type": "string",
@@ -28,8 +23,8 @@
             "type": "string",
             "format": "date-time",
             "tsType": "Date",
-            "description": "When the course is scheduled to start.",
-            "example": "2019-09-28T02:00:00.000Z",
+            "description": "When the course is scheduled to end.",
+            "example": "1994-01-26T14:30:00.000Z",
             "maxLength": 30
         },
         "sectionCode": {
@@ -47,7 +42,5 @@
             "description": "A text field for any textbook information you want to include.",
             "example": "Mat101 textbook"
         }
-    },
-    "required": ["name", "code", "start", "end", "sectionCode", "semesterCode", "textbooks"],
-    "additionalProperties": false
+    }
 }

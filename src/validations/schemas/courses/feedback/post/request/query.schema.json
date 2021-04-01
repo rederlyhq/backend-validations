@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "workbookId": {
+            "type": "number",
+            "description": "The workbook this feedback is associated with",
+            "example": 1
+        }
+    },
+    "required": ["workbookId"]
+}

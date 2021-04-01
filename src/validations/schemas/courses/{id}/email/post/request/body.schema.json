@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "required": ["content", "question"],
+    "properties": {
+        "content": {
+            "type": "string",
+            "description": "The content to email to the professor",
+            "example": "Hi Prof!"
+        },
+        "question": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The question id"
+                }
+            }
+        }
+    }
+}

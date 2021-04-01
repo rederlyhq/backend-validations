@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "instructorId": {
+            "type": "number",
+            "example": 1,
+            "description": "A user id to filter the course list by (based on if the user is the instructor)"
+        },
+        "enrolledUserId": {
+            "type": "number",
+            "example": 1,
+            "description": "A user id to filter the course list by (based on if the user is enrolled)"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "type": "object",
+    "required": ["courseTopicContentId"],
+    "properties": {
+        "problemNumber": {
+            "type": "number",
+            "example": 1,
+            "description": "The order of the problem with the topic"
+        },
+        "webworkQuestionPath": {
+            "type": "string",
+            "example": "private/templates/barebones.pg",
+            "description": "The renderer path to teh problem",
+            "default": "private/templates/barebones.pg"
+        },
+        "courseTopicContentId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic the question is associated for"
+        },
+        "weight": {
+            "type": "number",
+            "example": 1,
+            "description": "The amount the problem counts (relative to other problems)",
+            "default": 1
+        },
+        "maxAttempts": {
+            "type": "number",
+            "example": 1,
+            "description": "The max number of legal submissions a student gets, -1 for infinity",
+            "default": -1
+        },
+        "hidden": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not the student can see the question",
+            "default": false
+        },
+        "optional": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not the question weight is counted in total weight (optional true with weight is extra credit)",
+            "default": false
+        }
+    }
+}

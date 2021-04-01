@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "instructorId": {
+            "anyOf": [{
+                "type": "string",
+                "enum": ["me"]
+            }, {
+                "type": "number"
+            }],
+            "example": 1,
+            "description": "The instructor to filter by"
+        },
+        "courseId": {
+            "type": "number",
+            "example": 1,
+            "description": "The course to filter by"
+        },
+        "unitId": {
+            "type": "number",
+            "example": 1,
+            "description": "The unit to filter by"
+        },
+        "topicId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic to filter by"
+        }
+    }
+}

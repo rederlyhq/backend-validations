@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "type": "number",
+            "example": 1,
+            "description": "The user fetching the topic"
+        },
+        "includeQuestions": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not to include the questions with the topic"
+        },
+        "includeWorkbookCount": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not to include the workbooks with the grades"
+        }
+    }
+}

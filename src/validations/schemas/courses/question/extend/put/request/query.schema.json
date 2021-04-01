@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "required": ["courseTopicQuestionId", "userId"],
+    "properties": {
+        "courseTopicQuestionId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic you are extending"
+        },
+        "userId": {
+            "type": "number",
+            "example": 1,
+            "description": "The user you are extending the topic for"
+        }
+    }
+}
