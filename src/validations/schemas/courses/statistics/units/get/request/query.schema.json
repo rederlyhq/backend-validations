@@ -1,0 +1,14 @@
+{
+    "properties": {
+        "courseId": {
+            "type": "number",
+            "example": 1,
+            "description": "The course to filter the grades / statistics by"
+        },
+        "userId": {
+            "type": "number",
+            "example": 1,
+            "description": "Getting student grades uses statistics. This is the userId to get the grades for"
+        }
+    }
+}

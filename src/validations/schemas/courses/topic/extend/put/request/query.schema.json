@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "courseTopicContentId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic you are extending"
+        },
+        "userId": {
+            "type": "number",
+            "example": 1,
+            "description": "The user which you are extending the topic for"
+        },
+        "topicAssessmentInfoId": {
+            "type": "number",
+            "example": 1,
+            "description": "If this is for an exam the assessment info for the given topic."
+        }
+    },
+    "required": ["courseTopicContentId", "userId"]
+}

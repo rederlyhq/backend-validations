@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "exportUrl": {
+            "type": "string",
+            "example": "TODO",
+            "description": "The location of the file for the bulkpdf export"
+        }
+    }
+}

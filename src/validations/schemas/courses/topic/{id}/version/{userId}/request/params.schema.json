@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "type": "number",
+            "example": 1,
+            "description": "The user to fetch the version for"
+        },
+        "topicId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic to fetch the version of"
+        }
+    },
+    "required": ["userId", "topicId"]
+}

@@ -1,0 +1,67 @@
+{
+    "type": "object",
+    "properties": {
+        "courseUnitContentId": {
+            "type": "number",
+            "example": 1,
+            "description": "The unit to associate this topic with"
+        },
+        "curriculumTopicContentId": {
+            "type": "number",
+            "example": 1,
+            "description": "The curriculum version of a topic to assicate this topic with"
+        },
+        "name": {
+            "type": "string",
+            "example": "WeBWorK orientation",
+            "description": "The name of the topic"
+        },
+        "topicTypeId": {
+            "type": "string",
+            "example": 1,
+            "description": "Whether the topic is a homework or any exam",
+            "enum": [1,2]
+        },
+        "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "tsType": "Date",
+            "maxLength": 30,
+            "example": "2021-03-31T21:16:52.481Z",
+            "description": "The date in which the topic is available to student's"
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "tsType": "Date",
+            "maxLength": 30,
+            "example": "2021-03-31T21:16:52.481Z",
+            "description": "The date in which the topic is available to student's"
+        },
+        "deadDate": {
+            "type": "string",
+            "format": "date-time",
+            "tsType": "Date",
+            "maxLength": 30,
+            "example": "2021-03-31T21:16:52.481Z",
+            "description": "The date in which the topic is available to student's"
+        },
+        "partialExtend": {
+            "type": "boolean",
+            "example": false,
+            "default": false,
+            "description": "Whether or not there can be a partial extension on the topic (dead date that is different than the end date"
+        },
+        "contentOrder": {
+            "type": "number",
+            "example": 1,
+            "description": "A number to sort on when fetching topics for a unit"
+        },
+        "description": {
+            "type": "string",
+            "example": "The is an orientation for using WeBWorK",
+            "description": "A description of the topic"
+        }
+    },
+    "required": ["courseUnitContentId"]
+}

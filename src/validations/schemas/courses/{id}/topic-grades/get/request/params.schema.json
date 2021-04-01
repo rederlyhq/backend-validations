@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number",
+            "example": 1,
+            "description": "The id of the course to get the grades for"
+        }
+    },
+    "required": ["id"]
+}

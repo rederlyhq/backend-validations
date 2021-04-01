@@ -1,0 +1,11 @@
+{
+    "type": "number",
+    "properties": {
+        "id": {
+            "type": "number",
+            "description": "The id of the exam you are ending",
+            "example": 1
+        }
+    },
+    "required": ["id"]
+}

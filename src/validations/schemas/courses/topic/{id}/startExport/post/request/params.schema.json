@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic to start the export on"
+        }
+    },
+    "required": ["id"]
+}

@@ -1,0 +1,59 @@
+{
+    "type": "object",
+    "properties": {
+        "extensions": {
+            "type": "object",
+            "properties": {
+                "startDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "maxLength": 30,
+                    "tsType": "Date",
+                    "example": "2021-04-01T03:08:18.561Z",
+                    "description": "The time the student can start the topic"
+                },
+                "endDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "maxLength": 30,
+                    "tsType": "Date",
+                    "example": "2021-04-01T03:08:18.561Z",
+                    "description": "The expiration of full credit for a homework. For exams this is when the student must start by or if it there is hard cutoff end by."
+                },
+                "deadDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "maxLength": 30,
+                    "tsType": "Date",
+                    "example": "2021-04-01T03:08:18.561Z",
+                    "description": "The expiration time for partial credit"
+                }
+            }
+        },
+        "studentTopicAssessmentOverride": {
+            "type": "object",
+            "properties": {
+                "versionDelay": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The amount of time from the beginning of an exam until you can start another one"
+                },
+                "duration": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The length of the exam"
+                },
+                "maxVersions": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The maximum number of generated exams a student can try"
+                },
+                "maxGradedAttemptsPerVersion": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The maximum number of attempts a student get's on each generated exam"
+                }
+            }
+        }
+    }
+}

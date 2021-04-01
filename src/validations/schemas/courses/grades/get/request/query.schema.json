@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "courseId": {
+            "type": "number",
+            "description": "The course to get the grades from",
+            "example": 1
+        },
+        "unitId": {
+            "type": "number",
+            "description": "The unit to get the grades from",
+            "example": 1
+        },
+        "topicId": {
+            "type": "number",
+            "description": "The topic to get the grades from",
+            "example": 1
+        },
+        "questionId": {
+            "type": "number",
+            "description": "The question to get the grades from",
+            "example": 1
+        },
+        "userId": {
+            "type": "number",
+            "description": "The user to filter the grades for",
+            "example": 1
+        }
+    }
+}

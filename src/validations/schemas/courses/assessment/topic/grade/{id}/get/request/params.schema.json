@@ -1,0 +1,11 @@
+{
+    "type": "number",
+    "properties": {
+        "id": {
+            "type": "number",
+            "description": "TODO",
+            "example": 1
+        }
+    },
+    "required": ["id"]
+}

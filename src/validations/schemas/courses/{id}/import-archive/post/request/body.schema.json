@@ -1,0 +1,5 @@
+{
+    "type": "object",
+    "description": "By the point of validation it should not have parsed any data, however this endpoint accepts a file",
+    "additionalProperties": true
+}

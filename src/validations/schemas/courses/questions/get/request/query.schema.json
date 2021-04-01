@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "anyOf": [{
+                "type": "number"
+            }, {
+                "type": "string",
+                "enum": ["me"]
+            }],
+            "example": "me",
+            "description": "userId is used for checking whether or not the user has permission to fetch the questions"
+        },
+        "courseTopicContentId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic to fetch the questions for"
+        },
+        "studentTopicAssessmentInfoId": {
+            "type": "number",
+            "example": 1,
+            "description": "If this is an exam, it is used to check if the student has started the exam"
+        }
+    }
+}

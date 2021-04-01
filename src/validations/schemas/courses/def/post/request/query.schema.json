@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "courseTopicId": {
+            "type": "number",
+            "example": 1,
+            "description": "The topic to attach associate the questions to"
+        }
+    },
+    "required": ["courseTopicId"]
+}

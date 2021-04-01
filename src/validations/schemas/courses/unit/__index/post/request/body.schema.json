@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "example": "Lesson 1",
+            "description": "The name of the new course unit"
+        },
+        "courseId": {
+            "type": "number",
+            "example": 1,
+            "description": "The course that the unit is associated with"
+        },
+        "contentOrder": {
+            "type": "number",
+            "example": 1,
+            "description": "A number to sort the units by on fetch"
+        }
+    },
+    "required": ["courseId"]
+}

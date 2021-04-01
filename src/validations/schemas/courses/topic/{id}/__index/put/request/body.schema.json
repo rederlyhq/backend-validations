@@ -1,0 +1,122 @@
+{
+    "type": "object",
+    "properties": {
+        "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "tsType": "Date",
+            "description": "When the topic is scheduled to start.",
+            "example": "1994-01-26T14:30:00.000Z",
+            "maxLength": 30
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "tsType": "Date",
+            "description": "When the topic is scheduled to end.",
+            "example": "1994-01-26T14:30:00.000Z",
+            "maxLength": 30
+        },
+        "deadDate": {
+            "type": "string",
+            "format": "date-time",
+            "tsType": "Date",
+            "description": "When the topic is scheduled to stop allowing partial credit.",
+            "example": "1994-01-26T14:30:00.000Z",
+            "maxLength": 30
+        },
+        "name": {
+            "type": "string",
+            "example": "Lesson 1",
+            "description": "The new topic's name"
+        },
+        "partialExtend": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not partial credit is allowed"
+        },
+        "contentOrder": {
+            "type": "number",
+            "example": 1,
+            "description": "The order which the topic should be fetched within the unit"
+        },
+        "courseUnitContentId": {
+            "type": "number",
+            "example": 1,
+            "description": "The unit the topic is associated with"
+        },
+        "topicTypeId": {
+            "type": "number",
+            "example": 1,
+            "description": "Whether the topic is an exam or homework",
+            "enum": [1,2]
+        },
+        "description": {
+            "anyOf": [{
+                "type": "string"
+            }, {
+                "type": "null"
+            }],
+            "example": "This topic is about derivatives",
+            "description": "A description for student's about the topic"
+        },
+        "topicAssessmentInfo": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "number",
+                    "example": 60,
+                    "description": "The amount of time that student's are allowed for a single version of an exam",
+                    "minimum": 2
+                },
+                "maxGradedAttemptsPerVersion": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The number of attempts that a student can take on each generation (version) of an exam",
+                    "minimum": -1
+                },
+                "maxVersions": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The number of versions (randomizations) of an exam"
+                },
+                "versionDelay": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The amount of time after the start of an exam until the student can start their next version",
+                    "minimum": 0
+                },
+                "hardCutoff": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Whether the student get's their full duration or if the end time stops their exam short"
+                },
+                "hideHints": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Whether or not hints are displayed to the user"
+                },
+                "showItemizedResults": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether a student can see how they did on each problem"
+                },
+                "showTotalGradeImmediately": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not a student can see how they did on their exam after they submit"
+                },
+                "hideProblemsAfterFinish": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not student's can see the problems once the exam is over"
+                },
+                "randomizeOrder": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not the student's should get problems by content order or if they should get their own randomized content order."
+                }
+            }
+        }
+    }
+}
