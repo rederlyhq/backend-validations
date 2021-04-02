@@ -1,11 +1,40 @@
 {
     "type": "object",
     "properties": {
-        "8787": {
-            "type": "string",
-            "description": "Let's respond!",
-            "example": "Responding"
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200]
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["userPaidUntil", "universityPaidUntil"],
+            "properties": {
+                "userPaidUntil": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "maxLength": 30,
+                    "example": "2222-01-01T00:00:00.000Z",
+                    "description": "This is the source of truth for when a user will lose access to paid features"
+                },
+                "universityPaidUntil": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "maxLength": 30,
+                    "example": "2222-01-01T00:00:00.000Z",
+                    "description": "This is when the university paid until, it should always be the same or less than the user paid until."
+                }
+            }
         }
     },
-    "additionalProperties": false
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": true
 }

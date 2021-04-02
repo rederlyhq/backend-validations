@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "required": ["statusCode", "error", "message"],
+    "properties": {
+        "statusCode": {
+            "type": "number",
+            "enum": [400]
+        },
+        "status": {
+            "type": "string"
+        },
+        "message": {
+            "type": "string"
+        },
+        "data": {
+            "type": "null"
+        }
+    }
+}

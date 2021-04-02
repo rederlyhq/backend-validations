@@ -13,7 +13,10 @@
             "example": 200
         },
         "data": {
-            "type": "null"
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
         }
     },
     "required": ["data", "statusCode", "status", "message"],

@@ -1,11 +1,155 @@
 {
     "type": "object",
     "properties": {
-        "8787": {
-            "type": "string",
-            "description": "Let's respond!",
-            "example": "Responding"
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["id", "active", "universityId", "roleId", "firstName", "lastName", "email", "verified", "actuallyVerified", "preferredEmail", "preferredEmailInstitutionVerificationToken", "preferredEmailVerificationToken", "verifyTokenExpiresAt", "preferredEmailInstitutionVerificationTokenExpiresAt", "preferredEmailVerificationTokenExpiresAt", "forgotPasswordToken", "forgotPasswordTokenExpiresAt", "uuid", "paidUntil", "createdAt", "updatedAt"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The user's rederly identifier"
+                },
+                "active": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Whether or not the user has been deleted"
+                },
+                "universityId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The university the user belongs to"
+                },
+                "roleId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The user's role",
+                    "enum": [0,1,2]
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "Luigi",
+                    "description": "The first name of the user"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Mario",
+                    "description": "The last name of the user"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "demo@rederly.com",
+                    "format": "email",
+                    "maxLength": 255,
+                    "description": "The email address of the user"
+                },
+                "verified": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Whether or not the user went through the verify flow in their email"
+                },
+                "actuallyVerified": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Whether or not the user verified their account (or someone in the system pushed them through)"
+                },
+                "preferredEmail": {
+                    "type": "string",
+                    "example": "demo@rederly.com",
+                    "format": "email",
+                    "maxLength": 255,
+                    "description": "The email the user would prefer to get emails to (currently not used)"
+                },
+                "preferredEmailInstitutionVerificationToken": {
+                    "type": "string",
+                    "example": "869d2b44-4d44-49d0-9e23-caa95eb03dd4",
+                    "description": "The token to the insutional email to verify the preferred email change"
+                },
+                "preferredEmailVerificationToken": {
+                    "type": "string",
+                    "example": "869d2b44-4d44-49d0-9e23-caa95eb03dd4",
+                    "description": "When the token to verify preferred email expires"
+                },
+                "verifyTokenExpiresAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30,
+                    "description": "When the token to verify the instutional email expires"
+                },
+                "preferredEmailInstitutionVerificationTokenExpiresAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30,
+                    "description": "When the token sent to the instutional email to verify the prefferred email expires"
+                },
+                "preferredEmailVerificationTokenExpiresAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30,
+                    "description": "When the token used to verify preferred email expires"
+                },
+                "forgotPasswordToken": {
+                    "type": "string",
+                    "example": "869d2b44-4d44-49d0-9e23-caa95eb03dd4",
+                    "description": "The token used to reset password"
+                },
+                "forgotPasswordTokenExpiresAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30,
+                    "description": "When the forgot password token will stop working"
+                },
+                "uuid": {
+                    "type": "string",
+                    "example": "869d2b44-4d44-49d0-9e23-caa95eb03dd4",
+                    "description": "The globally unique identifier"
+                },
+                "paidUntil": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30,
+                    "description": "When the user will lose access to paid features"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30,
+                    "description": "When the user was created"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30,
+                    "description": "The last time the user was updated"
+                }
+            }
         }
     },
-    "additionalProperties": false
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": true
 }

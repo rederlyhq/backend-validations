@@ -1,11 +1,60 @@
 {
     "type": "object",
     "properties": {
-        "8787": {
-            "type": "string",
-            "description": "Let's respond!",
-            "example": "Responding"
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200]
+        },
+        "data": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": true,
+                "required": ["id", "universityId", "roleId", "firstName", "lastName", "email"],
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "example": 1,
+                        "description": "The id of the user"
+                    },
+                    "universityId": {
+                        "type": "number",
+                        "example": 1,
+                        "description": "The university which the user belongs to"
+                    },
+                    "roleId": {
+                        "type": "number",
+                        "example": 1,
+                        "description": "The role of the user",
+                        "enum": [0,1,2]
+                    },
+                    "firstName": {
+                        "type": "string",
+                        "example": "Mario",
+                        "description": "The first name of the user"
+                    },
+                    "lastName":  {
+                        "type": "string",
+                        "example": "Mario",
+                        "description": "The last name of the user"
+                    },
+                    "email":  {
+                        "type": "string",
+                        "format": "email",
+                        "maxLength": 255,
+                        "example": "demo@rederly.com",
+                        "description": "The email of the user"
+                    }
+                }
+            }
         }
     },
-    "additionalProperties": false
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": true
 }

@@ -5,6 +5,12 @@
             "type": "number",
             "enum": [200]
         },
+        "status": {
+            "type": "string"
+        },
+        "message": {
+            "type": "string"
+        },
         "data": {
             "type": "object",
             "properties": {
@@ -36,6 +42,6 @@
             "additionalProperties": true
         }
     },
-    "required": ["statusCode", "status", "data"],
+    "required": ["statusCode", "status", "data", "message"],
     "additionalProperties": true
 }

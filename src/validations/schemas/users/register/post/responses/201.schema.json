@@ -1,0 +1,45 @@
+{
+    "type": "object",
+    "required": ["statusCode","status","message","data"],
+    "properties": {
+        "statusCode": {
+            "type": "number",
+            "enum": [201]
+        },
+        "status": {
+            "type": "string"
+        },
+        "message": {
+            "type": "string"
+        },
+        "data": {
+            "type": "object",
+            "required": ["id", "roleId", "emailSent", "verificationBypass"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "The user's id",
+                    "example": 1
+                },
+                "roleId": {
+                    "type": "number",
+                    "enum": [0,1,2],
+                    "example": 0,
+                    "description": "The role the user has in the system"
+                },
+                "emailSent": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not the email was sent to the user"
+                },
+                "verificationBypass": {
+                    "type": "boolean",
+                    "description": "Whether or not the user has to verify their email (based on institutional preference",
+                    "example": true
+                }
+            }
+        }
+
+    },
+    "additionalProperties": true
+}

@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "required": ["userIds", "subject", "content"],
+    "properties": {
+        "userIds": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "description": "A list of users to email."
+        },
+        "subject": {
+            "type": "string",
+            "example": "Lesson 12 now available",
+            "description": "The subject of the email to send"
+        },
+        "content": {
+            "type": "string",
+            "example": "Hello everyone, please do your homework",
+            "description": "The content of the email to send"
+        }
+    }
+}

@@ -1,11 +1,20 @@
 {
     "type": "object",
     "properties": {
-        "8787": {
-            "type": "string",
-            "description": "Let's respond!",
-            "example": "Responding"
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200]
+        },
+        "data": {
+            "type": "null"
         }
     },
-    "additionalProperties": false
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": true
 }
