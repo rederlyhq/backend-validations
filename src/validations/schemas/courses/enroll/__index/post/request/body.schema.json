@@ -15,6 +15,7 @@
         "studentEmail": {
             "type": "string",
             "format": "email",
+            "maxLength": 255,
             "description": "The email to enroll (instead of userId)",
             "example": "demo@rederly.com"
         }

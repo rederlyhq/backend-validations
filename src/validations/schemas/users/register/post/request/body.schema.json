@@ -14,6 +14,7 @@
         "email": {
             "type": "string",
             "format": "email",
+            "maxLength": 255,
             "description": "The email to register with.",
             "example": "test@rederly.com"
         },

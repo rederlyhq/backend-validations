@@ -4,11 +4,13 @@
         "email": {
             "type": "string",
             "format": "email",
+            "maxLength": 255,
             "description": "The email to login with.",
             "example": "test@rederly.com"
         },
         "password": {
             "type": "string",
+            "maxLength": 255,
             "description": "The password for the given email.",
             "example": "password"
         }

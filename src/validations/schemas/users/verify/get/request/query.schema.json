@@ -4,6 +4,7 @@
         "confirmEmail": {
             "type": "string",
             "format": "email",
+            "maxLength": 255,
             "description": "The email to verify.",
             "example": "test@rederly.com"
         },
