@@ -1,0 +1,83 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [201],
+            "example": 201
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The rederly identifier for the curriculum"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "MAT 103 - Intro to statistics",
+                    "description": "The name of the curriculum"
+                },
+                "subject": {
+                    "type": "string",
+                    "example": "Math",
+                    "description": "The subject the curriculum belongs to"
+                },
+                "comment": {
+                    "type": "string",
+                    "example": "For entry level statistics students",
+                    "description": "A description about the curriculum"
+                },
+                "textbooks": {
+                    "type": "string",
+                    "example": "Intro to Stats",
+                    "description": "A block of text describing the textbooks"
+                },
+                "public": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "NOT IMPLEMENTED: Whether or not the curriculum is visible"
+                },
+                "active": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not the curriculum has been deleted"
+                },
+                "universityId": {
+                    "anyOf": [{
+                        "type": "null"
+                    }, {
+                        "type": "number"
+                    }],
+                    "example": 1,
+                    "description": "The university the curriculum is associated with"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the curriculum was updated.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the curriculum was created",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

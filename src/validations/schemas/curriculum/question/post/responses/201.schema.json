@@ -1,0 +1,84 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [201],
+            "example": 201
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "The rederly identifier for this object",
+                    "example": 1
+                },
+                "curriculumTopicContentId": {
+                    "type": "number",
+                    "description": "The associated curriculum topic.",
+                    "example": 1
+                },
+                "problemNumber": {
+                    "type": "number",
+                    "description": "The order of the question with the curriculum topic.",
+                    "example": 1
+                },
+                "webworkQuestionPath": {
+                    "type": "string",
+                    "description": "The renderer path for the problem.",
+                    "example": 1
+                },
+                "weight": {
+                    "type": "number",
+                    "description": "The amount of points the curriculum question is worth.",
+                    "example": 1
+                },
+                "maxAttempts": {
+                    "type": "number",
+                    "description": "How many attempts a student is allowed on the question",
+                    "example": 1
+                },
+                "hidden": {
+                    "type": "boolean",
+                    "description": "TODO",
+                    "example": ""
+                },
+                "active": {
+                    "type": "boolean",
+                    "description": "Whether or not the object was deleted",
+                    "example": true
+                },
+                "optional": {
+                    "type": "boolean",
+                    "description": "Whether or not the weight contributes to required points. Making optional but giving weight is how extra credit is done.",
+                    "example": true
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the curriculum question was updated.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the curriculum question was created.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

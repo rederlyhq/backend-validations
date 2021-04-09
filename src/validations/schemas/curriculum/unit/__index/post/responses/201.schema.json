@@ -1,0 +1,65 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [201],
+            "example": 201
+        },
+        "data": {
+            "type": "object",
+            "required": ["id", "name", "curriculumId", "contentOrder", "active", "updatedAt", "createdAt"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The rederly identifier"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Lesson 1",
+                    "description": "The name of the curriculum unit"
+                },
+                "curriculumId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The object the unit is associated to"
+                },
+                "contentOrder": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The order of the unit within the curriculum."
+                },
+                "active": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not the object was deleted"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the curriculum unit was updated.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the curriculum unit was created.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

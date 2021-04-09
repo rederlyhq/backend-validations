@@ -12,9 +12,9 @@
             "example": "1"
         },
         "contentOrder": {
-            "type": "string",
+            "type": "number",
             "description": "A number representing the order, returned results are sorted by this number",
-            "example": "1"
+            "example": 1
         }
     },
     "required": ["name", "curriculumId", "contentOrder"]

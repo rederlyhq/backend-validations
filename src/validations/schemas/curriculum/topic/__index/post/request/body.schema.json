@@ -7,14 +7,19 @@
             "example": "WeBWorK orientation"
         },
         "curriculumUnitContentId": {
-            "type": "string",
+            "type": "number",
             "description": "The curriculum unit this topic is associated with",
-            "example": ""
+            "example": 1
         },
         "contentOrder": {
             "type": "number",
             "description": "A field used to sort against when fetching data",
             "example": 1
+        },
+        "topicTypeId": {
+            "type": "number",
+            "enum": [1,2],
+            "description": "The type of assignment (i.e. homework, exam)"
         }
     },
     "required": ["name", "active", "curriculumUnitContentId", "contentOrder"]
