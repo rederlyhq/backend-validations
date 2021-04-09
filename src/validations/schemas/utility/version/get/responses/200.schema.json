@@ -1,4 +1,32 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["packageJson"],
+            "additionalProperties": false,
+            "properties": {
+                "packageJson": {
+                    "anyOf": [{
+                        "type": "string"
+                    }, {
+                        "type": "null"
+                    }]
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

@@ -15,6 +15,7 @@
         "data": {
             "type": "object",
             "required": ["id", "active", "universityId", "roleId", "firstName", "lastName", "email", "verified", "actuallyVerified", "preferredEmail", "preferredEmailInstitutionVerificationToken", "preferredEmailVerificationToken", "verifyTokenExpiresAt", "preferredEmailInstitutionVerificationTokenExpiresAt", "preferredEmailVerificationTokenExpiresAt", "forgotPasswordToken", "forgotPasswordTokenExpiresAt", "uuid", "paidUntil", "createdAt", "updatedAt"],
+            "additionalProperties": true,
             "properties": {
                 "id": {
                     "type": "number",
@@ -72,12 +73,20 @@
                     "description": "The email the user would prefer to get emails to (currently not used)"
                 },
                 "preferredEmailInstitutionVerificationToken": {
-                    "type": "string",
+                    "anyOf": [{
+                        "type": "string"
+                    }, {
+                        "type": "null"
+                    }],
                     "example": "869d2b44-4d44-49d0-9e23-caa95eb03dd4",
                     "description": "The token to the insutional email to verify the preferred email change"
                 },
                 "preferredEmailVerificationToken": {
-                    "type": "string",
+                    "anyOf": [{
+                        "type": "string"
+                    }, {
+                        "type": "null"
+                    }],
                     "example": "869d2b44-4d44-49d0-9e23-caa95eb03dd4",
                     "description": "When the token to verify preferred email expires"
                 },
@@ -106,7 +115,11 @@
                     "description": "When the token used to verify preferred email expires"
                 },
                 "forgotPasswordToken": {
-                    "type": "string",
+                    "anyOf": [{
+                        "type": "string"
+                    }, {
+                        "type": "null"
+                    }],
                     "example": "869d2b44-4d44-49d0-9e23-caa95eb03dd4",
                     "description": "The token used to reset password"
                 },

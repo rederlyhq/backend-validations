@@ -17,5 +17,5 @@
         }
     },
     "required": ["data", "statusCode", "status", "message"],
-    "additionalProperties": true
+    "additionalProperties": false
 }
