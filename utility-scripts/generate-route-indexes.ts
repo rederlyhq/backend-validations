@@ -30,6 +30,15 @@ const indexFiles: {
                 await fs.promises.appendFile(indexFilepath, `export { I${_.upperFirst(requestPart)} } from './request/${requestPart}';\n`);
             });
 
+            const expectedRequestParts = ['body', 'params', 'query'];
+            const missingRequestPartsPromise = expectedRequestParts.map(async requestPart => {
+                if (!methodObject.requestSchemas.includes(requestPart)) {
+                    await fs.promises.appendFile(indexFilepath, `export type I${_.upperFirst(requestPart)} = Record<string, never>;\n`);
+                }
+            });
+            await Promise.all(missingRequestPartsPromise);
+
+
             const responsePromises = methodObject.responseCodes.map(async statusCode => {
                 await fs.promises.appendFile(indexFilepath, `export {default as status${statusCode}Schema} from './responses/${statusCode}.schema';\n`);
                 await fs.promises.appendFile(indexFilepath, `import { I${statusCode} } from './responses/${statusCode}';\n`);
@@ -39,7 +48,7 @@ const indexFiles: {
             await fs.promises.appendFile(indexFilepath, `${exportTypesString}\n`);
             
             let responseTypeString = methodObject.responseCodes.map(code => `I${code}`).join(' | ');
-            responseTypeString = responseTypeString.length > 0 ? `export type IResponse = ${responseTypeString};` : '';
+            responseTypeString = `export type IResponse = ${responseTypeString.length > 0 ? responseTypeString : 'never'};`;
             await fs.promises.appendFile(indexFilepath, `${responseTypeString}\n`);
             await Promise.all([...requestPromises, ...responsePromises]);
             await fs.promises.appendFile(indexFilepath, `export const route = '${route}';\n`);
