@@ -7,5 +7,6 @@
             "description": "The id of the question to delete"
         }
     },
-    "required": ["id"]
+    "required": ["id"],
+    "additionalProperties": false
 }

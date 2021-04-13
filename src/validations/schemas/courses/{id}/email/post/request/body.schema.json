@@ -1,5 +1,6 @@
 {
     "type": "object",
+    "additionalProperties": false,
     "required": ["content", "question"],
     "properties": {
         "content": {
@@ -9,6 +10,7 @@
         },
         "question": {
             "type": "object",
+            "required": ["id"],
             "properties": {
                 "id": {
                     "type": "number",

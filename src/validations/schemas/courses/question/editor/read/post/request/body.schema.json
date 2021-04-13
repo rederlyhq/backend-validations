@@ -1,11 +1,12 @@
 {
     "type": "object",
+    "additionalProperties": false,
+    "required": ["filePath"],
     "properties": {
         "filePath": {
             "type": "string",
             "description": "Where you want to read the file from",
             "example": "path/to/my/file.png"
         }
-    },
-    "required": ["relativePath"]
+    }
 }

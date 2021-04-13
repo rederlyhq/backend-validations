@@ -3,10 +3,10 @@
     "properties": {
         "id": {
             "type": "number",
-            "description": "The id of the exam you are starting",
+            "description": "The id of the topic being submitted",
             "example": 1
         }
     },
-    "required": ["id"],
+    "required": ["id", "version"],
     "additionalProperties": false
 }

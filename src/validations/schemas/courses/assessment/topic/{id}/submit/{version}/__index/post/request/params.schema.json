@@ -12,5 +12,6 @@
             "example": 1
         }
     },
-    "required": ["id", "version"]
+    "required": ["id", "version"],
+    "additionalProperties": false
 }

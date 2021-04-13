@@ -7,5 +7,6 @@
             "example": "TODO"
         }
     },
-    "required": ["code"]
+    "required": ["code"],
+    "additionalProperties": false
 }

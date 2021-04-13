@@ -1,8 +1,14 @@
 {
     "type": "object",
+    "additionalProperties": false,
     "properties": {
         "instructorId": {
-            "type": "number",
+            "anyOf": [{
+                "type": "string",
+                "enum": ["me"]
+            }, {
+                "type": "number"
+            }],
             "example": 1,
             "description": "A user id to filter the course list by (based on if the user is the instructor)"
         }

@@ -12,5 +12,6 @@
             "description": "The topic to fetch the version of"
         }
     },
-    "required": ["userId", "topicId"]
+    "required": ["userId", "topicId"],
+    "additionalProperties": false
 }
