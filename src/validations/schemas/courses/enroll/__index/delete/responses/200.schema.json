@@ -1,4 +1,82 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required":["active", "courseId", "createdAt", "dropDate", "enrollDate", "id", "updatedAt", "userId", "user_id"],
+            "properties": {
+                "active": {
+                    "type":"boolean",
+                    "description": "Whether or not the enrollment was deleted",
+                    "example": true
+                },
+                "courseId": {
+                    "type":"number",
+                    "description": "The course the enrollment is for",
+                    "example": 306
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the enrollment was created.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "dropDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the student dropped.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "enrollDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the student enrolled.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "id": {
+                    "type":"number",
+                    "description": "The rederly identifier for the enrollment",
+                    "example": 4860
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the enrollment was last updated.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "userId": {
+                    "type":"number",
+                    "description": "The user associated with the enrollment",
+                    "example": 2
+                },
+                "user_id": {
+                    "type":"number",
+                    "description": "TODO REMOVE",
+                    "example": 2
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

@@ -1,4 +1,5 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "additionalProperties": true,
+    "description": "TODO does this exist?"
 }

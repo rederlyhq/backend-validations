@@ -1,4 +1,29 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["filePath"],
+            "properties": {
+                "filePath": {
+                    "type": "string",
+                    "example": "private/my/215dc97c-ff66-4c64-8ad6-84c72a2faa29/my/test/file.pg",
+                    "description": "The resolved path of the problem you saved"
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

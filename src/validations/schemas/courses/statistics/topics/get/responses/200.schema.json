@@ -1,4 +1,95 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name", "averageAttemptedCount", "averageScore", "pointsEarnedOpen", "pointsAvailableOpen", "averageScoreOpen", "pointsEarnedDead", "pointsAvailableDead", "averageScoreDead", "systemScore", "totalGrades", "completedCount", "completionPercent"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "The rederly identifier of the topic",
+                    "example": 3
+                },
+                "name": {
+                    "type": "number",
+                    "description": "The name of the topic",
+                    "example": "Integer Exponents"
+                },
+                "averageAttemptedCount": {
+                    "type": "string",
+                    "description": "The average number of attempts",
+                    "example": "0.00000000000000000000"
+                },
+                "averageScore": {
+                    "type": "number",
+                    "description": "The average score",
+                    "example": 0
+                },
+                "pointsEarnedOpen": {
+                    "type": "number",
+                    "description": "The number of points earned on open sets",
+                    "example": 0
+                },
+                "pointsAvailableOpen": {
+                    "type": "number",
+                    "description": "The number of points available for open sets",
+                    "example": "1"
+                },
+                "averageScoreOpen": {
+                    "type": "number",
+                    "description": "The average score on open sets",
+                    "example": 0
+                },
+                "pointsEarnedDead": {
+                    "type": "number",
+                    "description": "The number of points earned on sets that no longer have partial credit",
+                    "example": 0
+                },
+                "pointsAvailableDead": {
+                    "type": "number",
+                    "description": "The number of points available on sets that no longer have partial credit",
+                    "example": "1"
+                },
+                "averageScoreDead": {
+                    "type": "number",
+                    "description": "The average score earned on sets that no longer have partial credit",
+                    "example": 0
+                },
+                "systemScore": {
+                    "type": "number",
+                    "description": "The partialCreditScore",
+                    "example": 0
+                },
+                "totalGrades": {
+                    "type": "string",
+                    "description": "TODO",
+                    "example": "1"
+                },
+                "completedCount": {
+                    "type": "string",
+                    "description": "The amount of problems completed",
+                    "example": "0"
+                },
+                "completionPercent": {
+                    "type": "number",
+                    "description": "The percentage of problems completed",
+                    "example": 0
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

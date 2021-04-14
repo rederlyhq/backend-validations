@@ -1,4 +1,238 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name", "averageAttemptedCount", "averageScore", "pointsEarnedOpen", "pointsAvailableOpen", "averageScoreOpen", "pointsEarnedDead", "pointsAvailableDead", "averageScoreDead", "systemScore", "totalGrades", "completedCount", "completionPercent", "grades"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "The rederly identifier of the question",
+                    "example": 3
+                },
+                "name": {
+                    "type": "number",
+                    "description": "The name of the problem",
+                    "example": "Problem 1"
+                },
+                "averageAttemptedCount": {
+                    "type": "string",
+                    "description": "The average number of attempts",
+                    "example": "0.00000000000000000000"
+                },
+                "averageScore": {
+                    "type": "number",
+                    "description": "The average score",
+                    "example": 0
+                },
+                "pointsEarnedOpen": {
+                    "type": "number",
+                    "description": "The number of points earned on open sets",
+                    "example": 0
+                },
+                "pointsAvailableOpen": {
+                    "type": "number",
+                    "description": "The number of points available for open sets",
+                    "example": "1"
+                },
+                "averageScoreOpen": {
+                    "type": "number",
+                    "description": "The average score on open sets",
+                    "example": 0
+                },
+                "pointsEarnedDead": {
+                    "type": "number",
+                    "description": "The number of points earned on sets that no longer have partial credit",
+                    "example": 0
+                },
+                "pointsAvailableDead": {
+                    "type": "number",
+                    "description": "The number of points available on sets that no longer have partial credit",
+                    "example": "1"
+                },
+                "averageScoreDead": {
+                    "type": "number",
+                    "description": "The average score earned on sets that no longer have partial credit",
+                    "example": 0
+                },
+                "systemScore": {
+                    "type": "number",
+                    "description": "The partialCreditScore",
+                    "example": 0
+                },
+                "totalGrades": {
+                    "type": "string",
+                    "description": "TODO",
+                    "example": "1"
+                },
+                "completedCount": {
+                    "type": "string",
+                    "description": "The amount of problems completed",
+                    "example": "0"
+                },
+                "completionPercent": {
+                    "type": "number",
+                    "description": "The percentage of problems completed",
+                    "example": 0
+                },
+                "grades": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["user_id", "id", "active", "courseWWTopicQuestionId", "lastInfluencingLegalAttemptId", "lastInfluencingCreditedAttemptId", "lastInfluencingAttemptId", "originalRandomSeed", "randomSeed", "bestScore", "overallBestScore", "numAttempts", "numLegalAttempts", "numExtendedAttempts", "firstAttempts", "latestAttempts", "effectiveScore", "partialCreditBestScore", "legalScore", "locked", "currentProblemState", "createdAt", "updatedAt"],
+                        "properties": {
+                            "user_id": {
+                                "type": "number",
+                                "description": "The user the grade is associated with TODO fix underscores",
+                                "example": 7
+                            },
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier for the grade",
+                                "example": 1
+                            },
+                            "active": {
+                                "type": "boolean",
+                                "description": "Whether or not the grade has been deleted",
+                                "example": true
+                            },
+                            "courseWWTopicQuestionId": {
+                                "type": "number",
+                                "description": "The question this grade isa associated with",
+                                "example": 5065
+                            },
+                            "lastInfluencingLegalAttemptId": {
+                                "oneOf": [{
+                                    "type": "number"
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "The last workbook that influenced legalBestScore",
+                                "example": 1
+                            },
+                            "lastInfluencingCreditedAttemptId": {
+                                "oneOf": [{
+                                    "type": "number"
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "The last workbook that influenced partialCreditBestScore",
+                                "example": 1
+                            },
+                            "lastInfluencingAttemptId": {
+                                "oneOf": [{
+                                    "type": "number"
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "The last workbook that influenced overallBestScore",
+                                "example": 1
+                            },
+                            "originalRandomSeed": {
+                                "type": "number",
+                                "description": "The random seed that was generated for a grade for the problem",
+                                "example": 680208
+                            },
+                            "randomSeed": {
+                                "type": "number",
+                                "description": "The random seed the student has for the problem",
+                                "example": 680208
+                            },
+                            "bestScore": {
+                                "type": "number",
+                                "description": "The best score the student ever got before solutions were available TODO unused",
+                                "example": 1
+                            },
+                            "overallBestScore": {
+                                "type": "number",
+                                "description": "The best score the student ever got before solutions were available",
+                                "example": 1
+                            },
+                            "numAttempts": {
+                                "type": "number",
+                                "description": "The total number of attempts the student used",
+                                "example": 2
+                            },
+                            "numLegalAttempts": {
+                                "type": "number",
+                                "description": "The number of attempts the student used within the end date",
+                                "example": 0
+                            },
+                            "numExtendedAttempts": {
+                                "type": "number",
+                                "description": "The number of attempts the student used within the dead date",
+                                "example": 0
+                            },
+                            "firstAttempts": {
+                                "type": "number",
+                                "description": "The score the student got on the first attempt",
+                                "example": 0.333333333333333
+                            },
+                            "latestAttempts": {
+                                "type": "number",
+                                "description": "The score the student got on the last attempt",
+                                "example": 1
+                            },
+                            "effectiveScore": {
+                                "type": "number",
+                                "description": "The score the student got including overrides the professor might have given",
+                                "example": 1
+                            },
+                            "partialCreditBestScore": {
+                                "type": "number",
+                                "description": "The score the student got within the number of attempts and dead date accounting for late penalty",
+                                "example": 1
+                            },
+                            "legalScore": {
+                                "type": "number",
+                                "description": "The score the student got within the number of attempts and the end date.",
+                                "example": 1
+                            },
+                            "locked": {
+                                "type": "boolean",
+                                "description": "Whether or not the student can continue to get grades for this problem",
+                                "example": false
+                            },
+                            "currentProblemState": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "description": "The saved state of the problem",
+                                "example": {}
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the grade was created.",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the grade was updated.",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            }
+                        }                            
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

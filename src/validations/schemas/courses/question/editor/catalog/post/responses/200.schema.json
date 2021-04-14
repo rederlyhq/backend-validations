@@ -1,4 +1,32 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["problems"],
+            "properties": {
+                "problems": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "private/templates/barebones.pg",
+                        "description": "A path the renderer can render"
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

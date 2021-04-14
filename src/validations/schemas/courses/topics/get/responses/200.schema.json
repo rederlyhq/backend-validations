@@ -1,4 +1,146 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["id", "curriculumTopicContentId", "courseUnitContentId", "topicTypeId", "contentOrder", "name", "active", "startDate", "endDate", "deadDate", "partialExtend", "errors", "lastExported", "exportUrl", "description", "createdAt", "updatedAt", "studentTopicOverride"],
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "description": "The rederly identifier for the topic",
+                        "example":  20
+                    },
+                    "curriculumTopicContentId": {
+                        "type": "number",
+                        "description": "The curriculum topic this was derived from",
+                        "example":  20
+                    },
+                    "courseUnitContentId": {
+                        "type": "number",
+                        "description": "The unit this topic belongs to",
+                        "example":  3
+                    },
+                    "topicTypeId": {
+                        "type": "number",
+                        "description": "The type of assignment (i.e. exam and homework)",
+                        "example":  1
+                    },
+                    "contentOrder": {
+                        "type": "number",
+                        "description": "The order of the topic within the unit",
+                        "example":  5
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the topic",
+                        "example":  "Parabola Lab"
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "description": "Whether or not the topic was deleted",
+                        "example":  true
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "When the course is scheduled to start",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "When the course is scheduled to end",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30
+                    },
+                    "deadDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "When the topic will no longer give extra credit",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30
+                    },
+                    "partialExtend": {
+                        "type": "boolean",
+                        "description": "Whether or not the topic allows for partial credit",
+                        "example":  false
+                    },
+                    "errors": {
+                        "type": "number",
+                        "description": "The number of errors on questions",
+                        "example":  0
+                    },
+                    "lastExported": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "The last time a bulk pdf export was started",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30
+                    },
+                    "exportUrl": {
+                        "anyOf": [{
+                            "type": "string"
+                        }, {
+                            "type": "null"
+                        }],
+                        "description": "The url to access the last bulk export",
+                        "example":  null
+                    },
+                    "description": {
+                        "anyOf": [{
+                            "type": "object"
+                        }, {
+                            "type": "null"
+                        }],
+                        "description": "Quill description of the topic",
+                        "example":  null
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "The time when the object was created",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "The last time the object was updated",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30
+                    },
+                    "studentTopicOverride": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "description": "Overrides student's have on this topic",
+                        "example":  []
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

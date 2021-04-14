@@ -1,4 +1,126 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["updatedRecords", "updatesCount"],
+            "properties": {
+                "updatedRecords": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "description": "The updated records",
+                        "required": ["id", "studentGradeId", "userId", "studentTopicAssessmentInfoId", "bestIndividualAttemptId", "bestVersionAttemptId", "randomSeed", "webworkQuestionPath", "problemNumber", "scoreForBestVersion", "overallBestScore", "active", "currentProblemState", "createdAt", "updatedAt"],
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier for this grade instance",
+                                "example": 1
+                            },
+                            "studentGradeId": {
+                                "type": "number",
+                                "description": "The grade that this grade instance is associated with",
+                                "example": 173865
+                            },
+                            "userId": {
+                                "type": "number",
+                                "description": "The student the grade instance belongs to",
+                                "example": 741
+                            },
+                            "studentTopicAssessmentInfoId": {
+                                "type": "number",
+                                "description": "The topic info for this version of the exam",
+                                "example": 1
+                            },
+                            "bestIndividualAttemptId": {
+                                "oneOf": [{
+                                    "type": "number"
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "The id of the best workbook for this version",
+                                "example": null
+                            },
+                            "bestVersionAttemptId": {
+                                "type": "number",
+                                "description": "The id of the best version TODO",
+                                "example": 109135
+                            },
+                            "randomSeed": {
+                                "type": "number",
+                                "description": "The seed that this student got for this version",
+                                "example": 148082
+                            },
+                            "webworkQuestionPath": {
+                                "type": "string",
+                                "description": "The webwork path given to this specific student (exams have multiple problem paths)",
+                                "example": "Library/ASU-topics/setStat/dueck5_1_5.pg"
+                            },
+                            "problemNumber": {
+                                "type": "number",
+                                "description": "The order of the problem for this student",
+                                "example": 1
+                            },
+                            "scoreForBestVersion": {
+                                "type": "number",
+                                "description": "The score of the best version. TODO aren't grade instances 1 per version?",
+                                "example": 0
+                            },
+                            "overallBestScore": {
+                                "type": "number",
+                                "description": "The mastery of the problem TODO there shouldn't be mastery on grade instances",
+                                "example": 0
+                            },
+                            "active": {
+                                "type": "boolean",
+                                "description": "Whether or not the grade instance was deleted",
+                                "example": true
+                            },
+                            "currentProblemState": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "description": "The current state of the problem to save it.",
+                                "example": {}
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the grade instance was created.",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the grade instance was last modified.",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            }
+                        }                            
+                    }
+                },
+                "updatesCount": {
+                    "type": "number",
+                    "description": "The number of records updated",
+                    "example": 1
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

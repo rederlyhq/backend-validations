@@ -17,5 +17,5 @@
         }
     },
     "additionalProperties": true,
-    "required": ["webworkQuestionPath", "problemSeed"]
+    "required": []
 }

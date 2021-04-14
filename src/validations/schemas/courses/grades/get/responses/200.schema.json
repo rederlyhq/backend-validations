@@ -1,4 +1,80 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["average", "openAverage", "deadAverage", "pendingProblemCount", "masteredProblemCount", "inProgressProblemCount", "user"],
+                "additionalProperties": false,
+                "properties": {
+                    "average": {
+                        "type": "number",
+                        "example": 0.5,
+                        "description": "The average score on all questions in the course."
+                    },
+                    "openAverage": {
+                        "type": "number",
+                        "example": 0.5,
+                        "description": "The average score on all questions that are available to students."
+                    },
+                    "deadAverage": {
+                        "type": "number",
+                        "example": 0.5,
+                        "description": "The average score on all questions that the end date has passed"
+                    },
+                    "pendingProblemCount": {
+                        "type": "string",
+                        "description": "The number of problems that have not been started",
+                        "example": "87"
+                    },
+                    "masteredProblemCount":{
+                        "type": "string",
+                        "description": "The number of problems that have an overallBestScore of 100%",
+                        "example": "87"
+                    },
+                    "inProgressProblemCount":{
+                        "type": "string",
+                        "description": "The number of problems that have an overallBestScore greater than 0 but less than 100%",
+                        "example": "87"
+                    },
+                    "user": {
+                        "type": "object",
+                        "required": ["id", "firstName", "lastName"],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "example": 2,
+                                "description": "The rederly identifier for the student",
+                                "type": "string"
+                            },
+                            "firstName": {
+                                "example": "p#2",
+                                "description": "The first name of the student",
+                                "type": "string"
+                            },
+                            "lastName": {
+                                "example": "#2p",
+                                "description": "The last name of the student",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

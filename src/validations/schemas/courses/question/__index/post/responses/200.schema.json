@@ -1,4 +1,114 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["smaEnabled", "id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "optional", "errors", "active", "updatedAt", "createdAt", "curriculumQuestionId", "course_topic_question_description"],
+            "properties": {
+                "smaEnabled": {
+                    "type": "boolean",
+                    "description": "Whether or not students get additional variations of the problems once solutions are available or they have mastered the problem",
+                    "example": true
+                },
+                "id": {
+                    "type": "number",
+                    "description": "The rederly identifier for the object",
+                    "example": 107856
+                },
+                "courseTopicContentId": {
+                    "type": "number",
+                    "description": "The topic the question is associated with",
+                    "example": 1
+                },
+                "problemNumber": {
+                    "type": "number",
+                    "description": "The order of the problem within the content",
+                    "example": 10
+                },
+                "webworkQuestionPath": {
+                    "type": "number",
+                    "description": "The renderer path of the problem",
+                    "example": "private/templates/barebones.pg"
+                },
+                "weight": {
+                    "type": "number",
+                    "description": "The amount of points the problem is worth",
+                    "example": 1
+                },
+                "maxAttempts": {
+                    "type": "number",
+                    "description": "The number of graded attempts. <= 0 is used for infinity.",
+                    "example": -1
+                },
+                "hidden": {
+                    "type": "number",
+                    "description": "Whether or not the question is hidden. NOT IMPLEMENTED",
+                    "example": false
+                },
+                "optional": {
+                    "type": "number",
+                    "description": "Whether or not the weight counts towards the required points of the topic. Optional true with a weight is used for extra credit.",
+                    "example": false
+                },
+                "errors": {
+                    "anyOf": [{
+                        "type": "null"
+                    }, {
+                        "type": "object"
+                    }],
+                    "description": "A list of errors like path not found or missing assets. TODO",
+                    "example": null
+                },
+                "active": {
+                    "type": "boolean",
+                    "description": "Whether or not the object has been deleted",
+                    "example": true
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "The last time the object was updated",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "createdAt": {
+                    "type": "number",
+                    "description": "When the object was created",
+                    "example": "2021-04-13T21:54:10.977Z"
+                },
+                "curriculumQuestionId": {
+                    "anyOf": [{
+                        "type": "number"
+                    }, {
+                        "type": "null"
+                    }],
+                    "description": "The curriculum question this question was created from.",
+                    "example": null
+                },
+                "course_topic_question_description": {
+                    "anyOf": [{
+                        "type": "number"
+                    }, {
+                        "type": "null"
+                    }],
+                    "description": "The description of the question. TODO why underscored?",
+                    "example": null
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

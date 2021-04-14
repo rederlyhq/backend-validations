@@ -1,4 +1,104 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["problems"],
+            "properties": {
+                "problems": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["id", "webworkQuestionPath", "courseQuestionAssessmentInfo", "topic"],
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier for this problem",
+                                "example": 1
+                            },
+                            "webworkQuestionPath": {
+                                "type": "number",
+                                "description": "The renderer path for this problem",
+                                "example": 1
+                            },
+                            "courseQuestionAssessmentInfo": {
+                                "anyOf": [{
+                                    "type": "null"
+                                }, {
+                                    "type": "object"
+                                }],
+                                "description": "The exam info for this problem"
+                            },
+                            "topic": {
+                                "type": "object",
+                                "description": "The topic this question belongs to",
+                                "required": ["name", "id", "unit"],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": 1,
+                                        "description": "The name of the topic"
+                                    },
+                                    "id": {
+                                        "type": "number",
+                                        "example": 1,
+                                        "description": "The rederly identifier for the topic"
+                                    },
+                                    "unit": {
+                                        "type": "object",
+                                        "description": "The unit the topic belongs to",
+                                        "required": ["name", "id", "course"],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": 1,
+                                                "description": "The name of the unit"
+                                            },
+                                            "id": {
+                                                "type": "number",
+                                                "example": 1,
+                                                "description": "The rederly identifier for the unit"
+                                            },
+                                            "course": {
+                                                "type": "object",
+                                                "description": "The course the unit belongs to",
+                                                "required": ["name", "id"],
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": 1,
+                                                        "description": "The name of the course"
+                                                    },
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": 1,
+                                                        "description": "The rederly identifier for the course"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }    
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

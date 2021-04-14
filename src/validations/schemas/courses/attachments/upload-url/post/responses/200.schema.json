@@ -1,4 +1,35 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["uploadURL", "cloudFilename"],
+            "properties": {
+                "uploadURL": {
+                    "type": "string",
+                    "description": "The url to post the file to",
+                    "example": "TODO"
+                },
+                "cloudFilename": {
+                    "type": "string",
+                    "description": "The filename in the cloud",
+                    "example": "TODO"
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

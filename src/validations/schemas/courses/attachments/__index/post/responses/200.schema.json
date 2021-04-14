@@ -1,4 +1,61 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["active", "id", "cloudFilename", "userLocalFilename", "updatedAt", "createdAt"],
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "Whether or not the object was deleted",
+                    "example": true
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The rederly identifier for the attachments",
+                    "example": 14573
+                },
+                "cloudFilename": {
+                    "type": "string",
+                    "description": "The filename used in s3",
+                    "example": "abc-def-ghi"
+                },
+                "userLocalFilename": {
+                    "type": "string",
+                    "description": "The filename the user had when uploading",
+                    "example": "tom.jpg"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the attachment was updated.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30                    
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the attachment was created.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30                    
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

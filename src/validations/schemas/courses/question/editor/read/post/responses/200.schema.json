@@ -1,4 +1,29 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["problemSource"],
+            "properties": {
+                "problemSource": {
+                    "type": "string",
+                    "example": "DOCUMENT();\nloadMacros(\"PGstandard.pl\",\"PGML.pl\");\nTEXT(beginproblem());\n$ShowPartialCorrectAnswers = 1;\n\nContext(\"Numeric\");\n\n# instructions to be displayed:\n\n$instructions = \"Evaluate the following:\";\n\n# basic randomization:\n# $variable = random( low, high, interval );\n#\n# or just type static LaTeX:\n\n$problemTeX = \"\\int_0^1\\pi\\,dx\";\n\n# your \"$answer\" must have the following format:\n#\n# $answer = Object(\"expression\");\n#\n# Basic Object Options: Real, Point, Formula, Interval, Complex\n#\n# Lists of values are also possible: List(Object(\"\"),Object(\"\"),...);\n\n$answer = Real(\"pi\");\n\n# \n# BEGIN problem display\n#\n# variables for display must be [$variable]\n# LaTeX math-mode: [`\\LaTeX`]\n# LaTeX displaystyle: [``\\LaTeX``]\n\nBEGIN_PGML\n\n[$instructions] \n\n[``[$problemTeX]``]\n\nAnswer: [__________]{$answer}\n\nEND_PGML\nENDDOCUMENT();\n\n",
+                    "description": "The source for the given problem"
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

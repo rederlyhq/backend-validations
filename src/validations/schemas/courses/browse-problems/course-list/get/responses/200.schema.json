@@ -1,4 +1,45 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["courses"],
+            "properties": {
+                "courses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["name", "id"],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "example": "Schema builder",
+                                "description": "The name of the course"
+                            },
+                            "id": {
+                                "type": "number",
+                                "example": 1,
+                                "description": "The rederly identifier for the course"
+                            }
+                        }    
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

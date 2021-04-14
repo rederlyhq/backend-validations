@@ -9,19 +9,16 @@
         },
         "statusCode": {
             "type": "number",
-            "enum": [200],
-            "example": 200
+            "enum": [201],
+            "example": 201
         },
         "data": {
             "type": "object",
-            "additionalProperties": false,
-            "required": ["updatedRecords", "updatesCount"],
             "properties": {
-                "updatedRecords": {
+                "newQuestions": {
                     "type": "array",
                     "items": {
                         "type": "object",
-                        "description": "The updated records",
                         "required": ["smaEnabled", "id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "optional", "errors", "active", "updatedAt", "createdAt", "curriculumQuestionId", "course_topic_question_description"],
                         "properties": {
                             "smaEnabled": {
@@ -73,8 +70,7 @@
                                 "anyOf": [{
                                     "type": "null"
                                 }, {
-                                    "type": "object",
-                                    "additionalProperties": true
+                                    "type": "object"
                                 }],
                                 "description": "A list of errors like path not found or missing assets. TODO",
                                 "example": null
@@ -117,11 +113,6 @@
                             }
                         }
                     }
-                },
-                "updatesCount": {
-                    "type": "number",
-                    "description": "The number of records updated",
-                    "example": 1
                 }
             }
         }

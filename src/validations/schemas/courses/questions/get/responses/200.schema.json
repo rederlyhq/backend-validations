@@ -1,4 +1,122 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["questions"],
+            "additionalProperties": false,
+            "properties": {
+                "questions": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "description": "The rederly identifier for the object",
+                            "example": 1
+                        },
+                        "courseTopicContentId": {
+                            "type": "number",
+                            "description": "The topic the question is associated with",
+                            "example": 1
+                        },
+                        "problemNumber": {
+                            "type": "number",
+                            "description": "The order of the question within the topic",
+                            "example": 1
+                        },
+                        "webworkQuestionPath": {
+                            "type": "string",
+                            "description": "The path for teh renderer to render",
+                            "example": "private/templates/barebones.pg"
+                        },
+                        "weight": {
+                            "type": "number",
+                            "description": "The amount of points the problem is worth",
+                            "example": 1
+                        },
+                        "maxAttempts": {
+                            "type": "number",
+                            "description": "The number of legal graded attempts for the student",
+                            "example": 1
+                        },
+                        "hidden": {
+                            "type": "boolean",
+                            "description": "Whether or not the question is visible NOT IMPLEMENTED",
+                            "example": false
+                        },
+                        "active": {
+                            "type": "boolean",
+                            "description": "Whether or not the question has been deleted",
+                            "example": true
+                        },
+                        "optional": {
+                            "type": "boolean",
+                            "description": "Whether or not the weight goes towards required points. Optional can be used for extra credit.",
+                            "example": false
+                        },
+                        "curriculumQuestionId": {
+                            "type": "number",
+                            "description": "The curriculum question that this course question is derived from",
+                            "example": 255
+                        },
+                        "smaEnabled": {
+                            "type": "boolean",
+                            "description": "Whether or not students can use sma after mastery or solutions",
+                            "example": true
+                        },
+                        "errors": {
+                            "anyOf": [{
+                                "type": "number"
+                            }, {
+                                "type": "object"
+                            }],
+                            "description": "TODO",
+                            "example": null
+                        },
+                        "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "tsType": "Date",
+                            "description": "When the object was created",
+                            "example": "1994-01-26T14:30:00.000Z",
+                            "maxLength": 30
+                        },
+                        "updatedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "tsType": "Date",
+                            "description": "When the object was updated",
+                            "example": "1994-01-26T14:30:00.000Z",
+                            "maxLength": 30
+                        },
+                        "grades": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        },
+                        "studentTopicQuestionOverride": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

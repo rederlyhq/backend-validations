@@ -1,0 +1,111 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [201],
+            "example": 201
+        },
+        "data": {
+            "type": "object",
+            "required": ["active", "id", "instructorId", "universityId", "name", "code", "start", "end", "sectionCode", "semesterCode", "textbooks", "updatedAt", "createdAt"],
+            "additionalProperties": false,
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "Whether or not the object has been deleted",
+                    "example": true
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The rederly identifier for the object",
+                    "example": 306
+                },
+                "instructorId": {
+                    "type": "number",
+                    "description": "The professor that created the course",
+                    "example": 2
+                },
+                "universityId": {
+                    "type": "number",
+                    "description": "The university that the course is associated with. Should match the professor's university",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the course.",
+                    "example": "Schema Builder 101"
+                },
+                "code": {
+                    "type": "string",
+                    "description": "TODO",
+                    "example": "ABC_123"
+                },
+                "start": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the course is scheduled to start",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "end": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the course is scheduled to end",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "sectionCode": {
+                    "type": "string",
+                    "description": "TODO",
+                    "example": "abc"
+                },
+                "semesterCode": {
+                    "type": "string",
+                    "description": "TODO",
+                    "example": "def"
+                },
+                "textbooks": {
+                    "type": "string",
+                    "description": "A text block that a professor can use to list the textbooks for the course.",
+                    "example": "Mat101 textbook"
+                },
+                "curriculumId": {
+                    "anyOf": [{
+                        "type": "string"
+                    }, {
+                        "type": "null"
+                    }],
+                    "description": "The curriculum that the course is associated with, if any.",
+                    "example": 1
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "The last time the object was modified",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30                
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "The time the object was created",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30                
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

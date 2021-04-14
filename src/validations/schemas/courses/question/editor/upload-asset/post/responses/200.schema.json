@@ -1,4 +1,29 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "required": ["filePath"],
+            "properties": {
+                "filePath": {
+                    "type": "string",
+                    "example": "path/to/my/file.png",
+                    "description": "The resolved path of the asset you saved TODO this is just sending back a success message"
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }
