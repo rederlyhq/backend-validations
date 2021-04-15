@@ -1,5 +1,7 @@
 {
     "type": "object",
+    "additionalProperties": false,
+    "required": [],
     "properties": {
         "webworkQuestionPath": {
             "type": "string",
@@ -15,7 +17,5 @@
             "description": "Whether or not to show the answer grid",
             "default": false
         }
-    },
-    "additionalProperties": true,
-    "required": []
+    }
 }

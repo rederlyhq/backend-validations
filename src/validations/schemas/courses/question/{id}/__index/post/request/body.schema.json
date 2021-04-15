@@ -24,6 +24,5 @@
         }
     ],
     "tsType": "unknown",
-    "description": "This post body comes from the renderer iframe and is proxied to the renderer, we don't really inspect this.",
-    "additionalProperties": true
+    "description": "This post body comes from the renderer iframe and is proxied to the renderer, we don't really inspect this."
 }

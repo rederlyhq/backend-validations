@@ -1,4 +1,7 @@
 {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [],
     "properties": {
         "courseId": {
             "type": "number",

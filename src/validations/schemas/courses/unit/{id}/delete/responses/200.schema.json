@@ -73,6 +73,7 @@
                             "maxLength": 30
                         },
                         "topics": {
+                            "type": "array",
                             "items": {
                                 "type": "object",
                                 "additionalProperties": false,

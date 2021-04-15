@@ -1,19 +1,25 @@
 {
     "type": "object",
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": true,
     "properties": {
         "data": {
+            "type": "object",
+            "required": ["rendererData"],
+            "additionalProperties": false,
             "properties": {
                 "rendererData": {
+                    "type": "object",
+                    "required": ["renderedHTML"],
+                    "additionalProperties": false,
                     "properties": {
                         "renderedHTML": {
                             "type": "string",
                             "description": "HTML from the renderer to render."
                         }    
-                    },
-                    "required": ["renderedHTML"]
+                    }
                 }
-            },
-            "required": ["rendererData"]            
+            }
         },
         "message": {
             "type": "string",
@@ -30,7 +36,5 @@
             "enum": [200],
             "example": 200
         }
-    },
-    "required": ["data", "statusCode", "status", "message"],
-    "additionalProperties": true
+    }
 }
