@@ -1,0 +1,121 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [201],
+            "example": 201
+        },
+        "data": {
+            "type": "object",
+            "required": ["user", "baseUrl", "topic"],
+            "properties": {
+                "user": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["id", "firstName", "lastName"],
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "description": "The rederly identifier for the user",
+                            "example": 1
+                        },
+                        "firstName": {
+                            "type": "string",
+                            "description": "The first name of the user",
+                            "example": "Jim"
+                        },
+                        "lastName": {
+                            "type": "string",
+                            "description": "The last name of the user",
+                            "example": "Jones"
+                        }
+                    }
+                },
+                "topic": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["id", "name", "topicTypeId", "questions"],
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "description": "The rederly identifier for the topic",
+                            "example": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the topic",
+                            "example": "Lesson 1"
+                        },
+                        "topicTypeId": {
+                            "type": "number",
+                            "description": "The type of assignment (i.e. homework, exam)",
+                            "example": 1,
+                            "enum": [1,2]
+                        },
+                        "questions": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": ["id", "problemNumber", "grades"],
+                                "properties": {
+                                    "id": {
+                                        "type": "number",
+                                        "description": "The rederly identifier for the problem",
+                                        "example": 1
+                                    },
+                                    "problemNumber": {
+                                        "type": "number",
+                                        "description": "The order of the problem within the topic",
+                                        "example": 1
+                                    },
+                                    "grades": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "required": ["id", "lastInfluencingCreditedAttemptId", "lastInfluencingAttemptId", "problemAttachments"],
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "description": "The rederly identifier for the grade",
+                                                "example": 1
+                                            },
+                                            "lastInfluencingCreditedAttemptId": {
+                                                "type": "number",
+                                                "description": "The identifier for the last workbook that influenced partialCreditBestScore",
+                                                "example": 1
+                                            },
+                                            "lastInfluencingAttemptId": {
+                                                "type": "number",
+                                                "description": "The identifier for the last workbook that influenced overallBestScore",
+                                                "example": 1
+                                            },
+                                            "problemAttachments": {
+                                                "type": "object",
+                                                "additionalProperties": true,
+                                                "description": "TODO"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "baseUrl": {
+                    "type": "string",
+                    "description": "The base url for getting attachments",
+                    "example": "/work/"
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

@@ -1,0 +1,75 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "courseId", "name", "contentOrder", "active", "updatedAt", "createdAt", "curriculumUnitId"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "The rederly identifier for the new unit",
+                    "example": 1742
+                },
+                "courseId": {
+                    "type": "number",
+                    "description": "The course the unit belongs to",
+                    "example": 1
+                },
+                "name": {
+                    "type": "number",
+                    "description": "The name of the unit",
+                    "example": "Lesson 1"
+                },
+                "contentOrder": {
+                    "type": "number",
+                    "description": "The order of the unit within the course",
+                    "example": 999
+                },
+                "active": {
+                    "type": "number",
+                    "description": "Whether or not the unit has been deleted",
+                    "example": true
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the unit was last updated",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the unit was created",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "curriculumUnitId": {
+                    "oneOf": [{
+                        "type": "number"
+                    }, {
+                        "type": "null"
+                    }],
+                    "description": "The university the unit is derived off of if any",
+                    "example": null
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

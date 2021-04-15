@@ -13,7 +13,91 @@
             "example": 200
         },
         "data": {
-            "type": "null"
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["active", "createdAt", "endTime", "id", "isClean", "isClosed", "maxAttempts", "nextVersionAvailableTime", "numAttempts", "startTime", "topicAssessmentInfoId", "updatedAt", "userId"],
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "Whether or not the student assessment info has been deleted",
+                    "example": true
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the student assessment info was created",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "endTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "The cutoff for the exam",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "id": {
+                    "type": "number",
+                    "description": "The rederly identifier for the student assessment info",
+                    "example": 4474
+                },
+                "isClean": {
+                    "type": "boolean",
+                    "description": "Whether or not changes have been made since the last submission",
+                    "example": false
+                },
+                "isClosed": {
+                    "type": "boolean",
+                    "description": "Whether or not the exam version has been ended",
+                    "example": false
+                },
+                "maxAttempts": {
+                    "type": "number",
+                    "description": "The number of legal attempts",
+                    "example": -1
+                },
+                "nextVersionAvailableTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "when the next version of the exam can be started",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "numAttempts": {
+                    "type": "number",
+                    "description": "How many times the exam has been attempted",
+                    "example": 0
+                },
+                "startTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When this exam version was started",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "topicAssessmentInfoId": {
+                    "type": "number",
+                    "description": "The exam settings for this student's exam info",
+                    "example": 286
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "The last time the student topic assessment info was updated",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "userId": {
+                    "type": "number",
+                    "description": "The user that this exam info belongs to",
+                    "example": 2
+                }
+            }
         }
     },
     "required": ["data", "statusCode", "status", "message"],

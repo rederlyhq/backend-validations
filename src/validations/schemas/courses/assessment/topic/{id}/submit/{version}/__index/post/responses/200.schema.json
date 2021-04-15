@@ -13,9 +13,10 @@
             "example": 200
         },
         "data": {
-            "type": "null"
+            "type": "object",
+            "additionalProperties": false
         }
     },
     "required": ["data", "statusCode", "status", "message"],
-    "additionalProperties": true
+    "additionalProperties": false
 }

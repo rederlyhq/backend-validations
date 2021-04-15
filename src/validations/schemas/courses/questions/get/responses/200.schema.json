@@ -19,6 +19,7 @@
             "properties": {
                 "questions": {
                     "type": "object",
+                    "required": ["id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "active", "optional", "curriculumQuestionId", "smaEnabled", "errors", "createdAt", "updatedAt", "grades", "studentTopicQuestionOverride"],
                     "properties": {
                         "id": {
                             "type": "number",

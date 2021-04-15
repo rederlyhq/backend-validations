@@ -1,4 +1,285 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["id", "active", "curriculumId", "instructorId", "universityId", "name", "textbooks", "code", "start", "end", "sectionCode", "semesterCode", "createdAt", "updatedAt", "units"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The rederly identifier for this object"
+                },
+                "active": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Whether or not this object has been deleted"
+                },
+                "curriculumId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The curriculum the course is associated with. TODO is this required?"
+                },
+                "instructorId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The professor that created this course."
+                },
+                "universityId": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "The university this course belongs to. Should match the insturctor's id."
+                },
+                "name": {
+                    "type": "number",
+                    "example": "Probability and Statistics",
+                    "description": "The name of the course."
+                },
+                "textbooks": {
+                    "type": "string",
+                    "example": "The big book of statistics.",
+                    "description": "The text block professors can use to input the required textbooks."
+                },
+                "code": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "TODO"
+                },
+                "start": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the course is scheduled to start.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "end": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the course is scheduled to start.",
+                    "example": "2019-09-28T02:00:00.000Z",
+                    "maxLength": 30
+                },
+                "sectionCode": {
+                    "type": "string",
+                    "description": "The code for this specific section of the course.",
+                    "example": "abc"
+                },
+                "semesterCode": {
+                    "type": "string",
+                    "description": "The code for the semester this course takes place in.",
+                    "example": "def"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the course was created.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "description": "When the course was updated.",
+                    "example": "1994-01-26T14:30:00.000Z",
+                    "maxLength": 30
+                },
+                "units": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["id", "courseId", "name", "contentOrder", "active", "updatedAt", "createdAt", "curriculumUnitId", "topics"],
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier for the new unit",
+                                "example": 1742
+                            },
+                            "courseId": {
+                                "type": "number",
+                                "description": "The course the unit belongs to",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "number",
+                                "description": "The name of the unit",
+                                "example": "Lesson 1"
+                            },
+                            "contentOrder": {
+                                "type": "number",
+                                "description": "The order of the unit within the course",
+                                "example": 999
+                            },
+                            "active": {
+                                "type": "number",
+                                "description": "Whether or not the unit has been deleted",
+                                "example": true
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the unit was last updated",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the unit was created",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "curriculumUnitId": {
+                                "oneOf": [{
+                                    "type": "number"
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "The university the unit is derived off of if any",
+                                "example": null
+                            },
+                            "topics": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": ["id", "curriculumTopicContentId", "courseUnitContentId", "topicTypeId", "contentOrder", "name", "active", "startDate", "endDate", "deadDate", "partialExtend", "errors", "lastExported", "exportUrl", "description", "createdAt", "updatedAt"],
+                                "properties": {
+                                    "id": {
+                                        "type": "number",
+                                        "description": "The rederly identifier for the topic",
+                                        "example":  20
+                                    },
+                                    "curriculumTopicContentId": {
+                                        "type": "number",
+                                        "description": "The curriculum topic this was derived from",
+                                        "example":  20
+                                    },
+                                    "courseUnitContentId": {
+                                        "type": "number",
+                                        "description": "The unit this topic belongs to",
+                                        "example":  3
+                                    },
+                                    "topicTypeId": {
+                                        "type": "number",
+                                        "description": "The type of assignment (i.e. exam and homework)",
+                                        "example":  1
+                                    },
+                                    "contentOrder": {
+                                        "type": "number",
+                                        "description": "The order of the topic within the unit",
+                                        "example":  5
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "description": "The name of the topic",
+                                        "example":  "Parabola Lab"
+                                    },
+                                    "active": {
+                                        "type": "boolean",
+                                        "description": "Whether or not the topic was deleted",
+                                        "example":  true
+                                    },
+                                    "startDate": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "tsType": "Date",
+                                        "description": "When the course is scheduled to start",
+                                        "example": "1994-01-26T14:30:00.000Z",
+                                        "maxLength": 30
+                                    },
+                                    "endDate": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "tsType": "Date",
+                                        "description": "When the course is scheduled to end",
+                                        "example": "1994-01-26T14:30:00.000Z",
+                                        "maxLength": 30
+                                    },
+                                    "deadDate": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "tsType": "Date",
+                                        "description": "When the topic will no longer give extra credit",
+                                        "example": "1994-01-26T14:30:00.000Z",
+                                        "maxLength": 30
+                                    },
+                                    "partialExtend": {
+                                        "type": "boolean",
+                                        "description": "Whether or not the topic allows for partial credit",
+                                        "example":  false
+                                    },
+                                    "errors": {
+                                        "type": "number",
+                                        "description": "The number of errors on questions",
+                                        "example":  0
+                                    },
+                                    "lastExported": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "tsType": "Date",
+                                        "description": "The last time a bulk pdf export was started",
+                                        "example": "1994-01-26T14:30:00.000Z",
+                                        "maxLength": 30
+                                    },
+                                    "exportUrl": {
+                                        "anyOf": [{
+                                            "type": "string"
+                                        }, {
+                                            "type": "null"
+                                        }],
+                                        "description": "The url to access the last bulk export",
+                                        "example":  null
+                                    },
+                                    "description": {
+                                        "anyOf": [{
+                                            "type": "object"
+                                        }, {
+                                            "type": "null"
+                                        }],
+                                        "description": "Quill description of the topic",
+                                        "example":  null
+                                    },
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "tsType": "Date",
+                                        "description": "The time when the object was created",
+                                        "example": "1994-01-26T14:30:00.000Z",
+                                        "maxLength": 30
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "tsType": "Date",
+                                        "description": "The last time the object was updated",
+                                        "example": "1994-01-26T14:30:00.000Z",
+                                        "maxLength": 30
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

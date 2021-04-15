@@ -1,4 +1,194 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["extendTopicResult", "extendTopicAssessmentResult"],
+            "properties": {
+                "extendTopicResult": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["createdNewEntry", "updatedCount", "updatedRecords"],
+                    "properties": {
+                        "createdNewEntry": {
+                            "type": "boolean",
+                            "description": "Whether or not the object already existed and was updated",
+                            "example": true
+                        },
+                        "updatedCount": {
+                            "type": "number",
+                            "description": "Number of topics updated",
+                            "example": 1
+                        },
+                        "updatedRecords": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": ["active", "id", "courseTopicContentId", "userId", "startDate", "endDate", "deadDate", "updatedAt", "createdAt"],
+                            "properties": {
+                                "active": {
+                                    "type": "boolean",
+                                    "description": "Whether or not the topic extension has been deleted",
+                                    "example": true
+                                },
+                                "id": {
+                                    "type": "number",
+                                    "description": "The rederly identifier for the extension",
+                                    "example": 791
+                                },
+                                "courseTopicContentId": {
+                                    "type": "number",
+                                    "description": "The topic the extension is associated with",
+                                    "example": 12696
+                                },
+                                "userId": {
+                                    "type": "number",
+                                    "description": "The user the extension is for",
+                                    "example": 1
+                                },
+                                "startDate": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "tsType": "Date",
+                                    "description": "The new start time.",
+                                    "example": "1994-01-26T14:30:00.000Z",
+                                    "maxLength": 30
+                                },
+                                "endDate": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "tsType": "Date",
+                                    "description": "The new end time",
+                                    "example": "1994-01-26T14:30:00.000Z",
+                                    "maxLength": 30
+                                },
+                                "deadDate": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "tsType": "Date",
+                                    "description": "The new dead date",
+                                    "example": "1994-01-26T14:30:00.000Z",
+                                    "maxLength": 30
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "tsType": "Date",
+                                    "description": "The last time the extension had been updated",
+                                    "example": "1994-01-26T14:30:00.000Z",
+                                    "maxLength": 30
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "tsType": "Date",
+                                    "description": "When the extension was created",
+                                    "example": "1994-01-26T14:30:00.000Z",
+                                    "maxLength": 30
+                                }
+                            }
+                        }
+                    }
+                },
+                "extendTopicAssessmentResult": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["createdNewEntry", "updatedCount", "updatedRecords"],
+                    "properties": {
+                        "createdNewEntry": {
+                            "type": "boolean",
+                            "description": "Whether or not the object already existed and was updated",
+                            "example": true
+                        },
+                        "updatedCount": {
+                            "type": "number",
+                            "description": "Number of topics updated",
+                            "example": 1
+                        },
+                        "updatedRecords": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": ["active", "id", "userId", "topicAssessmentInfoId", "versionDelay", "duration", "maxVersions", "maxGradedAttemptsPerVersion", "updatedAt", "createdAt", "student_topic_assessment_override_max_graded_attempts_per_versi"],
+                            "properties": {
+                                "active": {
+                                    "type": "boolean",
+                                    "description": "Whether or not the exam extension has been deleted",
+                                    "example": true
+                                },
+                                "id": {
+                                    "type": "number",
+                                    "description": "The rederly identifier for the exam extension",
+                                    "example": 226
+                                },
+                                "userId": {
+                                    "type": "number",
+                                    "description": "The user the extension is for",
+                                    "example": 1
+                                },
+                                "topicAssessmentInfoId": {
+                                    "type": "number",
+                                    "description": "The exam info this is linked to",
+                                    "example": 285
+                                },
+                                "versionDelay": {
+                                    "type": "number",
+                                    "description": "The length of the time from the beginning of an exam until you can start another version",
+                                    "example": 1
+                                },
+                                "duration": {
+                                    "type": "number",
+                                    "description": "The length of time a user has to submit an exam",
+                                    "example": 1
+                                },
+                                "maxVersions": {
+                                    "type": "number",
+                                    "description": "The max number of randomizations a user can get",
+                                    "example": 1
+                                },
+                                "maxGradedAttemptsPerVersion": {
+                                    "type": "number",
+                                    "description": "The max number of attempts a user gets on a single randomization",
+                                    "example": 1
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "tsType": "Date",
+                                    "description": "When the topic extension was last updated",
+                                    "example": "1994-01-26T14:30:00.000Z",
+                                    "maxLength": 30
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "tsType": "Date",
+                                    "description": "When the topic extension was created",
+                                    "example": "1994-01-26T14:30:00.000Z",
+                                    "maxLength": 30
+                                },
+                                "student_topic_assessment_override_max_graded_attempts_per_versi": {
+                                    "type": "number",
+                                    "description": "The max number of attempts a user gets on a single randomization TODO why is this repeated",
+                                    "example": 1
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }

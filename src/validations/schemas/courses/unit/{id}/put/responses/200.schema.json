@@ -1,4 +1,91 @@
 {
     "type": "object",
-    "additionalProperties": true
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["updatedRecords", "updatesCount"],
+            "properties": {
+                "updatedRecords": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "description": "TODO why is this an array?",
+                        "required": ["id", "courseId", "name", "active", "contentOrder", "curriculumUnitId", "createdAt", "updatedAt"],
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier for the unit",
+                                "example": 84
+                            },
+                            "courseId": {
+                                "type": "number",
+                                "description": "The course the unit belongs to",
+                                "example": 14
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "The name of the unit",
+                                "example": "Orientation"
+                            },
+                            "active": {
+                                "type": "boolean",
+                                "description": "Whether or not the unit has been deleted",
+                                "example": true
+                            },
+                            "contentOrder": {
+                                "type": "number",
+                                "description": "The order of the unit within the course",
+                                "example": 2
+                            },
+                            "curriculumUnitId": {
+                                "oneOf": [{
+                                    "type": "number"
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "The curriculum unit the unit is derived off of, if any",
+                                "example": 38
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the unit was created",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the unit was last updated",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            }
+                        }
+                    }
+                },
+                "updatesCount": {
+                    "type": "number",
+                    "description": "The number of records updated",
+                    "example": 1
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
 }
