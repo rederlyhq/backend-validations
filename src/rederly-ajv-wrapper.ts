@@ -14,8 +14,11 @@ const TSTypeConversion = {
         }
         return date;
     },
-    unknown: (value: unknown): unknown => value
+    unknown: null
 };
+
+// Need typing to be inferred for auto complete
+TSTypeConversion as {[key:string]: null | ((value: any) => unknown)};
 
 interface AddErrorToValidateFuncOptions {
     validateFunc: DataValidateFunction;
@@ -73,12 +76,15 @@ function tsTypeKeywordCompileFunc (this: Ajv, schema: string): DataValidateFunct
         const { parentData, parentDataProperty } = info;
         if (schema in TSTypeConversion) {
             try {
-                const date = TSTypeConversion[schema as keyof typeof TSTypeConversion](data);
-                if (parentData) {
-                    parentData[parentDataProperty] = date;
-                } else {
-                    // TODO
-                    console.log('has no parent');
+                const conversionFunction = TSTypeConversion[schema as keyof typeof TSTypeConversion];
+                if (conversionFunction) {
+                    const date = conversionFunction(data);
+                    if (parentData) {
+                        parentData[parentDataProperty] = date;
+                    } else {
+                        // TODO
+                        console.log('Rederly: Could not coerce - has no parent');
+                    }    
                 }
                 return true;
             } catch(e) {
