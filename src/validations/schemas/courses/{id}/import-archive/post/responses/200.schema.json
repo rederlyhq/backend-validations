@@ -170,12 +170,16 @@
                                         "example":  0
                                     },
                                     "lastExported": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "tsType": "Date",
-                                        "description": "The last time a bulk pdf export was started",
+                                        "anyOf": [{
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "tsType": "Date",
+                                            "maxLength": 30
+                                        }, {
+                                            "type": "null"
+                                        }],
                                         "example": "1994-01-26T14:30:00.000Z",
-                                        "maxLength": 30
+                                        "description": "The last time a bulk pdf export was started"
                                     },
                                     "exportUrl": {
                                         "anyOf": [{

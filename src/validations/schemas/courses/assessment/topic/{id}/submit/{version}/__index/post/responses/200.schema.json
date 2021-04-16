@@ -14,7 +14,38 @@
         },
         "data": {
             "type": "object",
-            "additionalProperties": false
+            "additionalProperties": false,
+            "required": [],
+            "properties": {
+                "problemScores": {
+                    "type": "object",
+                    "description": "A list of scores the student got on each problem",
+                    "patternProperties": {
+                        ".*": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "problemWeights": {
+                    "type": "object",
+                    "description": "A list of weights for each problem",
+                    "patternProperties": {
+                        ".*": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "bestVersionScore": {
+                    "type": "number",
+                    "description": "The best score a student got on this version",
+                    "example": 1
+                },
+                "bestOverallVersion": {
+                    "type": "number",
+                    "description": "The best score a student got on any version",
+                    "example": 1
+                }
+            }
         }
     },
     "required": ["data", "statusCode", "status", "message"],
