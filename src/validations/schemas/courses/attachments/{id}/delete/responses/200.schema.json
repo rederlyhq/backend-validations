@@ -40,7 +40,7 @@
                                 "example": "abc-def-ghi"
                             },
                             "userLocalFilename": {
-                                "type": "number",
+                                "type": "string",
                                 "description": "The filename the user had for the attachment",
                                 "example": "tom.jpg"
                             },

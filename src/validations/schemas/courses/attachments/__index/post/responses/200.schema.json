@@ -23,7 +23,7 @@
                     "example": true
                 },
                 "id": {
-                    "type": "string",
+                    "type": "number",
                     "description": "The rederly identifier for the attachments",
                     "example": 14573
                 },
