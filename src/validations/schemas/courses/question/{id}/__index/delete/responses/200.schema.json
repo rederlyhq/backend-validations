@@ -22,7 +22,7 @@
                     "items": {
                         "type": "object",
                         "description": "The updated records",
-                        "required": ["smaEnabled", "id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "optional", "errors", "active", "updatedAt", "createdAt", "curriculumQuestionId", "course_topic_question_description"],
+                        "required": ["smaEnabled", "id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "optional", "errors", "active", "updatedAt", "createdAt", "curriculumQuestionId", "description"],
                         "properties": {
                             "smaEnabled": {
                                 "type": "boolean",
@@ -45,7 +45,7 @@
                                 "example": 10
                             },
                             "webworkQuestionPath": {
-                                "type": "number",
+                                "type": "string",
                                 "description": "The renderer path of the problem",
                                 "example": "private/templates/barebones.pg"
                             },
@@ -60,12 +60,12 @@
                                 "example": -1
                             },
                             "hidden": {
-                                "type": "number",
+                                "type": "boolean",
                                 "description": "Whether or not the question is hidden. NOT IMPLEMENTED",
                                 "example": false
                             },
                             "optional": {
-                                "type": "number",
+                                "type": "boolean",
                                 "description": "Whether or not the weight counts towards the required points of the topic. Optional true with a weight is used for extra credit.",
                                 "example": false
                             },
@@ -93,9 +93,12 @@
                                 "maxLength": 30
                             },
                             "createdAt": {
-                                "type": "number",
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
                                 "description": "When the object was created",
-                                "example": "2021-04-13T21:54:10.977Z"
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
                             },
                             "curriculumQuestionId": {
                                 "anyOf": [{
@@ -106,9 +109,9 @@
                                 "description": "The curriculum question this question was created from.",
                                 "example": null
                             },
-                            "course_topic_question_description": {
+                            "description": {
                                 "anyOf": [{
-                                    "type": "number"
+                                    "type": "object"
                                 }, {
                                     "type": "null"
                                 }],
@@ -118,7 +121,7 @@
                         }
                     }
                 },
-                "updatesCount": {
+                "updatedCount": {
                     "type": "number",
                     "description": "The number of records updated",
                     "example": 1

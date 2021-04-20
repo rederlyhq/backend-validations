@@ -14,105 +14,186 @@
         },
         "data": {
             "type": "object",
-            "required": ["questions"],
+            "required": ["topic"],
             "additionalProperties": false,
             "properties": {
-                "questions": {
+                "topic": {
                     "type": "object",
-                    "required": ["id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "active", "optional", "curriculumQuestionId", "smaEnabled", "errors", "createdAt", "updatedAt", "grades", "studentTopicQuestionOverride"],
+                    "additionalProperties": false,
+                    "required": ["courseUnitContentId", "curriculumTopicContentId", "name", "topicTypeId", "startDate", "endDate", "deadDate", "partialExtend", "contentOrder", "description"],
                     "properties": {
-                        "id": {
+                        "courseUnitContentId": {
                             "type": "number",
-                            "description": "The rederly identifier for the object",
-                            "example": 1
+                            "example": 1,
+                            "description": "The unit to associate this topic with"
                         },
-                        "courseTopicContentId": {
+                        "curriculumTopicContentId": {
                             "type": "number",
-                            "description": "The topic the question is associated with",
-                            "example": 1
+                            "example": 1,
+                            "description": "The curriculum version of a topic to assicate this topic with"
                         },
-                        "problemNumber": {
-                            "type": "number",
-                            "description": "The order of the question within the topic",
-                            "example": 1
-                        },
-                        "webworkQuestionPath": {
+                        "name": {
                             "type": "string",
-                            "description": "The path for teh renderer to render",
-                            "example": "private/templates/barebones.pg"
+                            "example": "WeBWorK orientation",
+                            "description": "The name of the topic"
                         },
-                        "weight": {
-                            "type": "number",
-                            "description": "The amount of points the problem is worth",
-                            "example": 1
+                        "topicTypeId": {
+                            "type": "string",
+                            "example": 1,
+                            "description": "Whether the topic is a homework or any exam",
+                            "enum": [1,2]
                         },
-                        "maxAttempts": {
-                            "type": "number",
-                            "description": "The number of legal graded attempts for the student",
-                            "example": 1
-                        },
-                        "hidden": {
-                            "type": "boolean",
-                            "description": "Whether or not the question is visible NOT IMPLEMENTED",
-                            "example": false
-                        },
-                        "active": {
-                            "type": "boolean",
-                            "description": "Whether or not the question has been deleted",
-                            "example": true
-                        },
-                        "optional": {
-                            "type": "boolean",
-                            "description": "Whether or not the weight goes towards required points. Optional can be used for extra credit.",
-                            "example": false
-                        },
-                        "curriculumQuestionId": {
-                            "type": "number",
-                            "description": "The curriculum question that this course question is derived from",
-                            "example": 255
-                        },
-                        "smaEnabled": {
-                            "type": "boolean",
-                            "description": "Whether or not students can use sma after mastery or solutions",
-                            "example": true
-                        },
-                        "errors": {
-                            "anyOf": [{
-                                "type": "number"
-                            }, {
-                                "type": "object"
-                            }],
-                            "description": "TODO",
-                            "example": null
-                        },
-                        "createdAt": {
+                        "startDate": {
                             "type": "string",
                             "format": "date-time",
                             "tsType": "Date",
-                            "description": "When the object was created",
-                            "example": "1994-01-26T14:30:00.000Z",
-                            "maxLength": 30
+                            "maxLength": 30,
+                            "example": "2021-03-31T21:16:52.481Z",
+                            "description": "The date in which the topic is available to student's"
                         },
-                        "updatedAt": {
+                        "endDate": {
                             "type": "string",
                             "format": "date-time",
                             "tsType": "Date",
-                            "description": "When the object was updated",
-                            "example": "1994-01-26T14:30:00.000Z",
-                            "maxLength": 30
+                            "maxLength": 30,
+                            "example": "2021-03-31T21:16:52.481Z",
+                            "description": "The date in which the topic is available to student's"
                         },
-                        "grades": {
-                            "type": "array",
-                            "items": {
-                                "type": "object"
-                            }
+                        "deadDate": {
+                            "type": "string",
+                            "format": "date-time",
+                            "tsType": "Date",
+                            "maxLength": 30,
+                            "example": "2021-03-31T21:16:52.481Z",
+                            "description": "The date in which the topic is available to student's"
                         },
-                        "studentTopicQuestionOverride": {
-                            "type": "array",
-                            "items": {
-                                "type": "object"
-                            }
+                        "partialExtend": {
+                            "type": "boolean",
+                            "example": false,
+                            "default": false,
+                            "description": "Whether or not there can be a partial extension on the topic (dead date that is different than the end date"
+                        },
+                        "contentOrder": {
+                            "type": "number",
+                            "example": 1,
+                            "description": "A number to sort on when fetching topics for a unit"
+                        },
+                        "description": {
+                            "type": "object",
+                            "tsType": "unknown",
+                            "additionalProperties": true,
+                            "example": "The is an orientation for using WeBWorK",
+                            "description": "A description of the topic"
                         }
+                    }
+                },
+                "questions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "active", "optional", "curriculumQuestionId", "smaEnabled", "errors", "createdAt", "updatedAt", "grades", "studentTopicQuestionOverride"],
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier for the object",
+                                "example": 1
+                            },
+                            "courseTopicContentId": {
+                                "type": "number",
+                                "description": "The topic the question is associated with",
+                                "example": 1
+                            },
+                            "problemNumber": {
+                                "type": "number",
+                                "description": "The order of the question within the topic",
+                                "example": 1
+                            },
+                            "webworkQuestionPath": {
+                                "type": "string",
+                                "description": "The path for teh renderer to render",
+                                "example": "private/templates/barebones.pg"
+                            },
+                            "weight": {
+                                "type": "number",
+                                "description": "The amount of points the problem is worth",
+                                "example": 1
+                            },
+                            "maxAttempts": {
+                                "type": "number",
+                                "description": "The number of legal graded attempts for the student",
+                                "example": 1
+                            },
+                            "hidden": {
+                                "type": "boolean",
+                                "description": "Whether or not the question is visible NOT IMPLEMENTED",
+                                "example": false
+                            },
+                            "active": {
+                                "type": "boolean",
+                                "description": "Whether or not the question has been deleted",
+                                "example": true
+                            },
+                            "optional": {
+                                "type": "boolean",
+                                "description": "Whether or not the weight goes towards required points. Optional can be used for extra credit.",
+                                "example": false
+                            },
+                            "curriculumQuestionId": {
+                                "type": "number",
+                                "description": "The curriculum question that this course question is derived from",
+                                "example": 255
+                            },
+                            "smaEnabled": {
+                                "type": "boolean",
+                                "description": "Whether or not students can use sma after mastery or solutions",
+                                "example": true
+                            },
+                            "errors": {
+                                "anyOf": [{
+                                    "type": "object",
+                                    "patternProperties": {
+                                        ".*": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "TODO",
+                                "example": null
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the object was created",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the object was updated",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "grades": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            },
+                            "studentTopicQuestionOverride": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            }
+                        }                        
                     }
                 }
             }

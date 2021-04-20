@@ -15,7 +15,7 @@
         "data": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["updatedRecords", "updatesCount"],
+            "required": ["updatedRecords", "updatedCount"],
             "properties": {
                 "updatedRecords": {
                     "type": "array",
@@ -113,7 +113,7 @@
                         }                            
                     }
                 },
-                "updatesCount": {
+                "updatedCount": {
                     "type": "number",
                     "description": "The number of records updated",
                     "example": 1

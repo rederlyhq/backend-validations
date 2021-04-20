@@ -1,5 +1,6 @@
 {
     "type": "object",
+    "description": "Topic nothing required",
     "properties": {
         "courseUnitContentId": {
             "type": "number",

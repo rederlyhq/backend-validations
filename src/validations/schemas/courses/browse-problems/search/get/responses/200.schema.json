@@ -30,7 +30,7 @@
                                 "example": 1
                             },
                             "webworkQuestionPath": {
-                                "type": "number",
+                                "type": "string",
                                 "description": "The renderer path for this problem",
                                 "example": 1
                             },
