@@ -9,8 +9,8 @@
         },
         "statusCode": {
             "type": "number",
-            "enum": [201],
-            "example": 201
+            "enum": [200],
+            "example": 200
         },
         "data": {
             "type": "object",
