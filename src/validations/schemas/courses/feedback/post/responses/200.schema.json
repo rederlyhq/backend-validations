@@ -13,11 +13,131 @@
             "example": 200
         },
         "data": {
-            "type": "array",
-            "items": {
-                "type": "number",
-                "example": 1,
-                "description": "TODO workbook id?"
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["updatedCount", "updatedRecords"],
+            "properties": {
+                "updatedCount": {
+                    "type": "number",
+                    "example": 1,
+                    "description": "TODO"
+                },
+                "updatedRecords": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["id", "active", "studentGradeId", "userId", "courseWWTopicQuestionId", "randomSeed", "problemPath", "submitted", "result", "time", "wasLate", "wasExpired", "wasAfterAttemptLimit", "wasLocked", "wasAutoSubmitted", "createdAt", "updatedAt", "feedback"],
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier of this object",
+                                "example": 1
+                            },
+                            "active": {
+                                "type": "boolean",
+                                "description": "Whether or not the object was deleted",
+                                "example": false
+                            },
+                            "studentGradeId": {
+                                "type": "number",
+                                "description": "The grade this attempt associates with",
+                                "example": 1
+                            },
+                            "userId": {
+                                "type": "number",
+                                "description": "The user that made teh attempt",
+                                "example": 1
+                            },
+                            "courseWWTopicQuestionId": {
+                                "type": "number",
+                                "description": "TODO",
+                                "example": 1
+                            },
+                            "studentGradeInstanceId": {
+                                "type": "number",
+                                "description": "The exam grade that this attempt is associated to",
+                                "example": 1
+                            },
+                            "randomSeed": {
+                                "type": "number",
+                                "description": "The random seed of this attempt",
+                                "example": 1
+                            },
+                            "problemPath": {
+                                "type": "string",
+                                "description": "The webwork problem path for this submission",
+                                "example": "private/templates/barebones.pg"
+                            },
+                            "submitted": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "description": "The submission information",
+                                "example": {}
+                            },
+                            "result": {
+                                "type": "number",
+                                "description": "The score on the submission",
+                                "example": 1
+                            },
+                            "time": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "maxLength": 30,
+                                "description": "When the submission was submitted",
+                                "example": "1994-01-26T14:30:00.000Z"
+                            },
+                            "wasLate": {
+                                "type": "boolean",
+                                "description": "Whether or not the submission was end date",
+                                "example": false
+                            },
+                            "wasExpired": {
+                                "type": "boolean",
+                                "description": "Whether or not the submission was after dead date",
+                                "example": false
+                            },
+                            "wasAfterAttemptLimit": {
+                                "type": "boolean",
+                                "description": "Whether or not the submission was after the num attempts",
+                                "example": false
+                            },
+                            "wasLocked": {
+                                "type": "boolean",
+                                "description": "Whether or not the attempt was during the locked period",
+                                "example": false
+                            },
+                            "wasAutoSubmitted": {
+                                "type": "boolean",
+                                "description": "Whether or not the submission was auto submitted",
+                                "example": false
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "maxLength": 30,
+                                "description": "When the submission was created",
+                                "example": "1994-01-26T14:30:00.000Z"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "maxLength": 30,
+                                "description": "When the submission was last updated",
+                                "example": "1994-01-26T14:30:00.000Z"
+                            },
+                            "feedback": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "description": "A quill object that is the profs feedback",
+                                "example": {}
+                            }
+                        }
+                    }
+                }
             }
         }
     },

@@ -9,8 +9,8 @@
         },
         "statusCode": {
             "type": "number",
-            "enum": [200],
-            "example": 200
+            "enum": [201],
+            "example": 201
         },
         "data": {
             "type": "object",
@@ -28,7 +28,7 @@
                     "example": 1
                 },
                 "name": {
-                    "type": "number",
+                    "type": "string",
                     "description": "The name of the unit",
                     "example": "Lesson 1"
                 },
@@ -38,7 +38,7 @@
                     "example": 999
                 },
                 "active": {
-                    "type": "number",
+                    "type": "boolean",
                     "description": "Whether or not the unit has been deleted",
                     "example": true
                 },

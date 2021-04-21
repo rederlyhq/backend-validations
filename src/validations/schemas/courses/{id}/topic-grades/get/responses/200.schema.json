@@ -18,25 +18,28 @@
             "required": ["topics"],
             "properties": {
                 "topics": {
-                    "type": "object",
-                    "additionalProperties": true,
-                    "required": ["name", "totalProblemWeight", "requiredProblemWeight"],
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "example": "Exponential Equations - Exact",
-                            "description": "The name of the topic"
-                        },
-                        "totalProblemWeight": {
-                            "type": "string",
-                            "example": "6",
-                            "description": "The total weight for the topic"
-                        },
-                        "requiredProblemWeight": {
-                            "type": "string",
-                            "example": "6",
-                            "description": "The sum of the weights of the topics accounting for optional"
-                        }        
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "required": ["name", "totalProblemWeight", "requiredProblemWeight"],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "example": "Exponential Equations - Exact",
+                                "description": "The name of the topic"
+                            },
+                            "totalProblemWeight": {
+                                "type": "string",
+                                "example": "6",
+                                "description": "The total weight for the topic"
+                            },
+                            "requiredProblemWeight": {
+                                "type": "string",
+                                "example": "6",
+                                "description": "The sum of the weights of the topics accounting for optional"
+                            }        
+                        }
                     }
                 }
             }

@@ -15,7 +15,7 @@
         "data": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["updatedRecords", "updatesCount"],
+            "required": ["updatedRecords", "updatedCount"],
             "properties": {
                 "updatedRecords": {
                     "type": "array",
@@ -50,7 +50,7 @@
                                 "description": "The university this course belongs to. Should match the insturctor's id."
                             },
                             "name": {
-                                "type": "number",
+                                "type": "string",
                                 "example": "Probability and Statistics",
                                 "description": "The name of the course."
                             },
@@ -60,7 +60,7 @@
                                 "description": "The text block professors can use to input the required textbooks."
                             },
                             "code": {
-                                "type": "number",
+                                "type": "string",
                                 "example": 1,
                                 "description": "TODO"
                             },
@@ -109,7 +109,7 @@
                         }
                     }
                 },
-                "updatesCount": {
+                "updatedCount": {
                     "type": "number",
                     "description": "The number of records updated",
                     "example": 1

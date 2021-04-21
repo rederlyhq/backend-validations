@@ -67,7 +67,14 @@
                             "maxLength": 30
                         },
                         "dropDate": {
-                            "type": "null",
+                            "oneOf": [{
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "maxLength": 30
+                            }, {
+                                "type": "null"
+                            }],
                             "description": "This is that date the student was dropped, however since they were just enrolled this will always be null",
                             "example": null
                         }

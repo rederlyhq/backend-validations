@@ -13,9 +13,8 @@
             "example": 200
         },
         "data": {
-            "type": "object",
-            "additionalProperties": true,
-            "description": "TODO remove this, response is useless"
+            "type": "boolean",
+            "description": "TODO"
         }
     },
     "required": ["data", "statusCode", "status", "message"],

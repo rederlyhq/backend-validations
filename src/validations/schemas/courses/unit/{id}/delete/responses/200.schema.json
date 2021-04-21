@@ -15,295 +15,305 @@
         "data": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["updatedRecords", "updatesCount"],
+            "required": ["updatedRecords", "updatedCount"],
             "properties": {
                 "updatedRecords": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "required": ["topics", "id", "courseId", "name", "active", "contentOrder", "curriculumUnitId", "createdAt", "updatedAt"],
-                    "properties": {
-                        "id": {
-                            "type": "number",
-                            "description": "The rederly identifier of the unit",
-                            "example": 1
-                        },
-                        "courseId": {
-                            "type": "number",
-                            "description": "The course the unit belonged to",
-                            "example": 1
-                        },
-                        "name": {
-                            "type": "string",
-                            "description": "The name of th eunit",
-                            "example": "Rational Expressions & Equations-2147483647"
-                        },
-                        "active": {
-                            "type": "boolean",
-                            "description": "Whether or not the unit has been deleted",
-                            "example": false
-                        },
-                        "contentOrder": {
-                            "type": "number",
-                            "description": "The order of the unit within the course",
-                            "example": -2147483647
-                        },
-                        "curriculumUnitId": {
-                            "oneOf": [{
-                                "type": "number"
-                            }, {
-                                "type": "null"
-                            }],
-                            "description": "The curriculum unit this unit is derived off of, if any",
-                            "example": 1
-                        },
-                        "createdAt": {
-                            "type": "string",
-                            "format": "date-time",
-                            "tsType": "Date",
-                            "description": "When the unit was created",
-                            "example": "1994-01-26T14:30:00.000Z",
-                            "maxLength": 30
-                        },
-                        "updatedAt": {
-                            "type": "string",
-                            "format": "date-time",
-                            "tsType": "Date",
-                            "description": "When the unit was last updated",
-                            "example": "1994-01-26T14:30:00.000Z",
-                            "maxLength": 30
-                        },
-                        "topics": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "additionalProperties": false,
-                                "required": ["id", "curriculumTopicContentId", "courseUnitContentId", "topicTypeId", "contentOrder", "name", "active", "startDate", "endDate", "deadDate", "partialExtend", "errors", "lastExported", "exportUrl", "description", "createdAt", "updatedAt", "studentTopicOverride"],
-                                "properties": {
-                                    "id": {
-                                        "type": "number",
-                                        "description": "The rederly identifier for the topic",
-                                        "example":  20
-                                    },
-                                    "curriculumTopicContentId": {
-                                        "type": "number",
-                                        "description": "The curriculum topic this was derived from",
-                                        "example":  20
-                                    },
-                                    "courseUnitContentId": {
-                                        "type": "number",
-                                        "description": "The unit this topic belongs to",
-                                        "example":  3
-                                    },
-                                    "topicTypeId": {
-                                        "type": "number",
-                                        "description": "The type of assignment (i.e. exam and homework)",
-                                        "example":  1
-                                    },
-                                    "contentOrder": {
-                                        "type": "number",
-                                        "description": "The order of the topic within the unit",
-                                        "example":  5
-                                    },
-                                    "name": {
-                                        "type": "string",
-                                        "description": "The name of the topic",
-                                        "example":  "Parabola Lab"
-                                    },
-                                    "active": {
-                                        "type": "boolean",
-                                        "description": "Whether or not the topic was deleted",
-                                        "example":  true
-                                    },
-                                    "startDate": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "tsType": "Date",
-                                        "description": "When the course is scheduled to start",
-                                        "example": "1994-01-26T14:30:00.000Z",
-                                        "maxLength": 30
-                                    },
-                                    "endDate": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "tsType": "Date",
-                                        "description": "When the course is scheduled to end",
-                                        "example": "1994-01-26T14:30:00.000Z",
-                                        "maxLength": 30
-                                    },
-                                    "deadDate": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "tsType": "Date",
-                                        "description": "When the topic will no longer give extra credit",
-                                        "example": "1994-01-26T14:30:00.000Z",
-                                        "maxLength": 30
-                                    },
-                                    "partialExtend": {
-                                        "type": "boolean",
-                                        "description": "Whether or not the topic allows for partial credit",
-                                        "example":  false
-                                    },
-                                    "errors": {
-                                        "type": "number",
-                                        "description": "The number of errors on questions",
-                                        "example":  0
-                                    },
-                                    "lastExported": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "tsType": "Date",
-                                        "description": "The last time a bulk pdf export was started",
-                                        "example": "1994-01-26T14:30:00.000Z",
-                                        "maxLength": 30
-                                    },
-                                    "exportUrl": {
-                                        "anyOf": [{
-                                            "type": "string"
-                                        }, {
-                                            "type": "null"
-                                        }],
-                                        "description": "The url to access the last bulk export",
-                                        "example":  null
-                                    },
-                                    "description": {
-                                        "anyOf": [{
-                                            "type": "object"
-                                        }, {
-                                            "type": "null"
-                                        }],
-                                        "description": "Quill description of the topic",
-                                        "example":  null
-                                    },
-                                    "createdAt": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "tsType": "Date",
-                                        "description": "The time when the object was created",
-                                        "example": "1994-01-26T14:30:00.000Z",
-                                        "maxLength": 30
-                                    },
-                                    "updatedAt": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "tsType": "Date",
-                                        "description": "The last time the object was updated",
-                                        "example": "1994-01-26T14:30:00.000Z",
-                                        "maxLength": 30
-                                    },
-                                    "studentTopicOverride": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object"
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["topics", "id", "courseId", "name", "active", "contentOrder", "curriculumUnitId", "createdAt", "updatedAt"],
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "description": "The rederly identifier of the unit",
+                                "example": 1
+                            },
+                            "courseId": {
+                                "type": "number",
+                                "description": "The course the unit belonged to",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "The name of th eunit",
+                                "example": "Rational Expressions & Equations-2147483647"
+                            },
+                            "active": {
+                                "type": "boolean",
+                                "description": "Whether or not the unit has been deleted",
+                                "example": false
+                            },
+                            "contentOrder": {
+                                "type": "number",
+                                "description": "The order of the unit within the course",
+                                "example": -2147483647
+                            },
+                            "curriculumUnitId": {
+                                "oneOf": [{
+                                    "type": "number"
+                                }, {
+                                    "type": "null"
+                                }],
+                                "description": "The curriculum unit this unit is derived off of, if any",
+                                "example": 1
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the unit was created",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "tsType": "Date",
+                                "description": "When the unit was last updated",
+                                "example": "1994-01-26T14:30:00.000Z",
+                                "maxLength": 30
+                            },
+                            "topics": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": ["id", "curriculumTopicContentId", "courseUnitContentId", "topicTypeId", "contentOrder", "name", "active", "startDate", "endDate", "deadDate", "partialExtend", "errors", "lastExported", "exportUrl", "description", "createdAt", "updatedAt", "studentTopicOverride"],
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "The rederly identifier for the topic",
+                                            "example":  20
                                         },
-                                        "description": "Overrides student's have on this topic",
-                                        "example":  []
-                                    },
-                                    "questions": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "additionalProperties": false,
-                                            "required": ["smaEnabled", "id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "optional", "errors", "active", "updatedAt", "createdAt", "curriculumQuestionId", "course_topic_question_description"],
-                                            "properties": {
-                                                "smaEnabled": {
-                                                    "type": "boolean",
-                                                    "description": "Whether or not students get additional variations of the problems once solutions are available or they have mastered the problem",
-                                                    "example": true
-                                                },
-                                                "id": {
-                                                    "type": "number",
-                                                    "description": "The rederly identifier for the object",
-                                                    "example": 107856
-                                                },
-                                                "courseTopicContentId": {
-                                                    "type": "number",
-                                                    "description": "The topic the question is associated with",
-                                                    "example": 1
-                                                },
-                                                "problemNumber": {
-                                                    "type": "number",
-                                                    "description": "The order of the problem within the content",
-                                                    "example": 10
-                                                },
-                                                "webworkQuestionPath": {
-                                                    "type": "number",
-                                                    "description": "The renderer path of the problem",
-                                                    "example": "private/templates/barebones.pg"
-                                                },
-                                                "weight": {
-                                                    "type": "number",
-                                                    "description": "The amount of points the problem is worth",
-                                                    "example": 1
-                                                },
-                                                "maxAttempts": {
-                                                    "type": "number",
-                                                    "description": "The number of graded attempts. <= 0 is used for infinity.",
-                                                    "example": -1
-                                                },
-                                                "hidden": {
-                                                    "type": "number",
-                                                    "description": "Whether or not the question is hidden. NOT IMPLEMENTED",
-                                                    "example": false
-                                                },
-                                                "optional": {
-                                                    "type": "number",
-                                                    "description": "Whether or not the weight counts towards the required points of the topic. Optional true with a weight is used for extra credit.",
-                                                    "example": false
-                                                },
-                                                "errors": {
-                                                    "anyOf": [{
-                                                        "type": "null"
-                                                    }, {
-                                                        "type": "object"
-                                                    }],
-                                                    "description": "A list of errors like path not found or missing assets. TODO",
-                                                    "example": null
-                                                },
-                                                "active": {
-                                                    "type": "boolean",
-                                                    "description": "Whether or not the object has been deleted",
-                                                    "example": true
-                                                },
-                                                "updatedAt": {
-                                                    "type": "string",
-                                                    "format": "date-time",
-                                                    "tsType": "Date",
-                                                    "description": "The last time the object was updated",
-                                                    "example": "1994-01-26T14:30:00.000Z",
-                                                    "maxLength": 30
-                                                },
-                                                "createdAt": {
-                                                    "type": "number",
-                                                    "description": "When the object was created",
-                                                    "example": "2021-04-13T21:54:10.977Z"
-                                                },
-                                                "curriculumQuestionId": {
-                                                    "anyOf": [{
-                                                        "type": "number"
-                                                    }, {
-                                                        "type": "null"
-                                                    }],
-                                                    "description": "The curriculum question this question was created from.",
-                                                    "example": null
-                                                },
-                                                "course_topic_question_description": {
-                                                    "anyOf": [{
-                                                        "type": "number"
-                                                    }, {
-                                                        "type": "null"
-                                                    }],
-                                                    "description": "The description of the question. TODO why underscored?",
-                                                    "example": null
+                                        "curriculumTopicContentId": {
+                                            "type": "number",
+                                            "description": "The curriculum topic this was derived from",
+                                            "example":  20
+                                        },
+                                        "courseUnitContentId": {
+                                            "type": "number",
+                                            "description": "The unit this topic belongs to",
+                                            "example":  3
+                                        },
+                                        "topicTypeId": {
+                                            "type": "number",
+                                            "description": "The type of assignment (i.e. exam and homework)",
+                                            "example":  1
+                                        },
+                                        "contentOrder": {
+                                            "type": "number",
+                                            "description": "The order of the topic within the unit",
+                                            "example":  5
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "The name of the topic",
+                                            "example":  "Parabola Lab"
+                                        },
+                                        "active": {
+                                            "type": "boolean",
+                                            "description": "Whether or not the topic was deleted",
+                                            "example":  true
+                                        },
+                                        "startDate": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "tsType": "Date",
+                                            "description": "When the course is scheduled to start",
+                                            "example": "1994-01-26T14:30:00.000Z",
+                                            "maxLength": 30
+                                        },
+                                        "endDate": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "tsType": "Date",
+                                            "description": "When the course is scheduled to end",
+                                            "example": "1994-01-26T14:30:00.000Z",
+                                            "maxLength": 30
+                                        },
+                                        "deadDate": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "tsType": "Date",
+                                            "description": "When the topic will no longer give extra credit",
+                                            "example": "1994-01-26T14:30:00.000Z",
+                                            "maxLength": 30
+                                        },
+                                        "partialExtend": {
+                                            "type": "boolean",
+                                            "description": "Whether or not the topic allows for partial credit",
+                                            "example":  false
+                                        },
+                                        "errors": {
+                                            "type": "number",
+                                            "description": "The number of errors on questions",
+                                            "example":  0
+                                        },
+                                        "lastExported": {
+                                            "oneOf": [{
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "tsType": "Date",
+                                                "maxLength": 30
+                                            }, {
+                                                "type": "null"
+                                            }],
+                                            "description": "The last time a bulk pdf export was started",
+                                            "example": "1994-01-26T14:30:00.000Z"
+                                        },
+                                        "exportUrl": {
+                                            "anyOf": [{
+                                                "type": "string"
+                                            }, {
+                                                "type": "null"
+                                            }],
+                                            "description": "The url to access the last bulk export",
+                                            "example":  null
+                                        },
+                                        "description": {
+                                            "anyOf": [{
+                                                "type": "object"
+                                            }, {
+                                                "type": "null"
+                                            }],
+                                            "description": "Quill description of the topic",
+                                            "example":  null
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "tsType": "Date",
+                                            "description": "The time when the object was created",
+                                            "example": "1994-01-26T14:30:00.000Z",
+                                            "maxLength": 30
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "tsType": "Date",
+                                            "description": "The last time the object was updated",
+                                            "example": "1994-01-26T14:30:00.000Z",
+                                            "maxLength": 30
+                                        },
+                                        "studentTopicOverride": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            },
+                                            "description": "Overrides student's have on this topic",
+                                            "example":  []
+                                        },
+                                        "questions": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "additionalProperties": false,
+                                                "required": ["smaEnabled", "id", "courseTopicContentId", "problemNumber", "webworkQuestionPath", "weight", "maxAttempts", "hidden", "optional", "errors", "active", "updatedAt", "createdAt", "curriculumQuestionId", "description"],
+                                                "properties": {
+                                                    "smaEnabled": {
+                                                        "type": "boolean",
+                                                        "description": "Whether or not students get additional variations of the problems once solutions are available or they have mastered the problem",
+                                                        "example": true
+                                                    },
+                                                    "id": {
+                                                        "type": "number",
+                                                        "description": "The rederly identifier for the object",
+                                                        "example": 107856
+                                                    },
+                                                    "courseTopicContentId": {
+                                                        "type": "number",
+                                                        "description": "The topic the question is associated with",
+                                                        "example": 1
+                                                    },
+                                                    "problemNumber": {
+                                                        "type": "number",
+                                                        "description": "The order of the problem within the content",
+                                                        "example": 10
+                                                    },
+                                                    "webworkQuestionPath": {
+                                                        "type": "string",
+                                                        "description": "The renderer path of the problem",
+                                                        "example": "private/templates/barebones.pg"
+                                                    },
+                                                    "weight": {
+                                                        "type": "number",
+                                                        "description": "The amount of points the problem is worth",
+                                                        "example": 1
+                                                    },
+                                                    "maxAttempts": {
+                                                        "type": "number",
+                                                        "description": "The number of graded attempts. <= 0 is used for infinity.",
+                                                        "example": -1
+                                                    },
+                                                    "hidden": {
+                                                        "type": "boolean",
+                                                        "description": "Whether or not the question is hidden. NOT IMPLEMENTED",
+                                                        "example": false
+                                                    },
+                                                    "optional": {
+                                                        "type": "boolean",
+                                                        "description": "Whether or not the weight counts towards the required points of the topic. Optional true with a weight is used for extra credit.",
+                                                        "example": false
+                                                    },
+                                                    "errors": {
+                                                        "anyOf": [{
+                                                            "type": "null"
+                                                        }, {
+                                                            "type": "object"
+                                                        }],
+                                                        "description": "A list of errors like path not found or missing assets. TODO",
+                                                        "example": null
+                                                    },
+                                                    "active": {
+                                                        "type": "boolean",
+                                                        "description": "Whether or not the object has been deleted",
+                                                        "example": true
+                                                    },
+                                                    "updatedAt": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "tsType": "Date",
+                                                        "description": "The last time the object was updated",
+                                                        "example": "1994-01-26T14:30:00.000Z",
+                                                        "maxLength": 30
+                                                    },
+                                                    "createdAt": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "tsType": "Date",
+                                                        "description": "The the object was created",
+                                                        "example": "1994-01-26T14:30:00.000Z",
+                                                        "maxLength": 30
+                                                    },
+                                                    "curriculumQuestionId": {
+                                                        "anyOf": [{
+                                                            "type": "number"
+                                                        }, {
+                                                            "type": "null"
+                                                        }],
+                                                        "description": "The curriculum question this question was created from.",
+                                                        "example": null
+                                                    },
+                                                    "description": {
+                                                        "anyOf": [{
+                                                            "type": "object"
+                                                        }, {
+                                                            "type": "null"
+                                                        }],
+                                                        "description": "The description of the question. TODO why underscored?",
+                                                        "example": null
+                                                    }
                                                 }
                                             }
                                         }
                                     }
-                                }
-                            }        
+                                }        
+                            }
                         }
                     }
                 },
-                "updatesCount": {
+                "updatedCount": {
                     "type": "number",
                     "description": "The number of records updated",
                     "example": 1

@@ -57,7 +57,7 @@
                             "id": {
                                 "example": 2,
                                 "description": "The rederly identifier for the student",
-                                "type": "string"
+                                "type": "number"
                             },
                             "firstName": {
                                 "example": "p#2",

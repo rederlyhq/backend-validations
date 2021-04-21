@@ -4,16 +4,16 @@
         "message": {
             "type": "string"
         },
-        "status": {
+        "error": {
             "type": "string"
         },
         "statusCode": {
             "type": "number",
-            "enum": [200],
-            "example": 200
+            "enum": [400],
+            "example": 400
         },
         "data": {
-            "type": "boolean"
+            "type": "null"
         }
     },
     "required": ["data", "statusCode", "status", "message"],

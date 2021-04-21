@@ -23,7 +23,7 @@
                     "example": true
                 },
                 "id": {
-                    "type": "string",
+                    "type": "number",
                     "description": "The rederly identifier for the object",
                     "example": 306
                 },
@@ -80,7 +80,7 @@
                 },
                 "curriculumId": {
                     "anyOf": [{
-                        "type": "string"
+                        "type": "number"
                     }, {
                         "type": "null"
                     }],
