@@ -1,10 +1,6 @@
 {
     "type": "object",
+    "additionalProperties": false,
     "properties": {
-        "useCurriculum": {
-            "type": "boolean",
-            "example": "false",
-            "default": false
-        }
     }
 }

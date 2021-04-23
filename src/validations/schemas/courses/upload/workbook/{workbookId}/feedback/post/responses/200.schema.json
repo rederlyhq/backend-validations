@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "cloudFilename", "userLocalFilename", "createdAt", "updatedAt", "active"],
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "The rederly identifier for the attachment",
+                    "example": 1
+                },
+                "cloudFilename": {
+                    "type": "string",
+                    "description": "The filename in s3",
+                    "example": "74188599-6e18-4e5b-b300-bd37510d1edf"
+                },
+                "userLocalFilename": {
+                    "type": "string",
+                    "description": "The filename the user used to upload the file",
+                    "example": "my-file.png"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "maxLength": 30,
+                    "description": "When the attachment was created",
+                    "example": "1994-01-26T14:30:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "tsType": "Date",
+                    "maxLength": 30,
+                    "description": "When the attachment was updated",
+                    "example": "1994-01-26T14:30:00.000Z"
+                },
+                "active": {
+                    "type": "boolean",
+                    "description": "Whether or not the attachment was deleted",
+                    "example": false
+                }
+            }
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

@@ -7,9 +7,14 @@
             "description": "The topic you are extending"
         },
         "userId": {
-            "type": "number",
-            "example": 1,
-            "description": "The user which you are extending the topic for"
+            "anyOf": [{
+                "type": "number"
+            }, {
+                "type": "string",
+                "enum": ["me"]
+            }],
+            "example": "me",
+            "description": "userId is used for checking whether or not the user has permission to fetch the questions"
         },
         "topicAssessmentInfoId": {
             "type": "number",

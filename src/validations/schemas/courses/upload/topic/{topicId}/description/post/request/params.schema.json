@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "topicId": {
+            "type": "number",
+            "description": "The topic to provide feedback on.",
+            "example": 1
+        }
+    },
+    "required": ["topicId"],
+    "additionalProperties": false
+}

@@ -1,6 +1,12 @@
 {
     "type": "object",
     "properties": {
-        "cacheBuster": {}
+        "cacheBuster": {},
+        "type": {
+            "type": "string",
+            "example": "/work",
+            "description": "Where to upload the attachment to",
+            "enum": ["/work", "/uploads/workbook", "/uploads/topic", "/uploads/description"]
+        }
     }
 }

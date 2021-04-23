@@ -46,6 +46,11 @@
             "type": "string",
             "description": "A text field for any textbook information you want to include.",
             "example": "Mat101 textbook"
+        },
+        "originatingCourseId": {
+            "type": "number",
+            "description": "The course that this course is derived off of",
+            "example": 1
         }
     },
     "required": ["name", "code", "start", "end", "sectionCode", "semesterCode", "textbooks"],

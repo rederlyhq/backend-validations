@@ -2,7 +2,9 @@
     "type": "object",
     "properties": {
         "content": {
-            "type": "string",
+            "type": "object",
+            "additionalProperties": true,
+            "tsType": "unknown",
             "description": "The feedback for the student",
             "example": "Well done, but you can do better!"
         }

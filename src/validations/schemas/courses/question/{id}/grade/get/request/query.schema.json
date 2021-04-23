@@ -3,9 +3,14 @@
     "required": ["userId"],
     "properties": {
         "userId": {
-            "type": "number",
-            "example": 1,
-            "description": "The user to fetch the grade for"
+            "anyOf": [{
+                "type": "number"
+            }, {
+                "type": "string",
+                "enum": ["me"]
+            }],
+            "example": "me",
+            "description": "userId is used for checking whether or not the user has permission to fetch the questions"
         },
         "topicAssessmentInfoId": {
             "type": "number",

@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "statusCode": {
+            "type": "number",
+            "enum": [200],
+            "example": 200
+        },
+        "data": {
+            "oneOf": [{
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "topicId", "userId", "feedback", "createdAt", "updatedAt", "active"],
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "example": 1,
+                        "description": "The rederly identifier for the feedback"
+                    },
+                    "topicId": {
+                        "type": "number",
+                        "example": 1,
+                        "description": "The topic the feedback is for"
+                    },
+                    "userId": {
+                        "type": "number",
+                        "example": 1,
+                        "description": "The user the feedback is for"
+                    },
+                    "feedback": {
+                        "type": "object",
+                        "tsType": "unknown",
+                        "example": {},
+                        "additionalProperties": true,
+                        "description": "The feedback for the user (quill object)"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "When the feedback was created.",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30                    
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "tsType": "Date",
+                        "description": "When the feedback was updated.",
+                        "example": "1994-01-26T14:30:00.000Z",
+                        "maxLength": 30                    
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "example": 1,
+                        "description": "Whether or not the feedback was deleted"
+                    }
+                }
+            }, {
+                "type": "null"
+            }]
+        }
+    },
+    "required": ["data", "statusCode", "status", "message"],
+    "additionalProperties": false
+}

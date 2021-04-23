@@ -22,7 +22,12 @@
             "example": 1
         },
         "userId": {
-            "type": "number",
+            "oneOf": [{
+                "type": "number"
+            }, {
+                "type": "string",
+                "enum": ["me"]
+            }],
             "description": "The user to filter the grades for",
             "example": 1
         }

@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "topicId": {
+            "type": "number",
+            "description": "The topic to provide feedback on.",
+            "example": 1
+        },
+        "userId": {
+            "type": "number",
+            "description": "The user to provide feedback for.",
+            "example": 1
+        }
+    },
+    "required": ["topicId", "userId"],
+    "additionalProperties": false
+}

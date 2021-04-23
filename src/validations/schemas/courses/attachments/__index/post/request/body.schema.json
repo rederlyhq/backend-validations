@@ -4,8 +4,7 @@
     "properties": {
         "attachment": {
             "type": "object",
-            "required": ["cloudFilename", "userLocalFilename"
-            ],
+            "required": ["cloudFilename", "userLocalFilename"],
             "properties": {
                 "cloudFilename": {
                     "type": "string",

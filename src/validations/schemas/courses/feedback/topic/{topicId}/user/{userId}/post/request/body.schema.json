@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "content": {
+            "type": "object",
+            "additionalProperties": true,
+            "tsType": "unknown",
+            "description": "The feedback for the student",
+            "example": "Well done, but you can do better!"
+        }
+    },
+    "required": ["content"]
+}

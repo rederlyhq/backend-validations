@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "required": ["attachment"],
+    "additionalProperties": false,
+    "properties": {
+        "attachment": {
+            "type": "object",
+            "required": ["cloudFilename", "userLocalFilename", "userId"],
+            "additionalProperties": false,
+            "properties": {
+                "cloudFilename": {
+                    "type": "string",
+                    "description": "The filename in s3",
+                    "example": "74188599-6e18-4e5b-b300-bd37510d1edf"
+                },
+                "userLocalFilename": {
+                    "type": "string",
+                    "description": "The filename the user used to upload the file",
+                    "example": "my-file.png"
+                },
+                "userId": {
+                    "type": "number",
+                    "description": "The user that uploaded the attachment",
+                    "example": 1
+                }
+            }        
+        }
+    }
+}
