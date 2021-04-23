@@ -1,5 +1,6 @@
 {
     "type": "object",
+    "additionalProperties": false,
     "properties": {
         "courseId": {
             "type": "number",
@@ -30,6 +31,12 @@
             }],
             "description": "The user to filter the grades for",
             "example": 1
+        },
+        "topicTypeFilter": {
+            "type": "number",
+            "description": "No filter, homeowrk or exam",
+            "example": 0,
+            "enum": [0,1,2]
         }
     }
 }

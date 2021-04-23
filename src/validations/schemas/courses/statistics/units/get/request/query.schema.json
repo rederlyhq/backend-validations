@@ -12,6 +12,12 @@
             "type": "number",
             "example": 1,
             "description": "Getting student grades uses statistics. This is the userId to get the grades for"
+        },
+        "topicTypeFilter": {
+            "type": "number",
+            "description": "No filter, homeowrk or exam",
+            "example": 0,
+            "enum": [0,1,2]
         }
     }
 }

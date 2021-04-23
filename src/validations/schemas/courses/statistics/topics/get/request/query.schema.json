@@ -17,6 +17,12 @@
             "type": "number",
             "example": 1,
             "description": "The unit to filter the topic by"
+        },
+        "topicTypeFilter": {
+            "type": "number",
+            "description": "No filter, homeowrk or exam",
+            "example": 0,
+            "enum": [0,1,2]
         }
     }
 }
